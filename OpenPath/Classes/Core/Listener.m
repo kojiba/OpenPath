@@ -27,12 +27,11 @@
 
 -(void)startListen {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        size_t iterator;
 
         char buffer[1500];
 
         RSocket *receiver = c(RSocket)(nil);
-        $(receiver, m(bindPort, RSocket)), 8888);
+        $(receiver, m(bindPort, RSocket)), PROTOCOL_PORT);
 
         $(receiver, m(joinMulticastGroup, RSocket)), LOCAL_MULTICAST);
 
