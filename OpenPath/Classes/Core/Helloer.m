@@ -6,6 +6,7 @@
 #import "Helloer.h"
 #import "RSocket.h"
 #import "Settings_Keys.h"
+#import "OpenPathProtocol.h"
 
 @implementation Helloer {
 
@@ -23,17 +24,20 @@
     return _instance;
 }
 
-- (void)sendHelloWithDelay:(NSUInteger)seconds repeat:(NSUInteger)times block:(HelloUpdateBlock)block {
+- (void)sendHelloWithDelay:(NSUInteger)seconds repeat:(NSUInteger)times key:(NSString*)key block:(HelloUpdateBlock)block {
     if(times != 0) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             size_t iterator;
+            NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
+            RByteArray *hello = createHelloPacketWithKey(keyData.bytes, keyData.length);
+
             RSocket *socket = c(RSocket)(nil);
 
             $(socket, m(setPort,    RSocket)), PROTOCOL_PORT);
             $(socket, m(setAddress, RSocket)), LOCAL_MULTICAST);
 
             forAll(iterator, times) {
-                if($(socket, m(send, RSocket)), "Some udp multicast for hello bro", sizeof("Some udp multicast for hello bro")) == networkOperationSuccessConst) {
+                if($(socket, m(send, RSocket)), hello, hello->size) == networkOperationSuccessConst) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         block(socket->packetCounter, 0);
                     });

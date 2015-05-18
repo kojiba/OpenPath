@@ -36,8 +36,8 @@
         $(receiver, m(joinMulticastGroup, RSocket)), LOCAL_MULTICAST);
 
         while(1) {
-            __block char *tempData = buffer;
             ssize_t length = $(receiver, m(receive, RSocket)), buffer, 1500);
+            __block char *tempData = (char *) getByteArrayCopy((byte const *) buffer, (size_t) length);
 
             if(length >= 0) {
                 dispatch_async(dispatch_get_main_queue(), ^{

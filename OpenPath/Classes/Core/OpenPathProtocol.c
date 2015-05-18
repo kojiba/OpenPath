@@ -18,12 +18,13 @@
 
 rbool canDecryptHello(const byte *buffer, size_t size, const byte *key, size_t keySize) {
     rbool result = no;
-    if(size > 4) {
+    if(size == (sizeof(pathHelloString))) {
         byte *copy = getByteArrayCopy(buffer, size);
         if (copy != nil) {
             Xor(copy, (pointer const) key, size, keySize);
             // check if first 5 bytes is hello (proof of decrypt)
-            if(isMemEquals(copy + 1, pathHelloString, sizeof(pathHelloString))) {
+//            FIXME
+            if(isMemEquals(copy + 1, pathHelloString, sizeof(pathHelloString) - 1)) {
                 result = yes;
             }
             // check first byte
@@ -35,11 +36,11 @@ rbool canDecryptHello(const byte *buffer, size_t size, const byte *key, size_t k
 }
 
 RByteArray * createHelloPacketWithKey(char *key, size_t size) {
-    RByteArray *result = makeRByteArray(size + 1);
+    RByteArray *result = makeRByteArray(sizeof(pathHelloString));
     if(result != nil) {
         result->array[0] = HelloPacketFlag;
-        RMemCpy(result->array + 1, pathHelloString, sizeof(pathHelloString));
-        Xor(result->array, (pointer const) key, size, size);
+        RMemCpy(result->array + 1, pathHelloString, sizeof(pathHelloString) - 1);
+        Xor(result->array, (pointer const) key, sizeof(pathHelloString), size);
     }
     return result;
 }

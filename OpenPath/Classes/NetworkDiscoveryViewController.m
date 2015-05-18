@@ -6,6 +6,7 @@
 #import "NetworkDiscoveryViewController.h"
 #import "Helloer.h"
 #import "Listener.h"
+#import "OpenPathProtocol.h"
 
 
 @interface NetworkDiscoveryViewController()
@@ -27,10 +28,17 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    NSData *keyData = [DEBUG_PRIVATE_HELLO_KEY dataUsingEncoding:NSUTF8StringEncoding];
 
     [[Listener sharedListener] setUpdateBlock:^void(char *data, ssize_t length, size_t packetsCounter, int error, char const *address) {
-        if(error == 0) {
-            [self logString: [NSString stringWithFormat:@"Received data: %s from %s, total received %lu!\n", data, address, packetsCounter]];
+        if(error == 0
+                && data != nil) {
+            if(canDecryptHello((byte const *) data, (size_t) length, keyData.bytes, keyData.length)) {
+                [self logString:[NSString stringWithFormat:@"Received HELLO from %s\n", address]];
+            } else {
+                [self logString:[NSString stringWithFormat:@"Received data: %s from %s, total received %lu!\n", data, address, packetsCounter]];
+            }
+            deallocator(data);
         } else {
             [self logString: [NSString stringWithFormat:@"Error receive packet!\n"]];
         }
@@ -38,7 +46,7 @@
 
     [[Listener sharedListener] startListen];
 
-    [[Helloer sharedHelloer] sendHelloWithDelay:1 repeat:10 block:^BOOL(size_t packetsCounter, int error) {
+    [[Helloer sharedHelloer] sendHelloWithDelay:1 repeat:10 key:DEBUG_PRIVATE_HELLO_KEY block:^BOOL(size_t packetsCounter, int error) {
 
         if(!error) {
             [self logString: [NSString stringWithFormat:@"Send hello, total sent %lu!\n", packetsCounter]];

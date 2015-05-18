@@ -24,10 +24,12 @@
 
 #import "RByteOperations.h"
 
-const char pathHelloString[] = "HELLO";
+#define DEBUG_PRIVATE_HELLO_KEY @"it's true private key"
+
+static const char pathHelloString[] = "HELLO MESSAGE, WHICH MUST BE DECRYPTED WHEN RECEIVED";
 
 typedef enum OpenPathFlag {
-    HelloPacketFlag,
+    HelloPacketFlag = 20,
     DataPacketFlag,
 
     GetCertPackeFlag,
