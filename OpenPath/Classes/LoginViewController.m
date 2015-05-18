@@ -4,20 +4,26 @@
 //
 
 #import "LoginViewController.h"
+#import "Helper.h"
 
+
+@interface LoginViewController()
+@property (strong, nonatomic) IBOutlet UITextField *loginTextField;
+@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (strong, nonatomic) IBOutlet UIButton    *signInButton;
+@end
 
 @implementation LoginViewController {
 
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-}
+-(IBAction)signInPressed {
+    if(!stringIsBlankOrNil(self.loginTextField.text)
+            && !stringIsBlankOrNil(self.passwordTextField.text)) {
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    } else {
+        ShowShortMessage(@"Please, input login and password.");
+    }
 }
 
 @end
