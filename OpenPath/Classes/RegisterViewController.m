@@ -17,6 +17,10 @@
 
 }
 
+-(IBAction)backPressed {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(IBAction)registerPressed {
     if(!stringIsBlankOrNil(self.loginTextField.text)
             && !stringIsBlankOrNil(self.passwordTextField.text)) {
@@ -29,7 +33,7 @@
                 if ([[UserData sharedData] createUserWithLogin:self.loginTextField.text password:self.passwordTextField.text]) {
 
                     ShowShortMessage(@"User succesfully created!");
-                    [self.navigationController popViewControllerAnimated:YES];
+                    [[self segueForUnwindingToViewController:self fromViewController:nil identifier:@"login-creation.segue"] perform];
 
                 } else {
                     ShowShortMessage(@"User already exists!");
