@@ -9,6 +9,7 @@
 @interface UserData : NSObject
 + (UserData *)sharedData;
 
+-(BOOL)createUserWithLogin:(NSString*)login password:(NSString*)password;
 -(BOOL)loginWithName:(NSString*)login password:(NSString*)password;
 
 @end

@@ -29,9 +29,21 @@
 - (BOOL)loginWithName:(NSString *)login password:(NSString *)password {
     if([[NSUserDefaults standardUserDefaults] objectForKey:[self userLoginPattern:login]] != nil) {
         // load some settings
+        // decrypt some
         return YES;
     }
     return NO;
+}
+
+- (BOOL)createUserWithLogin:(NSString *)login password:(NSString *)password {
+    if([[NSUserDefaults standardUserDefaults] objectForKey:[self userLoginPattern:login]] == nil) {
+        // save some settings
+        // encrypted with password
+//    [[NSUserDefaults standardUserDefaults] setObject:settings objectForKey:[self userLoginPattern:login]];
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 @end
