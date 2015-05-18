@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vuI-ED-Aiz">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
@@ -112,6 +113,8 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outlet property="loginTextField" destination="2mD-DF-vdB" id="Lsm-Hu-qra"/>
                         <outlet property="passwordTextField" destination="UmO-fo-MI7" id="0oK-gw-Bw4"/>
@@ -163,7 +166,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="backPressed" destination="apF-kU-8V9" eventType="touchUpInside" id="ZqK-mb-9fT"/>
+                                    <action selector="logoutClicked" destination="h3o-ep-9Dg" eventType="touchUpInside" id="Hsv-6j-hPj"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -186,6 +189,8 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outlet property="logView" destination="iCf-2h-U6l" id="LuS-e5-o82"/>
                     </connections>
@@ -306,6 +311,8 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outlet property="loginTextField" destination="5lT-iY-tSA" id="uPq-8R-ZeZ"/>
                         <outlet property="passwordTextField" destination="dP6-jQ-IOm" id="1fg-f0-9Iz"/>

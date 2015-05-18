@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BCE480713122EBD73E76B355 /* NetworkDiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE484A05BD491DE9EBE1279 /* NetworkDiscoveryViewController.m */; };
-		BCE481140A93313F7B974323 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48D07930FDB281B93AA2E /* RegisterViewController.m */; };
 		BCE481433435E875629F95FA /* TcpListener.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE484E18E5FC28BDA80ECFA /* TcpListener.m */; };
-		BCE4842E7675E2F0D568143B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE488DB68C5B8BF8359F6FB /* CFNetwork.framework */; };
 		BCE487F29FF72E6D6555FA9F /* RSocket.c in Sources */ = {isa = PBXBuildFile; fileRef = BCE48069DF71847B9A8A65E6 /* RSocket.c */; };
 		BCE48801CE15A549135EF3B4 /* RByteOperations.c in Sources */ = {isa = PBXBuildFile; fileRef = BCE48B4E516E8416E99858EB /* RByteOperations.c */; };
+		BCE4882E001C16D26269D9C3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48E227BE35DDF9C4BDF6C /* LoginViewController.m */; };
+		BCE489827C7F4F46692EFEF9 /* NetworkDiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48EC3C843409F0DCDF999 /* NetworkDiscoveryViewController.m */; };
+		BCE489E263225CD13AB28490 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE4809184BCD173273234B7 /* RegisterViewController.m */; };
 		BCE48BC53B7C9FACEAA84B11 /* Helloer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48D36B37765E084EC24F4 /* Helloer.m */; };
-		BCE48D627512B353DAA6FE1F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE485D452B4A5AC2F8E675C /* LoginViewController.m */; };
+		BCE48F646DBFF1F6315FE734 /* Listener.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE4851D12B3D1A1F904A10B /* Listener.m */; };
 		BCE48FC35584DAF65D63865F /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE4868CBCA4E17FF06CF2F6 /* UserData.m */; };
 		FB469DFA1B09DCF90080C997 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB469DF91B09DCF90080C997 /* main.m */; };
 		FB469E031B09DCF90080C997 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB469E011B09DCF90080C997 /* Main.storyboard */; };
@@ -27,25 +27,27 @@
 
 /* Begin PBXFileReference section */
 		BCE48069DF71847B9A8A65E6 /* RSocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = RSocket.c; sourceTree = "<group>"; };
-		BCE480F77AABE461FC70081C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		BCE4809184BCD173273234B7 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		BCE48103A0BA9E726A8CB83F /* Helloer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helloer.h; sourceTree = "<group>"; };
 		BCE48123CF39C0D586010C0D /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
+		BCE481A4C917A7016114A41C /* NetworkDiscoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkDiscoveryViewController.h; sourceTree = "<group>"; };
 		BCE4832D17CA3A12EE38DCD8 /* RSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSocket.h; sourceTree = "<group>"; };
-		BCE484A05BD491DE9EBE1279 /* NetworkDiscoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkDiscoveryViewController.m; sourceTree = "<group>"; };
+		BCE483EAABDA0DD320CA7133 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BCE484A37CCA05189F45E9A0 /* Settings_Keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings_Keys.h; sourceTree = "<group>"; };
-		BCE484BA6D950EA5C561CC72 /* NetworkDiscoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkDiscoveryViewController.h; sourceTree = "<group>"; };
 		BCE484E18E5FC28BDA80ECFA /* TcpListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TcpListener.m; sourceTree = "<group>"; };
-		BCE485D452B4A5AC2F8E675C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		BCE4851D12B3D1A1F904A10B /* Listener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Listener.m; sourceTree = "<group>"; };
 		BCE48630924D6B0966B16A9B /* TcpListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TcpListener.h; sourceTree = "<group>"; };
 		BCE4868CBCA4E17FF06CF2F6 /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
 		BCE486C14A78BC804B663406 /* RSyntax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSyntax.h; sourceTree = "<group>"; };
 		BCE488DB68C5B8BF8359F6FB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		BCE489732E86470F5BC3C36C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BCE489A81296199C896A846A /* RByteOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RByteOperations.h; sourceTree = "<group>"; };
 		BCE48B4E516E8416E99858EB /* RByteOperations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = RByteOperations.c; sourceTree = "<group>"; };
-		BCE48D07930FDB281B93AA2E /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		BCE48BF8C539BD781FA3725B /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		BCE48C49F8F53F9DF02DA6EC /* Listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Listener.h; sourceTree = "<group>"; };
 		BCE48D123257207B6FEBA631 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		BCE48D36B37765E084EC24F4 /* Helloer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helloer.m; sourceTree = "<group>"; };
+		BCE48E227BE35DDF9C4BDF6C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		BCE48EC3C843409F0DCDF999 /* NetworkDiscoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkDiscoveryViewController.m; sourceTree = "<group>"; };
 		FB469DF41B09DCF90080C997 /* OpenPath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenPath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB469DF81B09DCF90080C997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB469DF91B09DCF90080C997 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -64,7 +66,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCE4842E7675E2F0D568143B /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,15 +83,13 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		BCE4867824046EC0A7421F0C /* Login */ = {
+		BCE483118399D1D063C3886E /* Communication */ = {
 			isa = PBXGroup;
 			children = (
-				BCE485D452B4A5AC2F8E675C /* LoginViewController.m */,
-				BCE489732E86470F5BC3C36C /* LoginViewController.h */,
-				BCE48D07930FDB281B93AA2E /* RegisterViewController.m */,
-				BCE480F77AABE461FC70081C /* RegisterViewController.h */,
+				BCE48EC3C843409F0DCDF999 /* NetworkDiscoveryViewController.m */,
+				BCE481A4C917A7016114A41C /* NetworkDiscoveryViewController.h */,
 			);
-			name = Login;
+			name = Communication;
 			sourceTree = "<group>";
 		};
 		BCE486CE14F4F8BE4E5C6ECD /* Frameworks */ = {
@@ -99,6 +98,26 @@
 				BCE488DB68C5B8BF8359F6FB /* CFNetwork.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BCE4876CF479896E83ED9821 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				BCE48E227BE35DDF9C4BDF6C /* LoginViewController.m */,
+				BCE483EAABDA0DD320CA7133 /* LoginViewController.h */,
+				BCE4809184BCD173273234B7 /* RegisterViewController.m */,
+				BCE48BF8C539BD781FA3725B /* RegisterViewController.h */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		BCE48775950F66CA8158D09B /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				BCE4876CF479896E83ED9821 /* Login */,
+				BCE483118399D1D063C3886E /* Communication */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 		BCE48B0A9AFB649E29E0754D /* RayPart */ = {
@@ -120,17 +139,10 @@
 				BCE48103A0BA9E726A8CB83F /* Helloer.h */,
 				BCE484E18E5FC28BDA80ECFA /* TcpListener.m */,
 				BCE48630924D6B0966B16A9B /* TcpListener.h */,
+				BCE4851D12B3D1A1F904A10B /* Listener.m */,
+				BCE48C49F8F53F9DF02DA6EC /* Listener.h */,
 			);
 			name = Network;
-			sourceTree = "<group>";
-		};
-		BCE48E934E83E96AB79B7F1D /* Communication */ = {
-			isa = PBXGroup;
-			children = (
-				BCE484A05BD491DE9EBE1279 /* NetworkDiscoveryViewController.m */,
-				BCE484BA6D950EA5C561CC72 /* NetworkDiscoveryViewController.h */,
-			);
-			name = Communication;
 			sourceTree = "<group>";
 		};
 		BCE48F662EECDDDB28F724E8 /* Utils */ = {
@@ -188,10 +200,9 @@
 				FB469E1F1B09DF540080C997 /* AppDelegate.m */,
 				FB469E201B09DF540080C997 /* ViewController.h */,
 				FB469E211B09DF540080C997 /* ViewController.m */,
-				BCE4867824046EC0A7421F0C /* Login */,
 				BCE48F662EECDDDB28F724E8 /* Utils */,
 				BCE48218EAEB867BE54D6BA9 /* Core */,
-				BCE48E934E83E96AB79B7F1D /* Communication */,
+				BCE48775950F66CA8158D09B /* UI */,
 			);
 			name = Classes;
 			path = OpenPath/Classes;
@@ -280,14 +291,15 @@
 				FB469E251B09DF540080C997 /* ViewController.m in Sources */,
 				FB469E241B09DF540080C997 /* AppDelegate.m in Sources */,
 				FB469DFA1B09DCF90080C997 /* main.m in Sources */,
-				BCE48D627512B353DAA6FE1F /* LoginViewController.m in Sources */,
 				BCE48FC35584DAF65D63865F /* UserData.m in Sources */,
-				BCE481140A93313F7B974323 /* RegisterViewController.m in Sources */,
 				BCE48BC53B7C9FACEAA84B11 /* Helloer.m in Sources */,
 				BCE481433435E875629F95FA /* TcpListener.m in Sources */,
 				BCE487F29FF72E6D6555FA9F /* RSocket.c in Sources */,
 				BCE48801CE15A549135EF3B4 /* RByteOperations.c in Sources */,
-				BCE480713122EBD73E76B355 /* NetworkDiscoveryViewController.m in Sources */,
+				BCE4882E001C16D26269D9C3 /* LoginViewController.m in Sources */,
+				BCE489E263225CD13AB28490 /* RegisterViewController.m in Sources */,
+				BCE489827C7F4F46692EFEF9 /* NetworkDiscoveryViewController.m in Sources */,
+				BCE48F646DBFF1F6315FE734 /* Listener.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +411,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = OpenPath/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -409,7 +423,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = OpenPath/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -16,6 +16,8 @@
 #ifndef __SETTINGS_KEYS_H__
 #define __SETTINGS_KEYS_H__
 
+#define LOCAL_MULTICAST "224.0.0.1"
+
 #define USER_NAME_KEY @"kUserName"
 
 #endif /*__SETTINGS_KEYS_H__*/

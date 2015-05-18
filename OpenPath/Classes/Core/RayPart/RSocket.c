@@ -180,7 +180,7 @@ method(byte, send, RSocket), const pointer buffer, size_t size) {
 
 #pragma mark Main Method
 
-method(byte, receive, RSocket), pointer buffer, size_t size) {
+method(ssize_t, receive, RSocket), pointer buffer, size_t size) {
     ssize_t messageLength = recvfrom(object->socket,
                                      buffer,
                                      size,
@@ -188,14 +188,10 @@ method(byte, receive, RSocket), pointer buffer, size_t size) {
                                      (SocketAddress*) &object->address,
                                                       &object->addressLength);
 
-    if (messageLength < 0) {
-        return networkOperationErrorConst;
-    } else if(messageLength != 0) {
+   if(messageLength != 0) {
         ++object->packetCounter;
-        return networkOperationSuccessConst;
-    } else {
-        return networkConnectionClosedConst;
     }
+    return messageLength;
 }
 
 #endif

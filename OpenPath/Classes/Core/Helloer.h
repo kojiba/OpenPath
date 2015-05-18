@@ -6,12 +6,15 @@
 #import <Foundation/Foundation.h>
 
 #import <UIKit/UIKit.h>
+#import "RSyntax.h"
 
+typedef BOOL (^HelloUpdateBlock)(size_t packetsCounter, int error);
 
 @interface Helloer : NSObject
+
 + (Helloer *)sharedHelloer;
 
-- (void)sendHelloWithDelay:(NSUInteger)seconds repeat:(NSUInteger)times logTextView:(UITextView *)log;
+- (void)sendHelloWithDelay:(NSUInteger)seconds repeat:(NSUInteger)times block:(HelloUpdateBlock)block;
 
 
 @end
