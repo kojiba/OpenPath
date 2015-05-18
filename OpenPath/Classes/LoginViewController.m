@@ -5,6 +5,7 @@
 
 #import "LoginViewController.h"
 #import "Helper.h"
+#import "UserData.h"
 
 
 @interface LoginViewController()
@@ -21,9 +22,18 @@
     if(!stringIsBlankOrNil(self.loginTextField.text)
             && !stringIsBlankOrNil(self.passwordTextField.text)) {
 
+        if([[UserData sharedData] loginWithName:self.loginTextField.text password:self.passwordTextField.text]) {
+            [self gotoAccountDetails];
+        } else {
+            ShowShortMessage(@"User not exist");
+        }
     } else {
         ShowShortMessage(@"Please, input login and password.");
     }
+}
+
+-(void)gotoAccountDetails {
+
 }
 
 @end
