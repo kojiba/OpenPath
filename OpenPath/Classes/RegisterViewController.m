@@ -18,7 +18,7 @@
 }
 
 -(IBAction)backPressed {
-    [self.navigationController popViewControllerAnimated:YES];
+    [[self segueForUnwindingToViewController:self fromViewController:nil identifier:@"login-creation.segue"] perform];
 }
 
 -(IBAction)registerPressed {

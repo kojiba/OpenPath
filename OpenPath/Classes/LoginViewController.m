@@ -8,6 +8,8 @@
 #import "UserData.h"
 #import "RegisterViewController.h"
 
+#define NOVALIDATION
+
 
 @interface LoginViewController()
 @property (strong, nonatomic) IBOutlet UITextField *loginTextField;
@@ -20,6 +22,7 @@
 }
 
 -(IBAction)signInPressed {
+    #ifndef NOVALIDATION
     if(!stringIsBlankOrNil(self.loginTextField.text)
             && !stringIsBlankOrNil(self.passwordTextField.text)) {
 
@@ -27,7 +30,9 @@
             ShowShortMessage(@"Login and password cannot be equals.");
         } else {
             if ([[UserData sharedData] loginWithName:self.loginTextField.text password:self.passwordTextField.text]) {
+    #endif
                 [self gotoAccountDetails];
+    #ifndef NOVALIDATION
             } else {
                 ShowShortMessage(@"User not exist");
             }
@@ -35,6 +40,7 @@
     } else {
         ShowShortMessage(@"Please, input login and password.");
     }
+    #endif
 }
 
 -(IBAction)registerPressed {
@@ -42,7 +48,7 @@
 }
 
 -(void)gotoAccountDetails {
-
+    [self performSegueWithIdentifier:@"login-home.segue" sender:self];
 }
 
 #pragma mark Navigation

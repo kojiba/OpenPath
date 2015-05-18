@@ -116,16 +116,17 @@
                         <outlet property="loginTextField" destination="2mD-DF-vdB" id="Lsm-Hu-qra"/>
                         <outlet property="passwordTextField" destination="UmO-fo-MI7" id="0oK-gw-Bw4"/>
                         <segue destination="apF-kU-8V9" kind="show" identifier="login-creation.segue" id="uRY-SS-mOf"/>
+                        <segue destination="h3o-ep-9Dg" kind="show" identifier="login-home.segue" id="k88-kh-PwE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="444" y="440"/>
         </scene>
-        <!--View Controller-->
+        <!--Network Discovery View Controller-->
         <scene sceneID="aqe-eJ-k24">
             <objects>
-                <viewController id="h3o-ep-9Dg" sceneMemberID="viewController">
+                <viewController id="h3o-ep-9Dg" customClass="NetworkDiscoveryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0kd-TN-JtJ"/>
                         <viewControllerLayoutGuide type="bottom" id="DuS-Fi-ed0"/>
@@ -134,25 +135,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="oiW-eS-9iF">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="oiW-eS-9iF">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message log" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KO1-rW-DqB">
+                                <rect key="frame" x="224" y="20" width="152" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="8ST-mc-SyS"/>
+                                    <constraint firstAttribute="width" constant="152" id="oFR-xL-dZy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCf-2h-U6l">
+                                <rect key="frame" x="15" y="61" width="570" height="519"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" spellCheckingType="no"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fci-6N-Bhx">
+                                <rect key="frame" x="15" y="20" width="60" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="l2A-9b-R1H"/>
+                                </constraints>
+                                <state key="normal" title="Logout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backPressed" destination="apF-kU-8V9" eventType="touchUpInside" id="ZqK-mb-9fT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="oiW-eS-9iF" firstAttribute="leading" secondItem="g2u-w2-WNn" secondAttribute="leading" id="849-q0-Eme"/>
                             <constraint firstItem="oiW-eS-9iF" firstAttribute="top" secondItem="0kd-TN-JtJ" secondAttribute="bottom" id="HZ2-NE-enJ"/>
+                            <constraint firstItem="oiW-eS-9iF" firstAttribute="leading" secondItem="iCf-2h-U6l" secondAttribute="leading" constant="-15" id="Kpu-XZ-4NC"/>
+                            <constraint firstItem="iCf-2h-U6l" firstAttribute="top" secondItem="KO1-rW-DqB" secondAttribute="bottom" constant="20" id="OLd-29-e6w"/>
+                            <constraint firstItem="KO1-rW-DqB" firstAttribute="top" secondItem="fci-6N-Bhx" secondAttribute="top" id="R8F-hL-pAl"/>
+                            <constraint firstItem="oiW-eS-9iF" firstAttribute="trailing" secondItem="iCf-2h-U6l" secondAttribute="trailing" constant="15" id="UXJ-S2-xRq"/>
                             <constraint firstAttribute="trailing" secondItem="oiW-eS-9iF" secondAttribute="trailing" id="YNu-AX-P1m"/>
+                            <constraint firstItem="oiW-eS-9iF" firstAttribute="bottom" secondItem="iCf-2h-U6l" secondAttribute="bottom" constant="20" id="aCA-YG-6sh"/>
+                            <constraint firstItem="oiW-eS-9iF" firstAttribute="top" secondItem="KO1-rW-DqB" secondAttribute="top" constant="-20" id="giT-xI-QBb"/>
+                            <constraint firstItem="iCf-2h-U6l" firstAttribute="leading" secondItem="fci-6N-Bhx" secondAttribute="leading" id="hwT-4M-a3D"/>
                             <constraint firstItem="DuS-Fi-ed0" firstAttribute="top" secondItem="oiW-eS-9iF" secondAttribute="bottom" id="m6k-bM-2s9"/>
+                            <constraint firstItem="KO1-rW-DqB" firstAttribute="centerX" secondItem="oiW-eS-9iF" secondAttribute="centerX" id="t8k-HX-UmX"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="logView" destination="iCf-2h-U6l" id="LuS-e5-o82"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Wa-SE-erb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1070" y="440"/>
+            <point key="canvasLocation" x="1109" y="440"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="rZn-3k-nfx">
@@ -273,7 +313,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tdx-6g-T00" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1070" y="1185"/>
+            <point key="canvasLocation" x="1109" y="1193"/>
         </scene>
     </scenes>
     <resources>
