@@ -6,6 +6,7 @@
 #import <Foundation/Foundation.h>
 
 
+typedef void (^ListenerUpdateBlock)(char *data, ssize_t length, size_t packetsCounter, int error, char const *address);
 @interface TcpListener : NSObject
 
 + (TcpListener *)sharedListener;

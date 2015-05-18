@@ -27,7 +27,7 @@ endOf(RByteArray)
 
 // Memory operations
 void           Xor (      pointer data,          // buffered xor, operands not bytes, but size_t (architects speed-up)
-                    const pointer key,
+                          pointer const key,
                           size_t  sizeOfData,
                           size_t  sizeOfKey);
 
@@ -56,7 +56,6 @@ printer     (RByteArray);
 
 method(RByteArray*,      flushAllToByte, RByteArray),    byte symbol);
 constMethod(RByteArray*, copy,           RByteArray));
-//method(RByteArray*,      fromRCString,   RByteArray),    RCString *string); // not sets size, only copy bytes, returns self
 
 
 #define makeRByteArray(size)           $(nil, c(RByteArray)), size)

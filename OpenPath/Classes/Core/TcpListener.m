@@ -21,7 +21,7 @@
     return _instance;
 }
 
--(void)startListenWithDelegate {
+-(void)startListen {
 
 }
 

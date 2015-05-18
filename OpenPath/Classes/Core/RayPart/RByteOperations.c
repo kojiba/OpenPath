@@ -19,7 +19,7 @@
 #pragma mark Memory Operations
 
 void Xor(      pointer data,
-         const pointer key,
+               pointer const key,
                size_t  sizeOfData,
                size_t  sizeOfKey) {
     size_t iterator;

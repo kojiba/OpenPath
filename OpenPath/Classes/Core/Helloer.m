@@ -29,8 +29,8 @@
             size_t iterator;
             RSocket *socket = c(RSocket)(nil);
 
-            $(socket, m(setPort,         RSocket)), PROTOCOL_PORT);
-            $(socket, m(setAddress,      RSocket)), LOCAL_MULTICAST);
+            $(socket, m(setPort,    RSocket)), PROTOCOL_PORT);
+            $(socket, m(setAddress, RSocket)), LOCAL_MULTICAST);
 
             forAll(iterator, times) {
                 if($(socket, m(send, RSocket)), "Some udp multicast for hello bro", sizeof("Some udp multicast for hello bro")) == networkOperationSuccessConst) {

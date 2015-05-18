@@ -20,4 +20,6 @@
 
 #define stringIsBlankOrNil(string) (string == nil || [string isEqualToString:@""])
 
+#define isMemEquals(first, second, size) (memcmp(first, second, size) == 0)
+
 #endif /*__HELPER_H__*/
