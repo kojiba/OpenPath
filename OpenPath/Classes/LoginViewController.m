@@ -6,6 +6,7 @@
 #import "LoginViewController.h"
 #import "Helper.h"
 #import "UserData.h"
+#import "RegisterViewController.h"
 
 
 @interface LoginViewController()
@@ -22,18 +23,32 @@
     if(!stringIsBlankOrNil(self.loginTextField.text)
             && !stringIsBlankOrNil(self.passwordTextField.text)) {
 
-        if([[UserData sharedData] loginWithName:self.loginTextField.text password:self.passwordTextField.text]) {
-            [self gotoAccountDetails];
+        if([self.loginTextField.text isEqualToString:self.passwordTextField.text]) {
+            ShowShortMessage(@"Login and password cannot be equals.");
         } else {
-            ShowShortMessage(@"User not exist");
+            if ([[UserData sharedData] loginWithName:self.loginTextField.text password:self.passwordTextField.text]) {
+                [self gotoAccountDetails];
+            } else {
+                ShowShortMessage(@"User not exist");
+            }
         }
     } else {
         ShowShortMessage(@"Please, input login and password.");
     }
 }
 
+-(IBAction)registerPressed {
+    [self performSegueWithIdentifier:@"login-creation.segue" sender:self];
+}
+
 -(void)gotoAccountDetails {
 
+}
+
+#pragma mark Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender {
+    [super prepareForSegue:segue sender:sender];
 }
 
 @end
