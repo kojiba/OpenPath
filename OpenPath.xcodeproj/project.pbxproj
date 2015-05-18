@@ -8,49 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		FB469DFA1B09DCF90080C997 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB469DF91B09DCF90080C997 /* main.m */; };
-		FB469DFD1B09DCF90080C997 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB469DFC1B09DCF90080C997 /* AppDelegate.m */; };
-		FB469E001B09DCF90080C997 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB469DFF1B09DCF90080C997 /* ViewController.m */; };
 		FB469E031B09DCF90080C997 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB469E011B09DCF90080C997 /* Main.storyboard */; };
 		FB469E051B09DCF90080C997 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB469E041B09DCF90080C997 /* Images.xcassets */; };
 		FB469E081B09DCF90080C997 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB469E061B09DCF90080C997 /* LaunchScreen.xib */; };
-		FB469E141B09DCF90080C997 /* OpenPathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FB469E131B09DCF90080C997 /* OpenPathTests.m */; };
+		FB469E241B09DF540080C997 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB469E1F1B09DF540080C997 /* AppDelegate.m */; };
+		FB469E251B09DF540080C997 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB469E211B09DF540080C997 /* ViewController.m */; };
+		FB469E281B09DFEA0080C997 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB469E271B09DFEA0080C997 /* bg.jpg */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		FB469E0E1B09DCF90080C997 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FB469DEC1B09DCF90080C997 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FB469DF31B09DCF90080C997;
-			remoteInfo = OpenPath;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		FB469DF41B09DCF90080C997 /* OpenPath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenPath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB469DF81B09DCF90080C997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB469DF91B09DCF90080C997 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		FB469DFB1B09DCF90080C997 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		FB469DFC1B09DCF90080C997 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FB469DFE1B09DCF90080C997 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		FB469DFF1B09DCF90080C997 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		FB469E021B09DCF90080C997 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FB469E041B09DCF90080C997 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FB469E071B09DCF90080C997 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		FB469E0D1B09DCF90080C997 /* OpenPathTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenPathTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB469E121B09DCF90080C997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FB469E131B09DCF90080C997 /* OpenPathTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenPathTests.m; sourceTree = "<group>"; };
+		FB469E1E1B09DF540080C997 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FB469E1F1B09DF540080C997 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FB469E201B09DF540080C997 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		FB469E211B09DF540080C997 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		FB469E271B09DFEA0080C997 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FB469DF11B09DCF90080C997 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FB469E0A1B09DCF90080C997 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -63,8 +44,9 @@
 		FB469DEB1B09DCF90080C997 = {
 			isa = PBXGroup;
 			children = (
+				FB469E1D1B09DF540080C997 /* Classes */,
+				FB469E221B09DF540080C997 /* Resources */,
 				FB469DF61B09DCF90080C997 /* OpenPath */,
-				FB469E101B09DCF90080C997 /* OpenPathTests */,
 				FB469DF51B09DCF90080C997 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,7 +55,6 @@
 			isa = PBXGroup;
 			children = (
 				FB469DF41B09DCF90080C997 /* OpenPath.app */,
-				FB469E0D1B09DCF90080C997 /* OpenPathTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,10 +62,6 @@
 		FB469DF61B09DCF90080C997 /* OpenPath */ = {
 			isa = PBXGroup;
 			children = (
-				FB469DFB1B09DCF90080C997 /* AppDelegate.h */,
-				FB469DFC1B09DCF90080C997 /* AppDelegate.m */,
-				FB469DFE1B09DCF90080C997 /* ViewController.h */,
-				FB469DFF1B09DCF90080C997 /* ViewController.m */,
 				FB469E011B09DCF90080C997 /* Main.storyboard */,
 				FB469E041B09DCF90080C997 /* Images.xcassets */,
 				FB469E061B09DCF90080C997 /* LaunchScreen.xib */,
@@ -102,21 +79,25 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		FB469E101B09DCF90080C997 /* OpenPathTests */ = {
+		FB469E1D1B09DF540080C997 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				FB469E131B09DCF90080C997 /* OpenPathTests.m */,
-				FB469E111B09DCF90080C997 /* Supporting Files */,
+				FB469E1E1B09DF540080C997 /* AppDelegate.h */,
+				FB469E1F1B09DF540080C997 /* AppDelegate.m */,
+				FB469E201B09DF540080C997 /* ViewController.h */,
+				FB469E211B09DF540080C997 /* ViewController.m */,
 			);
-			path = OpenPathTests;
+			name = Classes;
+			path = OpenPath/Classes;
 			sourceTree = "<group>";
 		};
-		FB469E111B09DCF90080C997 /* Supporting Files */ = {
+		FB469E221B09DF540080C997 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FB469E121B09DCF90080C997 /* Info.plist */,
+				FB469E271B09DFEA0080C997 /* bg.jpg */,
 			);
-			name = "Supporting Files";
+			name = Resources;
+			path = OpenPath/Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,24 +120,6 @@
 			productReference = FB469DF41B09DCF90080C997 /* OpenPath.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FB469E0C1B09DCF90080C997 /* OpenPathTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FB469E1A1B09DCF90080C997 /* Build configuration list for PBXNativeTarget "OpenPathTests" */;
-			buildPhases = (
-				FB469E091B09DCF90080C997 /* Sources */,
-				FB469E0A1B09DCF90080C997 /* Frameworks */,
-				FB469E0B1B09DCF90080C997 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FB469E0F1B09DCF90080C997 /* PBXTargetDependency */,
-			);
-			name = OpenPathTests;
-			productName = OpenPathTests;
-			productReference = FB469E0D1B09DCF90080C997 /* OpenPathTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -168,10 +131,6 @@
 				TargetAttributes = {
 					FB469DF31B09DCF90080C997 = {
 						CreatedOnToolsVersion = 6.3.1;
-					};
-					FB469E0C1B09DCF90080C997 = {
-						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = FB469DF31B09DCF90080C997;
 					};
 				};
 			};
@@ -189,7 +148,6 @@
 			projectRoot = "";
 			targets = (
 				FB469DF31B09DCF90080C997 /* OpenPath */,
-				FB469E0C1B09DCF90080C997 /* OpenPathTests */,
 			);
 		};
 /* End PBXProject section */
@@ -199,16 +157,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB469E281B09DFEA0080C997 /* bg.jpg in Resources */,
 				FB469E031B09DCF90080C997 /* Main.storyboard in Resources */,
 				FB469E081B09DCF90080C997 /* LaunchScreen.xib in Resources */,
 				FB469E051B09DCF90080C997 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FB469E0B1B09DCF90080C997 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,29 +171,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB469E001B09DCF90080C997 /* ViewController.m in Sources */,
-				FB469DFD1B09DCF90080C997 /* AppDelegate.m in Sources */,
+				FB469E251B09DF540080C997 /* ViewController.m in Sources */,
+				FB469E241B09DF540080C997 /* AppDelegate.m in Sources */,
 				FB469DFA1B09DCF90080C997 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FB469E091B09DCF90080C997 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FB469E141B09DCF90080C997 /* OpenPathTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		FB469E0F1B09DCF90080C997 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FB469DF31B09DCF90080C997 /* OpenPath */;
-			targetProxy = FB469E0E1B09DCF90080C997 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FB469E011B09DCF90080C997 /* Main.storyboard */ = {
@@ -365,40 +301,6 @@
 			};
 			name = Release;
 		};
-		FB469E1B1B09DCF90080C997 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = OpenPathTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenPath.app/OpenPath";
-			};
-			name = Debug;
-		};
-		FB469E1C1B09DCF90080C997 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = OpenPathTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenPath.app/OpenPath";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -418,14 +320,7 @@
 				FB469E191B09DCF90080C997 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		FB469E1A1B09DCF90080C997 /* Build configuration list for PBXNativeTarget "OpenPathTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FB469E1B1B09DCF90080C997 /* Debug */,
-				FB469E1C1B09DCF90080C997 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
