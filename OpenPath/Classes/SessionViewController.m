@@ -10,6 +10,7 @@
 #import "Logger.h"
 #import "UserData.h"
 #import "OpenSSLServer.h"
+#import "Settings_Keys.h"
 
 @interface SessionViewController()
 @property (strong, nonatomic) IBOutlet UITextField *keyTextField;
@@ -26,8 +27,10 @@
 
     dispatch_once(&once, ^{
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            char *settings[] = {nil, "9999", nil};
-            openSSLServerStart(2, settings);
+            NSString * certFilePath = [[NSBundle mainBundle] pathForResource:@"login_cert" ofType:@"pem"];
+            NSString * keyFilePath = [[NSBundle mainBundle] pathForResource:@"login_key" ofType:@"pem"];
+
+            openSSLServerStart(OPEN_SSL_SERVER_PORT, [certFilePath cStringUsingEncoding:NSUTF8StringEncoding], [keyFilePath cStringUsingEncoding:NSUTF8StringEncoding], "12345");
         });
     });
 

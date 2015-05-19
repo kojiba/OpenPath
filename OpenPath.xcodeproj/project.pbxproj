@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BCE48062F561583E61C85C52 /* IndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE483EADFF626333164125F /* IndicatorView.m */; };
 		BCE481433435E875629F95FA /* TcpListener.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE484E18E5FC28BDA80ECFA /* TcpListener.m */; };
-		BCE48210F34353BB85CC81AA /* OpenSSLServer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48526185CFA11152CD523 /* OpenSSLServer.m */; };
+		BCE48210F34353BB85CC81AA /* OpenSSLServer.c in Sources */ = {isa = PBXBuildFile; fileRef = BCE48526185CFA11152CD523 /* OpenSSLServer.c */; };
 		BCE482A518A3C52C0B3A8D54 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE4871541DB492A3F37C99E /* libcrypto.a */; };
 		BCE482C98DF964D1EB190AFA /* login_key.pem in Resources */ = {isa = PBXBuildFile; fileRef = BCE48B61484BF6CA8F434431 /* login_key.pem */; };
 		BCE484180724A6818DC7C617 /* OpenSSL_objc.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48BE9609962D1CE793677 /* OpenSSL_objc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -95,7 +95,7 @@
 		BCE4851AD77E6D76A279E28B /* engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = engine.h; sourceTree = "<group>"; };
 		BCE4851D12B3D1A1F904A10B /* Listener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Listener.m; sourceTree = "<group>"; };
 		BCE4851E86448543859725A8 /* modes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = modes.h; sourceTree = "<group>"; };
-		BCE48526185CFA11152CD523 /* OpenSSLServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSSLServer.m; sourceTree = "<group>"; };
+		BCE48526185CFA11152CD523 /* OpenSSLServer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = OpenSSLServer.c; sourceTree = "<group>"; };
 		BCE48545B44FF85465552F5C /* symhacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = symhacks.h; sourceTree = "<group>"; };
 		BCE4855043C4C0C1F787A9DF /* e_os2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os2.h; sourceTree = "<group>"; };
 		BCE485DD955B0B6749872B12 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
@@ -421,7 +421,7 @@
 				BCE48C49F8F53F9DF02DA6EC /* Listener.h */,
 				BCE48DA8FF354FE8CB545D4B /* OpenPathProtocol.h */,
 				BCE48C8A495E6F602927B833 /* OpenPathProtocol.c */,
-				BCE48526185CFA11152CD523 /* OpenSSLServer.m */,
+				BCE48526185CFA11152CD523 /* OpenSSLServer.c */,
 				BCE48152D939B04FDF63CFC4 /* OpenSSLServer.h */,
 			);
 			name = Network;
@@ -612,7 +612,7 @@
 				BCE48B85B9D7E0642BDCACDF /* RSAPrivateKey.m in Sources */,
 				BCE48FA9A6088B68505838AC /* OpenSSLCertificate.m in Sources */,
 				BCE48E8B521CE980947A0C1D /* NSData+Utils.m in Sources */,
-				BCE48210F34353BB85CC81AA /* OpenSSLServer.m in Sources */,
+				BCE48210F34353BB85CC81AA /* OpenSSLServer.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
