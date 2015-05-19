@@ -5,6 +5,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "OpenSSLCertificate.h"
+
 #define PASSWORD_MIN_LENGTH 5
 
 @interface UserData : NSObject
@@ -13,5 +15,21 @@
 -(NSString*)createUserWithLogin:(NSString*)login password:(NSString*)password;
 -(BOOL)loginWithName:(NSString*)login password:(NSString*)password;
 -(void)logout;
+
+#pragma mark -= User Keys =-
+
+-(BOOL)isUserKeyExists;
+-(BOOL)checkUserKeyPassword:(NSString*)password;
+-(NSString*)keyStoredFileNameShort;
+-(NSString*)cerStoredFileNameShort;
+-(void)alertCertExpired;
+-(NSString*)signString:(NSString*)strToSign withPassword:(NSString*)pkPassword;
+-(OpenSSLCertificate*)userCertificate;
+-(void) deleteUserKeys;
+
+@property (nonatomic, readonly) NSString* getCAName;
+@property (nonatomic, readonly) NSString* getTransportName;
+@property (nonatomic, readonly) NSString* keyStoredFileNameShort;
+@property (nonatomic, readonly) NSString* cerStoredFileNameShort;
 
 @end

@@ -18,7 +18,7 @@
                            (frame.size.height / 2) - 10,
                            20, 20)];
         [self addSubview:view];
-        [self setBackgroundColor:[UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:0.6]];
+        [self setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.6]];
         [self setUserInteractionEnabled:NO];
         [view startAnimating];
     }
