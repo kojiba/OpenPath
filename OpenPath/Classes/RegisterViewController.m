@@ -58,4 +58,17 @@
     }
 }
 
+#pragma mark TextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+
+    UIView *view = [self.view viewWithTag:textField.tag + 1];
+    if(view.canBecomeFirstResponder) {
+        [view becomeFirstResponder];
+    } else {
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
+
 @end
