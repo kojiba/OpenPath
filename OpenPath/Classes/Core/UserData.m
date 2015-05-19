@@ -6,6 +6,9 @@
 #import "UserData.h"
 #import "Settings_Keys.h"
 #import "Logger.h"
+#import "RNCryptor.h"
+#import "RNEncryptor.h"
+#import "RNDecryptor.h"
 
 @interface UserData()
 @property (strong, nonatomic) NSString* username;
@@ -33,37 +36,41 @@
     return [NSString stringWithFormat:@"%@_%@", USER_NAME_KEY, login];
 }
 
--(NSString*)userPasswordPattern:(NSString*)login {
-    return [NSString stringWithFormat:@"%@_%@", USER_PASSWORD_KEY, login];
-}
-
 - (void)logout {
     [Logger addSessionEndStamp];
     // store logs and crypt some
 }
 
 - (BOOL)loginWithName:(NSString *)login password:(NSString *)password {
-    if([[NSUserDefaults standardUserDefaults] objectForKey:[self userLoginPattern:login]] != nil) {
-        srand((unsigned int) time(nil));
-        self.username = login;
-        [Logger addSessionStartStamp];
+    id data = [[NSUserDefaults standardUserDefaults] objectForKey:[self userLoginPattern:login]];
+    if(data != nil
+            && [data isKindOfClass:[NSData class]]) {
+        // check if digest right, proof of decrypt
+        NSData *check = [RNDecryptor decryptData:data withPassword:password error:nil];
 
-        // load some settings
-        // decrypt some
-        return YES;
+        if([check isEqualToData:[login dataUsingEncoding:NSUTF8StringEncoding]]) {
+            srand((unsigned int) time(nil));
+            self.username = login;
+
+            [Logger addSessionStartStamp];
+            // load some settings
+            // decrypt some
+            return YES;
+        }
     }
     return NO;
 }
 
 - (BOOL)createUserWithLogin:(NSString *)login password:(NSString *)password {
-    if([[NSUserDefaults standardUserDefaults] objectForKey:[self userLoginPattern:login]] == nil) {
-        // save some settings
-        // encrypted with password
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:[self userLoginPattern:login]];
+    if(data == nil) {
+        // create digest
+        NSData *digest = [RNEncryptor encryptData:[login dataUsingEncoding:NSUTF8StringEncoding]
+                                     withSettings:kRNCryptorAES256Settings
+                                         password:password
+                                            error:nil];
 
-
-        [[NSUserDefaults standardUserDefaults] setObject:login forKey:[self userLoginPattern:login]];
-        [[NSUserDefaults standardUserDefaults] setObject:password forKey:[self userPasswordPattern:login]];
-
+        [[NSUserDefaults standardUserDefaults] setObject:digest forKey:[self userLoginPattern:login]];
         return YES;
     } else {
         return NO;
