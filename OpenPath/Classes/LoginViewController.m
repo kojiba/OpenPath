@@ -7,6 +7,7 @@
 #import "Helper.h"
 #import "UserData.h"
 #import "RegisterViewController.h"
+#import "IndicatorView.h"
 
 #define NOVALIDATION
 
@@ -21,27 +22,52 @@
 
 }
 
--(IBAction)signInPressed {
-    #ifndef NOVALIDATION
-    if(!stringIsBlankOrNil(self.loginTextField.text)
-            && !stringIsBlankOrNil(self.passwordTextField.text)) {
+-(NSString*)check {
+    if(stringIsBlankOrNil(self.loginTextField.text)
+            || stringIsBlankOrNil(self.passwordTextField.text)) {
+        return @"Plese, input login and password";
+    }
 
-        if([self.loginTextField.text isEqualToString:self.passwordTextField.text]) {
-            ShowShortMessage(@"Login and password cannot be equals.");
-        } else {
-    #endif
-            if ([[UserData sharedData] loginWithName:self.loginTextField.text password:self.passwordTextField.text]) {
+    if([self.loginTextField.text isEqualToString:self.passwordTextField.text]) {
+        return @"Login and password cannot be equals";
+    }
+
+    if(self.passwordTextField.text.length < PASSWORD_MIN_LENGTH) {
+        return [NSString stringWithFormat:@"Password cannot be less than %d", PASSWORD_MIN_LENGTH];
+    }
+
+    if([self.passwordTextField.text.uppercaseString isEqualToString:@"PASSWORD"]) {
+        return @"Password cannot be equal to \"password\"";
+    }
+    return nil;
+}
+
+-(IBAction)signInPressed {
+    NSString *alert = [self check];
+
+    if(!stringIsBlankOrNil(alert)) {
+        ShowShortMessage(alert);
+        return;
+    }
+
+    [self.view showLoading];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+        sleep(1);
+        BOOL result = [[UserData sharedData] loginWithName:self.loginTextField.text password:self.passwordTextField.text];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.passwordTextField.text = @"";
+            if(result) {
+                self.loginTextField.text = @"";
+            }
+
+            [self.view hideLoading];
+            if (result) {
                 [self gotoAccountDetails];
             }
-    #ifndef NOVALIDATION
-            else {
-                ShowShortMessage(@"User not exist");
-            }
-        }
-    } else {
-        ShowShortMessage(@"Please, input login and password.");
-    }
-    #endif
+        });
+    });
 }
 
 -(IBAction)registerPressed {

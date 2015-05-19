@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BCE48062F561583E61C85C52 /* IndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE483EADFF626333164125F /* IndicatorView.m */; };
 		BCE481433435E875629F95FA /* TcpListener.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE484E18E5FC28BDA80ECFA /* TcpListener.m */; };
 		BCE482A518A3C52C0B3A8D54 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE4871541DB492A3F37C99E /* libcrypto.a */; };
 		BCE484193A7EF7629C935BEF /* OpenPathProtocol.c in Sources */ = {isa = PBXBuildFile; fileRef = BCE48C8A495E6F602927B833 /* OpenPathProtocol.c */; };
@@ -54,6 +55,7 @@
 		BCE481FBBBDC4917C5372A0E /* objects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objects.h; sourceTree = "<group>"; };
 		BCE48211BEE6FAC7B1E1F3BD /* blowfish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blowfish.h; sourceTree = "<group>"; };
 		BCE4823E954228999F3A3161 /* rand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rand.h; sourceTree = "<group>"; };
+		BCE4827FBC1C63BC3E2B73C5 /* IndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndicatorView.h; sourceTree = "<group>"; };
 		BCE482812EDA49BB0D4DB0A4 /* mdc2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mdc2.h; sourceTree = "<group>"; };
 		BCE482B62739D1391B50E15A /* stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
 		BCE482D2D4955FF8AE7751C0 /* bn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bn.h; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 		BCE483AE475FEBD902A7DA44 /* ec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ec.h; sourceTree = "<group>"; };
 		BCE483EAABDA0DD320CA7133 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BCE483EAD6138A9172BB3823 /* idea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idea.h; sourceTree = "<group>"; };
+		BCE483EADFF626333164125F /* IndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndicatorView.m; sourceTree = "<group>"; };
 		BCE483FFFA429BE9010BAD49 /* ecdsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ecdsa.h; sourceTree = "<group>"; };
 		BCE484304B327B1DAFB8953A /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
 		BCE4844418302E1B4AA5F503 /* comp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = comp.h; sourceTree = "<group>"; };
@@ -341,6 +344,8 @@
 			children = (
 				BCE4876CF479896E83ED9821 /* Login */,
 				BCE483118399D1D063C3886E /* Communication */,
+				BCE483EADFF626333164125F /* IndicatorView.m */,
+				BCE4827FBC1C63BC3E2B73C5 /* IndicatorView.h */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -553,6 +558,7 @@
 				BCE487509FA04D8DC91413CA /* RNDecryptor.m in Sources */,
 				BCE4859515A7AD4D992B755F /* RNEncryptor.m in Sources */,
 				BCE48C35C413DDB4596AA0B3 /* RNCryptorEngine.m in Sources */,
+				BCE48062F561583E61C85C52 /* IndicatorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

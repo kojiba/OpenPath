@@ -41,9 +41,9 @@
         [formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
 
         dateString = [formatter stringFromDate:[NSDate date]];
-        [[Logger sharedLogger].fullLog appendString:@"------- Session start at "];
+        [[Logger sharedLogger].fullLog appendString:@"---- Session start at "];
         [[Logger sharedLogger].fullLog appendString:dateString];
-        [[Logger sharedLogger].fullLog appendString:@" -------\n"];
+        [[Logger sharedLogger].fullLog appendString:@" ----\n"];
     });
 }
 
@@ -57,9 +57,9 @@
         [formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
 
         dateString = [formatter stringFromDate:[NSDate date]];
-        [[Logger sharedLogger].fullLog appendString:@"------- Session end at "];
+        [[Logger sharedLogger].fullLog appendString:@"---- Session end at "];
         [[Logger sharedLogger].fullLog appendString:dateString];
-        [[Logger sharedLogger].fullLog appendString:@" -------\n"];
+        [[Logger sharedLogger].fullLog appendString:@" ----\n"];
     });
 }
 

@@ -9,6 +9,7 @@
 #import "RNCryptor.h"
 #import "RNEncryptor.h"
 #import "RNDecryptor.h"
+#import "Helper.h"
 
 @interface UserData()
 @property (strong, nonatomic) NSString* username;
@@ -45,35 +46,42 @@
     id data = [[NSUserDefaults standardUserDefaults] objectForKey:[self userLoginPattern:login]];
     if(data != nil
             && [data isKindOfClass:[NSData class]]) {
+        NSError *error = [[NSError alloc] init];
         // check if digest right, proof of decrypt
-        NSData *check = [RNDecryptor decryptData:data withPassword:password error:nil];
+        NSData *check = [RNDecryptor decryptData:data withPassword:password error:&error];
 
-        if([check isEqualToData:[login dataUsingEncoding:NSUTF8StringEncoding]]) {
-            srand((unsigned int) time(nil));
-            self.username = login;
+        if(!error.code) {
+            if ([check isEqualToData:[login dataUsingEncoding:NSUTF8StringEncoding]]) {
+                srand((unsigned int) time(nil));
+                self.username = login;
 
-            [Logger addSessionStartStamp];
-            // load some settings
-            // decrypt some
-            return YES;
+                [Logger addSessionStartStamp];
+                // load some settings
+                // decrypt some
+                return YES;
+            }
         }
     }
     return NO;
 }
 
-- (BOOL)createUserWithLogin:(NSString *)login password:(NSString *)password {
+- (NSString*)createUserWithLogin:(NSString *)login password:(NSString *)password {
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:[self userLoginPattern:login]];
     if(data == nil) {
         // create digest
+        NSError *error = [[NSError alloc] init];
         NSData *digest = [RNEncryptor encryptData:[login dataUsingEncoding:NSUTF8StringEncoding]
                                      withSettings:kRNCryptorAES256Settings
                                          password:password
-                                            error:nil];
-
-        [[NSUserDefaults standardUserDefaults] setObject:digest forKey:[self userLoginPattern:login]];
-        return YES;
+                                            error:&error];
+        if(!error.code) {
+            [[NSUserDefaults standardUserDefaults] setObject:digest forKey:[self userLoginPattern:login]];
+            return nil;
+        } else {
+            return error.localizedDescription;
+        }
     } else {
-        return NO;
+        return @"User already exists!";
     }
 }
 

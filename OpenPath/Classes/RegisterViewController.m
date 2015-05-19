@@ -22,8 +22,8 @@
 }
 
 -(NSString*)checkPassword {
-    if(!stringIsBlankOrNil(self.loginTextField.text)
-            && !stringIsBlankOrNil(self.passwordTextField.text)) {
+    if(stringIsBlankOrNil(self.loginTextField.text)
+            || stringIsBlankOrNil(self.passwordTextField.text)) {
         return @"Plese, input login and password";
     }
 
@@ -41,6 +41,7 @@
     }
     return nil;
 }
+
 -(IBAction)registerPressed {
     NSString *alert = [self checkPassword];
     if(!stringIsBlankOrNil(alert)) {
@@ -48,11 +49,12 @@
         return;
     }
 
-    if ([[UserData sharedData] createUserWithLogin:self.loginTextField.text password:self.passwordTextField.text]) {
+    NSString *result = [[UserData sharedData] createUserWithLogin:self.loginTextField.text password:self.passwordTextField.text];
+    if(stringIsBlankOrNil(result)) {
         ShowShortMessage(@"User succesfully created!");
         [self.navigationController popViewControllerAnimated:YES];
     } else {
-        ShowShortMessage(@"User already exists!");
+        ShowShortMessage(result);
     }
 }
 
