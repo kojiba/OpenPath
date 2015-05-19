@@ -24,6 +24,8 @@
 
 #import "RByteOperations.h"
 
+#define HELLO_KEY_LENGTH 20
+
 #define DEBUG_PRIVATE_HELLO_KEY @"it's true private key"
 
 static const char pathHelloString[] = "HELLO MESSAGE, WHICH MUST BE DECRYPTED WHEN RECEIVED";
@@ -40,6 +42,8 @@ typedef enum OpenPathFlag {
 
 
 } OpenPathFlag;
+
+char *createHelloKey(void);
 
 rbool canDecryptHello(const byte *buffer, size_t size, const byte *key, size_t keySize);
 

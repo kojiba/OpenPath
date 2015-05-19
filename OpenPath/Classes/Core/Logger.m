@@ -70,10 +70,21 @@ void customLog(NSString *format, ...) {
     NSMutableString * message = [[NSMutableString alloc] initWithFormat:format
                                                               arguments:argumentList];
 
+    NSDateFormatter *formatter;
+    NSString        *dateString;
+
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm:ss"];
+
+    dateString = [formatter stringFromDate:[NSDate date]];
+
+    [[Logger sharedLogger].fullLog appendString:@"["];
+    [[Logger sharedLogger].fullLog appendString:dateString];
+    [[Logger sharedLogger].fullLog appendString:@"] "];
     [[Logger sharedLogger].fullLog appendString:message];
     [[Logger sharedLogger].fullLog appendString:@"\n"];
 
-    NSLogv(message, argumentList);
+//    NSLogv(message, argumentList);
     va_end(argumentList);
 }
 

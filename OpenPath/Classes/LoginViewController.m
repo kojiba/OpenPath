@@ -48,7 +48,7 @@
 }
 
 -(void)gotoAccountDetails {
-    [self performSegueWithIdentifier:@"login-home.segue" sender:self];
+    [self performSegueWithIdentifier:@"login-session.segue" sender:self];
 }
 
 #pragma mark Navigation

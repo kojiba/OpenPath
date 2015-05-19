@@ -37,6 +37,7 @@
 
 - (BOOL)loginWithName:(NSString *)login password:(NSString *)password {
     if([[NSUserDefaults standardUserDefaults] objectForKey:[self userLoginPattern:login]] != nil) {
+        srand((unsigned int) time(nil));
         self.username = login;
         [Logger addSessionStartStamp];
 

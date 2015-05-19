@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		BCE481433435E875629F95FA /* TcpListener.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE484E18E5FC28BDA80ECFA /* TcpListener.m */; };
 		BCE484193A7EF7629C935BEF /* OpenPathProtocol.c in Sources */ = {isa = PBXBuildFile; fileRef = BCE48C8A495E6F602927B833 /* OpenPathProtocol.c */; };
+		BCE4847D78221C92F9131C10 /* SessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE480499A66F231F1FE7302 /* SessionViewController.m */; };
 		BCE487F29FF72E6D6555FA9F /* RSocket.c in Sources */ = {isa = PBXBuildFile; fileRef = BCE48069DF71847B9A8A65E6 /* RSocket.c */; };
 		BCE48801CE15A549135EF3B4 /* RByteOperations.c in Sources */ = {isa = PBXBuildFile; fileRef = BCE48B4E516E8416E99858EB /* RByteOperations.c */; };
 		BCE4882E001C16D26269D9C3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48E227BE35DDF9C4BDF6C /* LoginViewController.m */; };
-		BCE489827C7F4F46692EFEF9 /* NetworkDiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48EC3C843409F0DCDF999 /* NetworkDiscoveryViewController.m */; };
+		BCE489827C7F4F46692EFEF9 /* LogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48EC3C843409F0DCDF999 /* LogViewController.m */; };
 		BCE489E263225CD13AB28490 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE4809184BCD173273234B7 /* RegisterViewController.m */; };
 		BCE48A08FF7CB5FB03411232 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48EF7115F6A7360ED7FF1 /* Logger.m */; };
 		BCE48BC53B7C9FACEAA84B11 /* Helloer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48D36B37765E084EC24F4 /* Helloer.m */; };
@@ -28,11 +29,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BCE480499A66F231F1FE7302 /* SessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionViewController.m; sourceTree = "<group>"; };
 		BCE48069DF71847B9A8A65E6 /* RSocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = RSocket.c; sourceTree = "<group>"; };
 		BCE4809184BCD173273234B7 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		BCE48103A0BA9E726A8CB83F /* Helloer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helloer.h; sourceTree = "<group>"; };
 		BCE48123CF39C0D586010C0D /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
-		BCE481A4C917A7016114A41C /* NetworkDiscoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkDiscoveryViewController.h; sourceTree = "<group>"; };
+		BCE481A4C917A7016114A41C /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
 		BCE4832D17CA3A12EE38DCD8 /* RSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSocket.h; sourceTree = "<group>"; };
 		BCE483EAABDA0DD320CA7133 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BCE484A37CCA05189F45E9A0 /* Settings_Keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings_Keys.h; sourceTree = "<group>"; };
@@ -41,6 +43,7 @@
 		BCE48630924D6B0966B16A9B /* TcpListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TcpListener.h; sourceTree = "<group>"; };
 		BCE4868CBCA4E17FF06CF2F6 /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
 		BCE486C14A78BC804B663406 /* RSyntax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSyntax.h; sourceTree = "<group>"; };
+		BCE487C110FBF366843FFF75 /* SessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionViewController.h; sourceTree = "<group>"; };
 		BCE488DB68C5B8BF8359F6FB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		BCE489A81296199C896A846A /* RByteOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RByteOperations.h; sourceTree = "<group>"; };
 		BCE489BB2620819FCF8F38F7 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
@@ -52,7 +55,7 @@
 		BCE48D36B37765E084EC24F4 /* Helloer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helloer.m; sourceTree = "<group>"; };
 		BCE48DA8FF354FE8CB545D4B /* OpenPathProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPathProtocol.h; sourceTree = "<group>"; };
 		BCE48E227BE35DDF9C4BDF6C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		BCE48EC3C843409F0DCDF999 /* NetworkDiscoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkDiscoveryViewController.m; sourceTree = "<group>"; };
+		BCE48EC3C843409F0DCDF999 /* LogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogViewController.m; sourceTree = "<group>"; };
 		BCE48EF7115F6A7360ED7FF1 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		FB469DF41B09DCF90080C997 /* OpenPath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenPath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB469DF81B09DCF90080C997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,8 +105,10 @@
 		BCE483118399D1D063C3886E /* Communication */ = {
 			isa = PBXGroup;
 			children = (
-				BCE48EC3C843409F0DCDF999 /* NetworkDiscoveryViewController.m */,
-				BCE481A4C917A7016114A41C /* NetworkDiscoveryViewController.h */,
+				BCE48EC3C843409F0DCDF999 /* LogViewController.m */,
+				BCE481A4C917A7016114A41C /* LogViewController.h */,
+				BCE480499A66F231F1FE7302 /* SessionViewController.m */,
+				BCE487C110FBF366843FFF75 /* SessionViewController.h */,
 			);
 			name = Communication;
 			sourceTree = "<group>";
@@ -316,10 +321,11 @@
 				BCE48801CE15A549135EF3B4 /* RByteOperations.c in Sources */,
 				BCE4882E001C16D26269D9C3 /* LoginViewController.m in Sources */,
 				BCE489E263225CD13AB28490 /* RegisterViewController.m in Sources */,
-				BCE489827C7F4F46692EFEF9 /* NetworkDiscoveryViewController.m in Sources */,
+				BCE489827C7F4F46692EFEF9 /* LogViewController.m in Sources */,
 				BCE48F646DBFF1F6315FE734 /* Listener.m in Sources */,
 				BCE484193A7EF7629C935BEF /* OpenPathProtocol.c in Sources */,
 				BCE48A08FF7CB5FB03411232 /* Logger.m in Sources */,
+				BCE4847D78221C92F9131C10 /* SessionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
