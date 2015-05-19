@@ -7,6 +7,7 @@
 #import "Helloer.h"
 #import "Listener.h"
 #import "OpenPathProtocol.h"
+#import "Logger.h"
 
 
 @interface NetworkDiscoveryViewController()
@@ -24,6 +25,11 @@
 
 -(IBAction)logoutClicked {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.logView.text = [[Logger sharedLogger] getFullLog];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -22,34 +22,10 @@ void Xor(      pointer data,
                pointer const key,
                size_t  sizeOfData,
                size_t  sizeOfKey) {
-    printf("Xoring ------------------------------------\n");
-    printf("Source\n");
-    printByteArrayInHex(data, sizeOfData);
-    printf("\n");
-    printf("Key\n");
-    printByteArrayInHex(key, sizeOfKey);
-    printf("\n");
-
     size_t iterator;
-    forAll(iterator, sizeOfData / sizeof(size_t)) {
-        ((size_t*) data)[iterator] = ((size_t*) data)[iterator] ^ ((size_t*) key)[iterator % sizeOfKey];
-    }
-    for(iterator *= sizeof(size_t); iterator < sizeOfData; ++iterator){
+    forAll(iterator, sizeOfData) {
         ((byte*)data)[iterator] = ((byte*)data)[iterator] ^ ((byte*)key)[iterator % sizeOfKey];
     }
-
-    printf("Result\n");
-    printByteArrayInHex(data, sizeOfData);
-
-    forAll(iterator, sizeOfData / sizeof(size_t)) {
-        ((size_t*) data)[iterator] = ((size_t*) data)[iterator] ^ ((size_t*) key)[iterator % sizeOfKey];
-    }
-    for(iterator *= sizeof(size_t); iterator < sizeOfData; ++iterator){
-        ((byte*)data)[iterator] = ((byte*)data)[iterator] ^ ((byte*)key)[iterator % sizeOfKey];
-    }
-
-    printf("Decrypt\n\n");
-    printByteArrayInHex(data, sizeOfData);
 }
 
 void Add_8(      pointer data,

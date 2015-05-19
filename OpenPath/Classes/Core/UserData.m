@@ -5,7 +5,12 @@
 
 #import "UserData.h"
 #import "Settings_Keys.h"
+#import "Logger.h"
 
+@interface UserData()
+@property (strong, nonatomic) NSString* username;
+
+@end
 
 @implementation UserData {
 
@@ -26,8 +31,15 @@
     return [NSString stringWithFormat:@"%@_%@", USER_NAME_KEY, login];
 }
 
+- (void)logout {
+    [Logger addSessionEndStamp];
+}
+
 - (BOOL)loginWithName:(NSString *)login password:(NSString *)password {
     if([[NSUserDefaults standardUserDefaults] objectForKey:[self userLoginPattern:login]] != nil) {
+        self.username = login;
+        [Logger addSessionStartStamp];
+
         // load some settings
         // decrypt some
         return YES;

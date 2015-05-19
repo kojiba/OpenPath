@@ -10,6 +10,7 @@
 + (UserData *)sharedData;
 
 -(BOOL)createUserWithLogin:(NSString*)login password:(NSString*)password;
+-(void)logout;
 -(BOOL)loginWithName:(NSString*)login password:(NSString*)password;
 
 @end

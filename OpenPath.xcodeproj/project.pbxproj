@@ -14,6 +14,7 @@
 		BCE4882E001C16D26269D9C3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48E227BE35DDF9C4BDF6C /* LoginViewController.m */; };
 		BCE489827C7F4F46692EFEF9 /* NetworkDiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48EC3C843409F0DCDF999 /* NetworkDiscoveryViewController.m */; };
 		BCE489E263225CD13AB28490 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE4809184BCD173273234B7 /* RegisterViewController.m */; };
+		BCE48A08FF7CB5FB03411232 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48EF7115F6A7360ED7FF1 /* Logger.m */; };
 		BCE48BC53B7C9FACEAA84B11 /* Helloer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48D36B37765E084EC24F4 /* Helloer.m */; };
 		BCE48F646DBFF1F6315FE734 /* Listener.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE4851D12B3D1A1F904A10B /* Listener.m */; };
 		BCE48FC35584DAF65D63865F /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE4868CBCA4E17FF06CF2F6 /* UserData.m */; };
@@ -42,6 +43,7 @@
 		BCE486C14A78BC804B663406 /* RSyntax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSyntax.h; sourceTree = "<group>"; };
 		BCE488DB68C5B8BF8359F6FB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		BCE489A81296199C896A846A /* RByteOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RByteOperations.h; sourceTree = "<group>"; };
+		BCE489BB2620819FCF8F38F7 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
 		BCE48B4E516E8416E99858EB /* RByteOperations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = RByteOperations.c; sourceTree = "<group>"; };
 		BCE48BF8C539BD781FA3725B /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		BCE48C49F8F53F9DF02DA6EC /* Listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Listener.h; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 		BCE48DA8FF354FE8CB545D4B /* OpenPathProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPathProtocol.h; sourceTree = "<group>"; };
 		BCE48E227BE35DDF9C4BDF6C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BCE48EC3C843409F0DCDF999 /* NetworkDiscoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkDiscoveryViewController.m; sourceTree = "<group>"; };
+		BCE48EF7115F6A7360ED7FF1 /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		FB469DF41B09DCF90080C997 /* OpenPath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenPath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB469DF81B09DCF90080C997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB469DF91B09DCF90080C997 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -75,6 +78,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BCE480874C6D3E2DB3F8E0F1 /* LogLevel */ = {
+			isa = PBXGroup;
+			children = (
+				BCE48EF7115F6A7360ED7FF1 /* Logger.m */,
+				BCE489BB2620819FCF8F38F7 /* Logger.h */,
+			);
+			name = LogLevel;
+			sourceTree = "<group>";
+		};
 		BCE48218EAEB867BE54D6BA9 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +94,7 @@
 				BCE48123CF39C0D586010C0D /* UserData.h */,
 				BCE48D2094F97BDF8064C34E /* Network */,
 				BCE48B0A9AFB649E29E0754D /* RayPart */,
+				BCE480874C6D3E2DB3F8E0F1 /* LogLevel */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -306,6 +319,7 @@
 				BCE489827C7F4F46692EFEF9 /* NetworkDiscoveryViewController.m in Sources */,
 				BCE48F646DBFF1F6315FE734 /* Listener.m in Sources */,
 				BCE484193A7EF7629C935BEF /* OpenPathProtocol.c in Sources */,
+				BCE48A08FF7CB5FB03411232 /* Logger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

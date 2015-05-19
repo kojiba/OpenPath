@@ -23,8 +23,8 @@ rbool canDecryptHello(const byte *buffer, size_t size, const byte *key, size_t k
         if (copy != nil) {
             Xor(copy, (pointer const) key, size, keySize);
             // check if first 5 bytes is hello (proof of decrypt)
-            int comparationResult = memcmp(copy + 1, pathHelloString, sizeof(pathHelloString) - 1);
-            if(comparationResult == 0) {
+            int comparitionResult = memcmp(copy + 1, pathHelloString, sizeof(pathHelloString) - 1);
+            if(comparitionResult == 0) {
                 result = yes;
             }
             // check first byte
