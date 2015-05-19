@@ -1,11 +1,3 @@
-//
-//  CSOpenSSL.m
-//  OpenSSL-for-iOS
-//
-//  Created by Alexander Pogulyaka on 1/27/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "OpenSSL_objc.h"
 
 

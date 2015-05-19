@@ -1,11 +1,3 @@
-//
-//  RSAPrivateKey.h
-//  OpenSSL-for-iOS
-//
-//  Created by Alexander Pogulyaka on 1/31/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 
 #include <Openssl/crypto.h>

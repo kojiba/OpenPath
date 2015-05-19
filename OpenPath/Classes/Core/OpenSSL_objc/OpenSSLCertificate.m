@@ -1,11 +1,3 @@
-//
-//  OpenSSLCertificate.m
-//  OpenSSL-for-iOS
-//
-//  Created by Alexander Pogulyaka on 1/26/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "OpenSSLCertificate.h"
 #import "SynthesizeSingleton.h"
 #import "NSData+Utils.h"
