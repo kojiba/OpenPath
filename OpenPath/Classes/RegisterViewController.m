@@ -21,29 +21,38 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(IBAction)registerPressed {
+-(NSString*)checkPassword {
     if(!stringIsBlankOrNil(self.loginTextField.text)
             && !stringIsBlankOrNil(self.passwordTextField.text)) {
+        return @"Plese, input login and password";
+    }
 
-        if([self.loginTextField.text isEqualToString:self.passwordTextField.text]) {
-            ShowShortMessage(@"Login and password cannot be equals.");
-        } else {
-            if(self.loginTextField.text.length > 3
-                    && self.passwordTextField.text.length > 3) {
-                if ([[UserData sharedData] createUserWithLogin:self.loginTextField.text password:self.passwordTextField.text]) {
+    if([self.loginTextField.text isEqualToString:self.passwordTextField.text]) {
+        return @"Login and password cannot be equals";
+    }
 
-                    ShowShortMessage(@"User succesfully created!");
-                    [self.navigationController popViewControllerAnimated:YES];
+    if(self.passwordTextField.text.length < PASSWORD_MIN_LENGTH) {
+        return [NSString stringWithFormat:@"Password cannot be less than %d", PASSWORD_MIN_LENGTH];
+    }
 
-                } else {
-                    ShowShortMessage(@"User already exists!");
-                }
-            } else {
-                ShowShortMessage(@"Name and password must be at least 4 symbols length.");
-            }
-        }
+
+    if([self.passwordTextField.text.uppercaseString isEqualToString:@"PASSWORD"]) {
+        return @"Password cannot be equal to \"password\"";
+    }
+    return nil;
+}
+-(IBAction)registerPressed {
+    NSString *alert = [self checkPassword];
+    if(!stringIsBlankOrNil(alert)) {
+        ShowShortMessage(alert);
+        return;
+    }
+
+    if ([[UserData sharedData] createUserWithLogin:self.loginTextField.text password:self.passwordTextField.text]) {
+        ShowShortMessage(@"User succesfully created!");
+        [self.navigationController popViewControllerAnimated:YES];
     } else {
-        ShowShortMessage(@"Please, input login and password.");
+        ShowShortMessage(@"User already exists!");
     }
 }
 

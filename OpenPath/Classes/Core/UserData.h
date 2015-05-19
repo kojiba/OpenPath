@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define PASSWORD_MIN_LENGTH 5
 
 @interface UserData : NSObject
 + (UserData *)sharedData;
