@@ -1,34 +1,10 @@
-/* ssl_server.c
- *
- * Copyright (c) 2000 Sean Walton and Macmillan Publishers.  Use may be in
- * whole or in part in accordance to the General Public License (GPL).
- *
- * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGE.
-*/
-
-/*****************************************************************************/
-/*** ssl_server.c                                                          ***/
-/***                                                                       ***/
-/*** Demonstrate an SSL server.                                            ***/
-/*****************************************************************************/
+#include "OpenSSLServer.h"
 
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
 #include <sys/socket.h>
 #include <resolv.h>
-#include <openssl/ssl.h>
-#include <openssl/err.h>
 #include <arpa/inet.h>
 
 #define FAIL   -1
@@ -63,9 +39,6 @@ SSL_CTX *InitServerCTX(void) {
     const SSL_METHOD *method;
     SSL_CTX *ctx;
 
-    void openSSLSturtup();
-    OpenSSL_add_all_algorithms();        /* load & register all cryptos, etc. */
-    SSL_load_error_strings();            /* load all error messages */
     method = SSLv23_server_method();      /* create new server-method instance */
 
     ctx = SSL_CTX_new(method);            /* create new context from method */
@@ -159,11 +132,12 @@ void openSSLServerStart(char const *port, char const *certFilePath, char const *
     SSL_CTX *ctx;
     int server;
 
-    SSL_library_init();
     ctx = InitServerCTX();
     LoadCertificates(ctx, certFilePath, keyFilePath, password);
 
-    server = OpenListener(atoi(port));                /* create server socket */
+    server = OpenListener(atoi(port)); // create server socket */
+
+    printf("OpenPath SSL server started\n");
 
     while (1) {
         struct sockaddr_in addr;

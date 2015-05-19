@@ -11,6 +11,7 @@
 #import "UserData.h"
 #import "OpenSSLServer.h"
 #import "Settings_Keys.h"
+#import "OpenSSLClient.h"
 
 @interface SessionViewController()
 @property (strong, nonatomic) IBOutlet UITextField *keyTextField;
@@ -24,6 +25,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     static dispatch_once_t once;
+    static dispatch_once_t once2;
+
+    SSL_library_init();
+    OpenSSL_add_all_algorithms();        /* load & register all cryptos, etc. */
+    SSL_load_error_strings();            /* load all error messages */
+
 
     dispatch_once(&once, ^{
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -33,6 +40,16 @@
             openSSLServerStart(OPEN_SSL_SERVER_PORT, [certFilePath cStringUsingEncoding:NSUTF8StringEncoding], [keyFilePath cStringUsingEncoding:NSUTF8StringEncoding], "12345");
         });
     });
+
+    dispatch_once(&once2, ^{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSString * certFilePath = [[NSBundle mainBundle] pathForResource:@"client_cert" ofType:@"pem"];
+            NSString * keyFilePath = [[NSBundle mainBundle] pathForResource:@"client_key" ofType:@"pem"];
+
+            openSSLClientStart("127.0.0.1", OPEN_SSL_SERVER_PORT, [certFilePath cStringUsingEncoding:NSUTF8StringEncoding], [keyFilePath cStringUsingEncoding:NSUTF8StringEncoding], "12345");
+        });
+    });
+
 
     NSData *keyData = [DEBUG_PRIVATE_HELLO_KEY dataUsingEncoding:NSUTF8StringEncoding];
 
