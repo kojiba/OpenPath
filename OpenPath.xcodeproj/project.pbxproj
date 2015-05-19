@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		BCE48062F561583E61C85C52 /* IndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE483EADFF626333164125F /* IndicatorView.m */; };
 		BCE481433435E875629F95FA /* TcpListener.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE484E18E5FC28BDA80ECFA /* TcpListener.m */; };
+		BCE48210F34353BB85CC81AA /* OpenSSLServer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48526185CFA11152CD523 /* OpenSSLServer.m */; };
 		BCE482A518A3C52C0B3A8D54 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE4871541DB492A3F37C99E /* libcrypto.a */; };
+		BCE482C98DF964D1EB190AFA /* login_key.pem in Resources */ = {isa = PBXBuildFile; fileRef = BCE48B61484BF6CA8F434431 /* login_key.pem */; };
 		BCE484180724A6818DC7C617 /* OpenSSL_objc.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48BE9609962D1CE793677 /* OpenSSL_objc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BCE484193A7EF7629C935BEF /* OpenPathProtocol.c in Sources */ = {isa = PBXBuildFile; fileRef = BCE48C8A495E6F602927B833 /* OpenPathProtocol.c */; };
 		BCE4847D78221C92F9131C10 /* SessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE480499A66F231F1FE7302 /* SessionViewController.m */; };
@@ -30,6 +32,7 @@
 		BCE48F14351CB7F33D053F63 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE4806D2FE6D032E7117CF8 /* libssl.a */; };
 		BCE48F646DBFF1F6315FE734 /* Listener.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE4851D12B3D1A1F904A10B /* Listener.m */; };
 		BCE48FA9A6088B68505838AC /* OpenSSLCertificate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE486E6BAA93D698907564F /* OpenSSLCertificate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BCE48FB334A38F7DC6C1224E /* login_cert.pem in Resources */ = {isa = PBXBuildFile; fileRef = BCE48F8F96672AAC491ED7FE /* login_cert.pem */; };
 		BCE48FC35584DAF65D63865F /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE4868CBCA4E17FF06CF2F6 /* UserData.m */; };
 		FB469DFA1B09DCF90080C997 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB469DF91B09DCF90080C997 /* main.m */; };
 		FB469E031B09DCF90080C997 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB469E011B09DCF90080C997 /* Main.storyboard */; };
@@ -53,6 +56,7 @@
 		BCE480F16D6B5B409739BEF7 /* ecdh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ecdh.h; sourceTree = "<group>"; };
 		BCE48103A0BA9E726A8CB83F /* Helloer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helloer.h; sourceTree = "<group>"; };
 		BCE48123CF39C0D586010C0D /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
+		BCE48152D939B04FDF63CFC4 /* OpenSSLServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSSLServer.h; sourceTree = "<group>"; };
 		BCE481600D3063C91A175620 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		BCE48193C22F3725763CDDE9 /* ossl_typ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ossl_typ.h; sourceTree = "<group>"; };
 		BCE481A4C917A7016114A41C /* LogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogViewController.h; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 		BCE4851AD77E6D76A279E28B /* engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = engine.h; sourceTree = "<group>"; };
 		BCE4851D12B3D1A1F904A10B /* Listener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Listener.m; sourceTree = "<group>"; };
 		BCE4851E86448543859725A8 /* modes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = modes.h; sourceTree = "<group>"; };
+		BCE48526185CFA11152CD523 /* OpenSSLServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSSLServer.m; sourceTree = "<group>"; };
 		BCE48545B44FF85465552F5C /* symhacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = symhacks.h; sourceTree = "<group>"; };
 		BCE4855043C4C0C1F787A9DF /* e_os2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os2.h; sourceTree = "<group>"; };
 		BCE485DD955B0B6749872B12 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
@@ -136,6 +141,7 @@
 		BCE48AE4A525F746E2BAA0F7 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
 		BCE48AECABA61417276C3B61 /* seed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = seed.h; sourceTree = "<group>"; };
 		BCE48B4E516E8416E99858EB /* RByteOperations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = RByteOperations.c; sourceTree = "<group>"; };
+		BCE48B61484BF6CA8F434431 /* login_key.pem */ = {isa = PBXFileReference; lastKnownFileType = file.pem; path = login_key.pem; sourceTree = "<group>"; };
 		BCE48B8D20A7775A16FB6AD3 /* tls1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tls1.h; sourceTree = "<group>"; };
 		BCE48B912CC60FF92A49764B /* ts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ts.h; sourceTree = "<group>"; };
 		BCE48BB02BEF0B14B19A72F5 /* dh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dh.h; sourceTree = "<group>"; };
@@ -168,6 +174,7 @@
 		BCE48F116011B04D6EF544A8 /* krb5_asn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = krb5_asn.h; sourceTree = "<group>"; };
 		BCE48F49196E35EA5D38994D /* ripemd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ripemd.h; sourceTree = "<group>"; };
 		BCE48F57B9FACE3A60C2A12C /* asn1t.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1t.h; sourceTree = "<group>"; };
+		BCE48F8F96672AAC491ED7FE /* login_cert.pem */ = {isa = PBXFileReference; lastKnownFileType = file.pem; path = login_cert.pem; sourceTree = "<group>"; };
 		BCE48F9A235770004BA5C95A /* srtp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = srtp.h; sourceTree = "<group>"; };
 		FB469DF41B09DCF90080C997 /* OpenPath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenPath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB469DF81B09DCF90080C997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -414,6 +421,8 @@
 				BCE48C49F8F53F9DF02DA6EC /* Listener.h */,
 				BCE48DA8FF354FE8CB545D4B /* OpenPathProtocol.h */,
 				BCE48C8A495E6F602927B833 /* OpenPathProtocol.c */,
+				BCE48526185CFA11152CD523 /* OpenSSLServer.m */,
+				BCE48152D939B04FDF63CFC4 /* OpenSSLServer.h */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -498,6 +507,8 @@
 			isa = PBXGroup;
 			children = (
 				FB469E271B09DFEA0080C997 /* bg.jpg */,
+				BCE48F8F96672AAC491ED7FE /* login_cert.pem */,
+				BCE48B61484BF6CA8F434431 /* login_key.pem */,
 			);
 			name = Resources;
 			path = OpenPath/Resources;
@@ -564,6 +575,8 @@
 				FB469E031B09DCF90080C997 /* Main.storyboard in Resources */,
 				FB469E081B09DCF90080C997 /* LaunchScreen.xib in Resources */,
 				FB469E051B09DCF90080C997 /* Images.xcassets in Resources */,
+				BCE48FB334A38F7DC6C1224E /* login_cert.pem in Resources */,
+				BCE482C98DF964D1EB190AFA /* login_key.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,6 +612,7 @@
 				BCE48B85B9D7E0642BDCACDF /* RSAPrivateKey.m in Sources */,
 				BCE48FA9A6088B68505838AC /* OpenSSLCertificate.m in Sources */,
 				BCE48E8B521CE980947A0C1D /* NSData+Utils.m in Sources */,
+				BCE48210F34353BB85CC81AA /* OpenSSLServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

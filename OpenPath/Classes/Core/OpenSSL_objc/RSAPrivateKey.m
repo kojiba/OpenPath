@@ -28,8 +28,6 @@
                 memset(pwd, 0x00, pwdLen);
                 [pPassword getBytes:pwd maxLength:pwdLen - 1 usedLength:nil encoding:NSUTF8StringEncoding options:0 range:(NSRange) {0, pwdLen - 1} remainingRange:nil];
 
-                //NSLog(@"-[ loadKeyFromPEMWithPassword:] :: pwd [%s]", pwd);
-
                 privateKey = PEM_read_bio_PrivateKey(bio, NULL, NULL, pwd);
 
                 unsigned long sslErrorCode = 0;
@@ -111,7 +109,7 @@
                     [data getBytes:dataBuf];
                     EVP_SignUpdate(&ctx, dataBuf, dataSize);
                     if (!openSSLError()) {
-                        NSUInteger sigLen = EVP_PKEY_size(privateKey);
+                        size_t sigLen = (size_t) EVP_PKEY_size(privateKey);
                         unsigned char *sigBuf = (unsigned char *) malloc(sigLen);
                         @try {
                             memset(sigBuf, 0x00, sigLen);

@@ -19,6 +19,14 @@
 
 }
 
+#ifdef DEBUG
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.loginTextField.text = @"login";
+    self.passwordTextField.text = @"12345";
+}
+#endif
+
 -(NSString*)check {
     if(stringIsBlankOrNil(self.loginTextField.text)
             || stringIsBlankOrNil(self.passwordTextField.text)) {

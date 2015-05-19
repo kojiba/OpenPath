@@ -9,6 +9,7 @@
 #import "Helloer.h"
 #import "Logger.h"
 #import "UserData.h"
+#import "OpenSSLServer.h"
 
 @interface SessionViewController()
 @property (strong, nonatomic) IBOutlet UITextField *keyTextField;
@@ -21,6 +22,14 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    static dispatch_once_t once;
+
+    dispatch_once(&once, ^{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            char *settings[] = {nil, "9999", nil};
+            openSSLServerStart(2, settings);
+        });
+    });
 
     NSData *keyData = [DEBUG_PRIVATE_HELLO_KEY dataUsingEncoding:NSUTF8StringEncoding];
 
