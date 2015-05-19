@@ -12,6 +12,8 @@
 
 @end
 
+#define USERDATA_KEY @"*)A_Ptc?=jX4HnV0CkbPF68Hl,elLM"
+
 @implementation UserData {
 
 }
@@ -31,6 +33,10 @@
     return [NSString stringWithFormat:@"%@_%@", USER_NAME_KEY, login];
 }
 
+-(NSString*)userPasswordPattern:(NSString*)login {
+    return [NSString stringWithFormat:@"%@_%@", USER_PASSWORD_KEY, login];
+}
+
 - (void)logout {
     [Logger addSessionEndStamp];
     // store logs and crypt some
@@ -38,7 +44,6 @@
 
 - (BOOL)loginWithName:(NSString *)login password:(NSString *)password {
     if([[NSUserDefaults standardUserDefaults] objectForKey:[self userLoginPattern:login]] != nil) {
-
         srand((unsigned int) time(nil));
         self.username = login;
         [Logger addSessionStartStamp];
@@ -54,7 +59,11 @@
     if([[NSUserDefaults standardUserDefaults] objectForKey:[self userLoginPattern:login]] == nil) {
         // save some settings
         // encrypted with password
-//    [[NSUserDefaults standardUserDefaults] setObject:settings objectForKey:[self userLoginPattern:login]];
+
+
+        [[NSUserDefaults standardUserDefaults] setObject:login forKey:[self userLoginPattern:login]];
+        [[NSUserDefaults standardUserDefaults] setObject:password forKey:[self userPasswordPattern:login]];
+
         return YES;
     } else {
         return NO;

@@ -79,17 +79,26 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OzK-96-jpf">
-                                <rect key="frame" x="272" y="540" width="57" height="30"/>
+                                <rect key="frame" x="272" y="520" width="57" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="57" id="Gek-Cb-nKQ"/>
                                 </constraints>
-                                <state key="normal" title="Register">
+                                <state key="normal" title="Create">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="registerPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="lMI-GR-AJo"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kucheruavyu Ilya 2015 Ukraine Kharkiv" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izF-Xo-zwa">
+                                <rect key="frame" x="16" y="564" width="568" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="568" id="ywq-tE-d0g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -99,12 +108,14 @@
                             <constraint firstItem="2mD-DF-vdB" firstAttribute="centerY" secondItem="SCD-6o-Bzl" secondAttribute="centerY" constant="-66" id="FnG-PQ-LIc"/>
                             <constraint firstItem="2mD-DF-vdB" firstAttribute="centerX" secondItem="SCD-6o-Bzl" secondAttribute="centerX" id="LGc-Tl-yIn"/>
                             <constraint firstItem="SCD-6o-Bzl" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="SUO-8h-KHs"/>
-                            <constraint firstItem="OzK-96-jpf" firstAttribute="bottom" secondItem="SCD-6o-Bzl" secondAttribute="bottom" constant="-30" id="SWZ-K5-sRy"/>
+                            <constraint firstItem="OzK-96-jpf" firstAttribute="bottom" secondItem="SCD-6o-Bzl" secondAttribute="bottom" constant="-50" id="SWZ-K5-sRy"/>
                             <constraint firstItem="k7h-H9-bAb" firstAttribute="centerX" secondItem="SCD-6o-Bzl" secondAttribute="centerX" constant="0.5" id="aqA-vT-TeG"/>
                             <constraint firstAttribute="trailing" secondItem="SCD-6o-Bzl" secondAttribute="trailing" id="ed1-7z-fOb"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SCD-6o-Bzl" secondAttribute="bottom" id="jbe-jl-pAN"/>
+                            <constraint firstItem="izF-Xo-zwa" firstAttribute="centerX" secondItem="OzK-96-jpf" secondAttribute="centerX" id="kkA-ub-GI8"/>
                             <constraint firstItem="OzK-96-jpf" firstAttribute="centerX" secondItem="SCD-6o-Bzl" secondAttribute="centerX" id="oNu-NB-DHs"/>
                             <constraint firstItem="UmO-fo-MI7" firstAttribute="centerY" secondItem="SCD-6o-Bzl" secondAttribute="centerY" constant="-26" id="qDZ-aw-ugF"/>
+                            <constraint firstItem="izF-Xo-zwa" firstAttribute="bottom" secondItem="SCD-6o-Bzl" secondAttribute="bottom" constant="-20" id="qJz-tD-S3h"/>
                             <constraint firstItem="UmO-fo-MI7" firstAttribute="centerX" secondItem="R0y-Jr-DyH" secondAttribute="centerX" id="qnv-MG-UrM"/>
                             <constraint firstItem="k7h-H9-bAb" firstAttribute="centerY" secondItem="SCD-6o-Bzl" secondAttribute="centerY" constant="-100" id="uFF-6s-Va3"/>
                         </constraints>
@@ -258,13 +269,13 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All data wil be encrypted with AES 256 bit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8r6-tX-fCP">
-                                <rect key="frame" x="147" y="559" width="306" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <rect key="frame" x="174" y="563" width="252" height="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8e-bT-dvO">
-                                <rect key="frame" x="277" y="521" width="46" height="30"/>
+                                <rect key="frame" x="277" y="525" width="46" height="30"/>
                                 <state key="normal" title="Create">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -284,6 +295,16 @@
                                     <action selector="backPressed" destination="apF-kU-8V9" eventType="touchUpInside" id="WsR-HO-eXU"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please, move your RSA key and certificate with iTunes files exchange" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcz-gE-Bz2">
+                                <rect key="frame" x="159" y="143" width="282" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="282" id="itP-Xn-Ys3"/>
+                                    <constraint firstAttribute="height" constant="63" id="uyB-dO-g62"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -296,6 +317,7 @@
                             <constraint firstItem="5lT-iY-tSA" firstAttribute="top" secondItem="RrU-LF-Iwh" secondAttribute="bottom" constant="14" id="H0h-DO-ZJH"/>
                             <constraint firstItem="dP6-jQ-IOm" firstAttribute="leading" secondItem="A4U-H7-SVi" secondAttribute="trailing" constant="8" id="HI6-dE-wih"/>
                             <constraint firstItem="RXV-vh-dCt" firstAttribute="top" secondItem="hMb-K6-wGQ" secondAttribute="bottom" id="JNS-pw-fT8"/>
+                            <constraint firstItem="vcz-gE-Bz2" firstAttribute="centerX" secondItem="RrU-LF-Iwh" secondAttribute="centerX" id="JP2-oX-hft"/>
                             <constraint firstItem="EfZ-Ua-6rg" firstAttribute="leading" secondItem="Co7-Am-tm0" secondAttribute="leading" id="KTc-Zd-AON"/>
                             <constraint firstItem="5lT-iY-tSA" firstAttribute="leading" secondItem="Co7-Am-tm0" secondAttribute="trailing" constant="8" id="LQD-Zr-H6c"/>
                             <constraint firstItem="5lT-iY-tSA" firstAttribute="trailing" secondItem="RXV-vh-dCt" secondAttribute="trailing" constant="-20" id="NuC-Lp-aDH"/>
@@ -309,6 +331,7 @@
                             <constraint firstItem="5lT-iY-tSA" firstAttribute="bottom" secondItem="Co7-Am-tm0" secondAttribute="bottom" constant="5" id="itH-5t-aYR"/>
                             <constraint firstItem="RXV-vh-dCt" firstAttribute="centerX" secondItem="8r6-tX-fCP" secondAttribute="centerX" id="k7i-ej-NU4"/>
                             <constraint firstItem="RXV-vh-dCt" firstAttribute="leading" secondItem="SfZ-ZT-kWh" secondAttribute="leading" id="kHt-sx-Qbi"/>
+                            <constraint firstItem="vcz-gE-Bz2" firstAttribute="top" secondItem="dP6-jQ-IOm" secondAttribute="bottom" constant="20" id="omf-mR-20x"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -378,8 +401,8 @@
                                     <action selector="logoutPressed" destination="If9-Ye-9Nq" eventType="touchUpInside" id="vzd-Eh-s2e"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Gw6-Kb-2Bv">
-                                <rect key="frame" x="20" y="176" width="560" height="404"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Gw6-Kb-2Bv">
+                                <rect key="frame" x="20" y="172" width="560" height="408"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="awC-C4-rov">

@@ -29,11 +29,12 @@
         if([self.loginTextField.text isEqualToString:self.passwordTextField.text]) {
             ShowShortMessage(@"Login and password cannot be equals.");
         } else {
-            if ([[UserData sharedData] loginWithName:self.loginTextField.text password:self.passwordTextField.text]) {
     #endif
+            if ([[UserData sharedData] loginWithName:self.loginTextField.text password:self.passwordTextField.text]) {
                 [self gotoAccountDetails];
+            }
     #ifndef NOVALIDATION
-            } else {
+            else {
                 ShowShortMessage(@"User not exist");
             }
         }
