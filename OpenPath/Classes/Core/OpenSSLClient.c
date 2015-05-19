@@ -27,7 +27,7 @@ int OpenConnection(const char *hostname, int port) {
     if (connect(sd, &addr, sizeof(addr)) != 0) {
         close(sd);
         perror(hostname);
-        abort();
+//        abort();
     }
     return sd;
 }
@@ -43,7 +43,7 @@ SSL_CTX *InitCTX(void) {
     ctx = SSL_CTX_new(method);          // Create new context
     if (ctx == NULL) {
         ERR_print_errors_fp(stderr);
-        abort();
+//        abort();
     }
     return ctx;
 }

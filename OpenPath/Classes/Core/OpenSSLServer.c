@@ -23,11 +23,11 @@ int OpenListener(int port) {
     addr.sin_addr.s_addr = INADDR_ANY;
     if (bind(sd, &addr, sizeof(addr)) != 0) {
         perror("can't bind port");
-        abort();
+        //abort();
     }
     if (listen(sd, 10) != 0) {
         perror("Can't configure listening port");
-        abort();
+        //abort();
     }
     return sd;
 }
@@ -44,7 +44,7 @@ SSL_CTX *InitServerCTX(void) {
     ctx = SSL_CTX_new(method);            /* create new context from method */
     if (ctx == NULL) {
         ERR_print_errors_fp(stderr);
-        abort();
+        //abort();
     }
     return ctx;
 }
@@ -56,7 +56,7 @@ void LoadCertificates(SSL_CTX *ctx, char const *CertFile, char const *KeyFile, c
     // set the local certificate from CertFile
     if (SSL_CTX_use_certificate_file(ctx, CertFile, SSL_FILETYPE_PEM) <= 0) {
         ERR_print_errors_fp(stderr);
-        abort();
+        //abort();
     }
 
     SSL_CTX_set_default_passwd_cb_userdata(ctx, (void *) password);
@@ -64,12 +64,12 @@ void LoadCertificates(SSL_CTX *ctx, char const *CertFile, char const *KeyFile, c
     // set the private key from KeyFile (may be the same as CertFile)
     if (SSL_CTX_use_PrivateKey_file(ctx, KeyFile, SSL_FILETYPE_PEM) <= 0) {
         ERR_print_errors_fp(stderr);
-        abort();
+        //abort();
     }
     // verify private key
     if (!SSL_CTX_check_private_key(ctx)) {
         fprintf(stderr, "Private key does not match the public certificate\n");
-        abort();
+        //abort();
     }
 }
 
