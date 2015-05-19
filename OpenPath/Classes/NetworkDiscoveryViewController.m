@@ -44,6 +44,8 @@
         }
     }];
 
+
+
     [[Listener sharedListener] startListen];
 
     [[Helloer sharedHelloer] sendHelloWithDelay:1 repeat:10 key:DEBUG_PRIVATE_HELLO_KEY block:^BOOL(size_t packetsCounter, int error) {

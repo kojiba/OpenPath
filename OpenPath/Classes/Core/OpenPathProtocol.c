@@ -18,13 +18,13 @@
 
 rbool canDecryptHello(const byte *buffer, size_t size, const byte *key, size_t keySize) {
     rbool result = no;
-    if(size == (sizeof(pathHelloString))) {
+    if(size >= (sizeof(pathHelloString))) {
         byte *copy = getByteArrayCopy(buffer, size);
         if (copy != nil) {
             Xor(copy, (pointer const) key, size, keySize);
             // check if first 5 bytes is hello (proof of decrypt)
-//            FIXME
-            if(isMemEquals(copy + 1, pathHelloString, sizeof(pathHelloString) - 1)) {
+            int comparationResult = memcmp(copy + 1, pathHelloString, sizeof(pathHelloString) - 1);
+            if(comparationResult == 0) {
                 result = yes;
             }
             // check first byte

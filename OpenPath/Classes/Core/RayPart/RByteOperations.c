@@ -22,6 +22,14 @@ void Xor(      pointer data,
                pointer const key,
                size_t  sizeOfData,
                size_t  sizeOfKey) {
+    printf("Xoring ------------------------------------\n");
+    printf("Source\n");
+    printByteArrayInHex(data, sizeOfData);
+    printf("\n");
+    printf("Key\n");
+    printByteArrayInHex(key, sizeOfKey);
+    printf("\n");
+
     size_t iterator;
     forAll(iterator, sizeOfData / sizeof(size_t)) {
         ((size_t*) data)[iterator] = ((size_t*) data)[iterator] ^ ((size_t*) key)[iterator % sizeOfKey];
@@ -29,6 +37,19 @@ void Xor(      pointer data,
     for(iterator *= sizeof(size_t); iterator < sizeOfData; ++iterator){
         ((byte*)data)[iterator] = ((byte*)data)[iterator] ^ ((byte*)key)[iterator % sizeOfKey];
     }
+
+    printf("Result\n");
+    printByteArrayInHex(data, sizeOfData);
+
+    forAll(iterator, sizeOfData / sizeof(size_t)) {
+        ((size_t*) data)[iterator] = ((size_t*) data)[iterator] ^ ((size_t*) key)[iterator % sizeOfKey];
+    }
+    for(iterator *= sizeof(size_t); iterator < sizeOfData; ++iterator){
+        ((byte*)data)[iterator] = ((byte*)data)[iterator] ^ ((byte*)key)[iterator % sizeOfKey];
+    }
+
+    printf("Decrypt\n\n");
+    printByteArrayInHex(data, sizeOfData);
 }
 
 void Add_8(      pointer data,
@@ -77,7 +98,9 @@ void printByteArrayInHex(const byte *array, size_t size) {
 
 byte* getByteArrayCopy(const byte *array, size_t size) {
     byte *arrayCopy = RAlloc(size);
-    RMemMove(arrayCopy, array, size);
+    if(arrayCopy != nil) {
+        RMemCpy(arrayCopy, array, size);
+    }
     return arrayCopy;
 }
 

@@ -37,7 +37,7 @@
             $(socket, m(setAddress, RSocket)), LOCAL_MULTICAST);
 
             forAll(iterator, times) {
-                if($(socket, m(send, RSocket)), hello, hello->size) == networkOperationSuccessConst) {
+                if($(socket, m(send, RSocket)), hello->array, hello->size) == networkOperationSuccessConst) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         block(socket->packetCounter, 0);
                     });
@@ -50,6 +50,7 @@
             }
 
             deleter(socket, RSocket);
+            deleter(hello, RByteArray);
 
         });
     }
