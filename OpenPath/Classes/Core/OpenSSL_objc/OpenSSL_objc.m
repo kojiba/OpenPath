@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "OpenSSL_obj.h"
+#import "OpenSSL_objc.h"
 
 
 void openSSLSturtup() {

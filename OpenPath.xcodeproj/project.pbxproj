@@ -10,7 +10,7 @@
 		BCE48062F561583E61C85C52 /* IndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE483EADFF626333164125F /* IndicatorView.m */; };
 		BCE481433435E875629F95FA /* TcpListener.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE484E18E5FC28BDA80ECFA /* TcpListener.m */; };
 		BCE482A518A3C52C0B3A8D54 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE4871541DB492A3F37C99E /* libcrypto.a */; };
-		BCE484180724A6818DC7C617 /* OpenSSL_obj.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48BE9609962D1CE793677 /* OpenSSL_obj.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BCE484180724A6818DC7C617 /* OpenSSL_objc.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48BE9609962D1CE793677 /* OpenSSL_objc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BCE484193A7EF7629C935BEF /* OpenPathProtocol.c in Sources */ = {isa = PBXBuildFile; fileRef = BCE48C8A495E6F602927B833 /* OpenPathProtocol.c */; };
 		BCE4847D78221C92F9131C10 /* SessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE480499A66F231F1FE7302 /* SessionViewController.m */; };
 		BCE4859515A7AD4D992B755F /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48E7BD34760C3991CA5F7 /* RNEncryptor.m */; };
@@ -111,7 +111,7 @@
 		BCE4880A9A599DCBCF2D5BAC /* opensslv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opensslv.h; sourceTree = "<group>"; };
 		BCE4885860B91B2784C35158 /* safestack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = safestack.h; sourceTree = "<group>"; };
 		BCE48872C31A55F2002C3172 /* x509.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = x509.h; sourceTree = "<group>"; };
-		BCE488B558AD45564ABB7E08 /* OpenSSL_obj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSSL_obj.h; sourceTree = "<group>"; };
+		BCE488B558AD45564ABB7E08 /* OpenSSL_objc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSSL_objc.h; sourceTree = "<group>"; };
 		BCE488D8AC6789D74E218436 /* dsa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsa.h; sourceTree = "<group>"; };
 		BCE488DB68C5B8BF8359F6FB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		BCE488FAE036765D27EA53D8 /* ssl23.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ssl23.h; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 		BCE48B8D20A7775A16FB6AD3 /* tls1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tls1.h; sourceTree = "<group>"; };
 		BCE48B912CC60FF92A49764B /* ts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ts.h; sourceTree = "<group>"; };
 		BCE48BB02BEF0B14B19A72F5 /* dh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dh.h; sourceTree = "<group>"; };
-		BCE48BE9609962D1CE793677 /* OpenSSL_obj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSSL_obj.m; sourceTree = "<group>"; };
+		BCE48BE9609962D1CE793677 /* OpenSSL_objc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenSSL_objc.m; sourceTree = "<group>"; };
 		BCE48BF4647A3F322C8723FE /* srp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = srp.h; sourceTree = "<group>"; };
 		BCE48BF8C539BD781FA3725B /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		BCE48C49F8F53F9DF02DA6EC /* Listener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Listener.h; sourceTree = "<group>"; };
@@ -213,7 +213,7 @@
 				BCE48B0A9AFB649E29E0754D /* RayPart */,
 				BCE480874C6D3E2DB3F8E0F1 /* LogLevel */,
 				BCE48AED6D3C2F2B7643A070 /* include */,
-				BCE48CF5BF620D86EB9C82B0 /* CSOpenSSL */,
+				BCE48CF5BF620D86EB9C82B0 /* OpenSSL_objc */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -388,11 +388,11 @@
 			path = RayPart;
 			sourceTree = "<group>";
 		};
-		BCE48CF5BF620D86EB9C82B0 /* CSOpenSSL */ = {
+		BCE48CF5BF620D86EB9C82B0 /* OpenSSL_objc */ = {
 			isa = PBXGroup;
 			children = (
-				BCE488B558AD45564ABB7E08 /* OpenSSL_obj.h */,
-				BCE48BE9609962D1CE793677 /* OpenSSL_obj.m */,
+				BCE488B558AD45564ABB7E08 /* OpenSSL_objc.h */,
+				BCE48BE9609962D1CE793677 /* OpenSSL_objc.m */,
 				BCE48EE2EA24157F15A0722B /* OpenSSLError.h */,
 				BCE48D8808788D992CEF8B3B /* OpenSSLError.m */,
 				BCE481DD6C562025009AEF0A /* RSAPrivateKey.h */,
@@ -400,7 +400,7 @@
 				BCE48D38DD5AAC78280BEC91 /* OpenSSLCertificate.h */,
 				BCE486E6BAA93D698907564F /* OpenSSLCertificate.m */,
 			);
-			path = CSOpenSSL;
+			path = OpenSSL_objc;
 			sourceTree = "<group>";
 		};
 		BCE48D2094F97BDF8064C34E /* Network */ = {
@@ -594,7 +594,7 @@
 				BCE4859515A7AD4D992B755F /* RNEncryptor.m in Sources */,
 				BCE48C35C413DDB4596AA0B3 /* RNCryptorEngine.m in Sources */,
 				BCE48062F561583E61C85C52 /* IndicatorView.m in Sources */,
-				BCE484180724A6818DC7C617 /* OpenSSL_obj.m in Sources */,
+				BCE484180724A6818DC7C617 /* OpenSSL_objc.m in Sources */,
 				BCE48967A88402980888E06D /* OpenSSLError.m in Sources */,
 				BCE48B85B9D7E0642BDCACDF /* RSAPrivateKey.m in Sources */,
 				BCE48FA9A6088B68505838AC /* OpenSSLCertificate.m in Sources */,

@@ -20,7 +20,7 @@
 
 #import "OpenSSLError.h"
 
-#import "OpenSSL_obj.h"
+#import "OpenSSL_objc.h"
 
 @interface RSAPrivateKey : NSObject {
 @private
