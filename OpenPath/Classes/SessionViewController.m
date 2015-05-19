@@ -8,6 +8,7 @@
 #import "Listener.h"
 #import "Helloer.h"
 #import "Logger.h"
+#import "UserData.h"
 
 @interface SessionViewController()
 @property (strong, nonatomic) IBOutlet UITextField *keyTextField;
@@ -39,6 +40,12 @@
     }];
 }
 
+#pragma mark Buttons
+
+-(IBAction)logoutPressed {
+    [[UserData sharedData] logout];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 -(IBAction)logPressed {
     [self performSegueWithIdentifier:@"session-log.segue" sender:self];
@@ -48,7 +55,9 @@
     self.generateButton.enabled = NO;
     [[Listener sharedListener] startListen];
 
-     NSString *key = [NSString stringWithCString:createHelloKey() encoding:NSNonLossyASCIIStringEncoding];
+    char *temp = createHelloKey();
+    NSString *key = [NSString stringWithCString:temp encoding:NSUTF8StringEncoding];
+    deallocator(temp);
 
     self.keyTextField.text = key;
 

@@ -165,11 +165,11 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="l2A-9b-R1H"/>
                                 </constraints>
-                                <state key="normal" title="Logout">
+                                <state key="normal" title="Back">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="logoutClicked" destination="h3o-ep-9Dg" eventType="touchUpInside" id="Hsv-6j-hPj"/>
+                                    <action selector="backClicked" destination="h3o-ep-9Dg" eventType="touchUpInside" id="lja-oz-wxZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -340,16 +340,16 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="rB5-9o-cVM">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to create hello key and start broadcast yours ip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9n0-qr-8rx">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" misplaced="YES" text="Tap to create hello key and start broadcast yours ip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9n0-qr-8rx">
                                 <rect key="frame" x="113" y="87" width="375" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="375" id="tw2-6B-rzx"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=compact-widthClass=compact">
-                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create path" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Px-I3-glr">
@@ -369,9 +369,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Gw6-Kb-2Bv">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JTn-iA-BZT">
+                                <rect key="frame" x="20" y="20" width="49" height="30"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutPressed" destination="If9-Ye-9Nq" eventType="touchUpInside" id="vzd-Eh-s2e"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Gw6-Kb-2Bv">
                                 <rect key="frame" x="20" y="176" width="560" height="404"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="awC-C4-rov">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
@@ -396,7 +405,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Responced :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08u-js-igf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Responced :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08u-js-igf">
                                 <rect key="frame" x="250" y="147" width="100" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="uLS-lO-vBF"/>
@@ -405,7 +414,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4P-QA-cfG">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4P-QA-cfG">
                                 <rect key="frame" x="269" y="116" width="63" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="63" id="iOX-Wn-Nht"/>
@@ -418,13 +427,13 @@
                                     <action selector="generatePressed" destination="If9-Ye-9Nq" eventType="touchUpInside" id="vR9-Rw-LRQ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JTn-iA-BZT">
-                                <rect key="frame" x="20" y="20" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJL-a3-3dw">
+                                <rect key="frame" x="550" y="20" width="30" height="30"/>
                                 <state key="normal" title="Log">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="logPressed" destination="If9-Ye-9Nq" eventType="touchUpInside" id="Jwc-Xz-5Xv"/>
+                                    <action selector="logPressed" destination="If9-Ye-9Nq" eventType="touchUpInside" id="Z5J-Rx-uER"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -434,11 +443,13 @@
                             <constraint firstItem="Gw6-Kb-2Bv" firstAttribute="leading" secondItem="JTn-iA-BZT" secondAttribute="leading" id="1fc-vj-eHB"/>
                             <constraint firstItem="9Px-I3-glr" firstAttribute="centerX" secondItem="rB5-9o-cVM" secondAttribute="centerX" id="7ne-hU-JiU"/>
                             <constraint firstAttribute="trailing" secondItem="rB5-9o-cVM" secondAttribute="trailing" id="7qX-br-4qj"/>
+                            <constraint firstItem="Gw6-Kb-2Bv" firstAttribute="trailing" secondItem="DJL-a3-3dw" secondAttribute="trailing" id="8wT-Tt-2ug"/>
                             <constraint firstItem="08u-js-igf" firstAttribute="top" secondItem="f4P-QA-cfG" secondAttribute="bottom" constant="1" id="9ZT-zb-Xyi"/>
                             <constraint firstItem="9Px-I3-glr" firstAttribute="centerX" secondItem="9n0-qr-8rx" secondAttribute="centerX" id="9lW-WL-bQN"/>
                             <constraint firstItem="Gw6-Kb-2Bv" firstAttribute="bottom" secondItem="rB5-9o-cVM" secondAttribute="bottom" constant="-20" id="GHo-cg-oVM"/>
                             <constraint firstItem="rB5-9o-cVM" firstAttribute="centerX" secondItem="f4P-QA-cfG" secondAttribute="centerX" constant="-0.5" id="HFw-h5-tPG"/>
                             <constraint firstItem="Gw6-Kb-2Bv" firstAttribute="leading" secondItem="rB5-9o-cVM" secondAttribute="leading" constant="20" id="IpG-p1-ZeZ"/>
+                            <constraint firstItem="9Px-I3-glr" firstAttribute="top" secondItem="DJL-a3-3dw" secondAttribute="top" id="KF0-fW-GD6"/>
                             <constraint firstItem="9n0-qr-8rx" firstAttribute="top" secondItem="G7X-gu-d0m" secondAttribute="bottom" constant="8" id="LEz-3B-2Kz"/>
                             <constraint firstItem="JTn-iA-BZT" firstAttribute="top" secondItem="9Px-I3-glr" secondAttribute="top" id="Os4-nO-8e2"/>
                             <constraint firstItem="rB5-9o-cVM" firstAttribute="top" secondItem="5PV-IN-zJ2" secondAttribute="bottom" id="Pkf-l3-hfn"/>
@@ -459,6 +470,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
+                        <outlet property="generateButton" destination="f4P-QA-cfG" id="fPp-Bb-OsK"/>
                         <outlet property="keyTextField" destination="G7X-gu-d0m" id="6Fm-q3-cJD"/>
                         <segue destination="h3o-ep-9Dg" kind="show" identifier="session-log.segue" id="Gke-nf-5Cm"/>
                     </connections>

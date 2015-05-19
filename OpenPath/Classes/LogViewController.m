@@ -23,7 +23,7 @@
     self.logView.text = [self.logView.text stringByAppendingString:string];
 }
 
--(IBAction)logoutClicked {
+-(IBAction)backClicked {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
