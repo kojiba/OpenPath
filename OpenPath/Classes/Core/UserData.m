@@ -82,9 +82,11 @@
 }
 
 - (void)logout {
-    [Logger addSessionEndStamp];
-    // fixme
-    // store logs and encrypt some
+    if(!stringIsBlankOrNil(self.username)) {
+        [Logger addSessionEndStamp];
+        // fixme
+        // store logs and encrypt some
+    }
 }
 
 - (BOOL)loginWithName:(NSString *)login password:(NSString *)password {
@@ -104,6 +106,14 @@
                 // fixme
                 // load some settings
                 // decrypt some
+
+                inMainThread ^{
+                    if([self checkSharedKeysFound]){
+                        [self checkSharedKeysPromptPassword];
+                    } else {
+                        [self alertCertExpired];
+                    }
+                });
                 return YES;
             }
         }
@@ -145,11 +155,11 @@
     BOOL result = NO;
 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentsDirectory = paths[0];
     NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:NULL];
 
-    NSString *patKey = [self.username stringByAppendingString:@".KEY"];
-    NSString *patCer = [self.username stringByAppendingString:@".CER"];
+    NSString *patKey = [self.username stringByAppendingString:@"_key.pem"];
+    NSString *patCer = [self.username stringByAppendingString:@"_cert.pem"];
 
     for (NSString *fileName in directoryContent) {
         sharedFileNameKey = [[fileName uppercaseString] isEqualToString:patKey] ? fileName : sharedFileNameKey;
@@ -246,13 +256,13 @@
 }
 
 - (NSString *)keyStoredFileNameShort {
-    NSString *keyStoredFileName = [NSString stringWithFormat:@"%@.KEY", self.username];
+    NSString *keyStoredFileName = [NSString stringWithFormat:@"%@_key.pem", self.username];
 
     return keyStoredFileName;
 }
 
 - (NSString *)cerStoredFileNameShort {
-    NSString *cerStoredFileName = [NSString stringWithFormat:@"%@.CER", self.username];
+    NSString *cerStoredFileName = [NSString stringWithFormat:@"%@_cert.pem", self.username];
 
     return cerStoredFileName;
 }
