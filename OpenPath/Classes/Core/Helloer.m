@@ -29,7 +29,9 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             size_t iterator;
 
-            RByteArray *hello = createHelloPacketWithKey(key.bytes, key.length);
+            NSData *keyCopy = [key copy];
+
+            RByteArray *hello = createHelloPacketWithKey(keyCopy.bytes, keyCopy.length);
 
             RSocket *socket = c(RSocket)(nil);
 

@@ -18,8 +18,8 @@
 
 char randomCharacter(void) {
     register char character = ((char)rand());
-    while(!(character > 34 &&
-            character < 126)) {
+    while(!(character > 96 &&
+            character < 123)) {
         character = ((char)rand());
     }
     return character;
@@ -30,9 +30,9 @@ char *createHelloKey(void) {
     register size_t  size = HELLO_KEY_LENGTH;
     char     *cstring;
 
-    cstring = arrayAllocator(char, size);
+    cstring = arrayAllocator(char, size + 1);
     if(cstring != nil) {
-        forAll(iterator, size - 2){
+        forAll(iterator, size) {
             cstring[iterator] = randomCharacter();
         }
         cstring[++iterator] = 0;

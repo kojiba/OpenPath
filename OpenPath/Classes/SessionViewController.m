@@ -127,7 +127,7 @@
         [[Listener sharedListener] startListen];
 
         char *temp = createHelloKey();
-        NSString *key = [NSString stringWithCString:temp encoding:NSUTF8StringEncoding];
+        NSString *key = [NSString stringWithCString:temp encoding:NSASCIIStringEncoding];
         deallocator(temp);
         if(stringIsBlankOrNil(self.keyTextField.text)) {
             self.keyTextField.text = key;

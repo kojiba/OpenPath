@@ -24,7 +24,7 @@
 
 #import "RByteOperations.h"
 
-#define HELLO_KEY_LENGTH 3
+#define HELLO_KEY_LENGTH 5
 
 #define DEBUG_PRIVATE_HELLO_KEY @"it's true private key"
 
