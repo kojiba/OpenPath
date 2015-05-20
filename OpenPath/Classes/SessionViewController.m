@@ -12,16 +12,21 @@
 #import "OpenSSLServer.h"
 #import "Settings_Keys.h"
 #import "OpenSSLClient.h"
+#import "Helper.h"
 
 #define CREATE_SEGMENT_INDEX 0
 #define JOIN_SEGMENT_INDEX   1
 
-@interface SessionViewController()
+#define REPEAT_TIMES 15
+
+@interface SessionViewController() <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmented;
 
 @property (strong, nonatomic) IBOutlet UITextField *keyTextField;
 @property (strong, nonatomic) IBOutlet UIButton *generateButton;
+
+@property (strong, nonatomic) NSData *keyData;
 
 @end
 
@@ -31,7 +36,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     static dispatch_once_t once;
-    static dispatch_once_t once2;
 
     SSL_library_init();
     OpenSSL_add_all_algorithms();        /* load & register all cryptos, etc. */
@@ -43,27 +47,35 @@
             NSString * certFilePath = [[NSBundle mainBundle] pathForResource:@"login_cert" ofType:@"pem"];
             NSString * keyFilePath = [[NSBundle mainBundle] pathForResource:@"login_key" ofType:@"pem"];
 
-            openSSLServerStart(OPEN_SSL_SERVER_PORT, [certFilePath cStringUsingEncoding:NSUTF8StringEncoding], [keyFilePath cStringUsingEncoding:NSUTF8StringEncoding], "12345");
+            openSSLServerStart(OPEN_SSL_SERVER_PORT,
+                    [certFilePath cStringUsingEncoding:NSUTF8StringEncoding],
+                    [keyFilePath cStringUsingEncoding:NSUTF8StringEncoding],
+                    "12345");
         });
-    });
 
-    dispatch_once(&once2, ^{
+        // client
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSString * certFilePath = [[NSBundle mainBundle] pathForResource:@"client_cert" ofType:@"pem"];
-            NSString * keyFilePath = [[NSBundle mainBundle] pathForResource:@"client_key" ofType:@"pem"];
+            sleep(1);
 
-            openSSLClientStart("127.0.0.1", OPEN_SSL_SERVER_PORT, [certFilePath cStringUsingEncoding:NSUTF8StringEncoding], [keyFilePath cStringUsingEncoding:NSUTF8StringEncoding], "12345");
+            NSString * clientCertFilePath = [[NSBundle mainBundle] pathForResource:@"client_cert" ofType:@"pem"];
+            NSString * clientKeyFilePath = [[NSBundle mainBundle] pathForResource:@"client_key" ofType:@"pem"];
+
+            openSSLClientStart("127.0.0.1",
+                    OPEN_SSL_SERVER_PORT,
+                    [clientCertFilePath  cStringUsingEncoding:NSUTF8StringEncoding],
+                    [clientKeyFilePath cStringUsingEncoding:NSUTF8StringEncoding],
+                    "12345");
         });
     });
 
-
-    NSData *keyData = [DEBUG_PRIVATE_HELLO_KEY dataUsingEncoding:NSUTF8StringEncoding];
 
     [[Listener sharedListener] setUpdateBlock:^void(char *data, ssize_t length, size_t packetsCounter, int error, char const *address) {
         if(error == 0
                 && data != nil) {
-            if(canDecryptHello((byte const *) data, (size_t) length, keyData.bytes, keyData.length)) {
-                customLog(@"Received HELLO from %s", address);
+            if(self.keyData.bytes != nil && canDecryptHello((byte const *) data, (size_t) length, self.keyData.bytes, self.keyData.length)) {
+                NSString *message = [NSString stringWithFormat:@"Received HELLO from %s", address];
+                customLog(message, address);
+                ShowShortMessage(message);
             } else {
                 // fixme processing session here
 //                customLog(@"Received data: %s from %s, total received %lu!", data, address, packetsCounter);
@@ -101,11 +113,12 @@
         char *temp = createHelloKey();
         NSString *key = [NSString stringWithCString:temp encoding:NSUTF8StringEncoding];
         deallocator(temp);
+        if(stringIsBlankOrNil(self.keyTextField.text)) {
+            self.keyTextField.text = key;
+        }
 
-        self.keyTextField.text = key;
-
-        [[Helloer sharedHelloer] sendHelloWithDelay:1 repeat:10 key:key block:^BOOL(size_t packetsCounter, int error) {
-            if (packetsCounter == 10) {
+        [[Helloer sharedHelloer] sendHelloWithDelay:1 repeat:REPEAT_TIMES key:[self.keyTextField.text dataUsingEncoding:NSUTF8StringEncoding] block:^BOOL(size_t packetsCounter, int error) {
+            if (packetsCounter == REPEAT_TIMES) {
                 self.generateButton.enabled = YES;
             }
 
@@ -116,8 +129,20 @@
             }
             return YES;
         }];
+
+
     }  else if(self.segmented.selectedSegmentIndex == JOIN_SEGMENT_INDEX) {
-        // fixme add join
+
+        self.keyData = [self.keyTextField.text dataUsingEncoding:NSUTF8StringEncoding];
+        [[Listener sharedListener] startListen];
+        self.generateButton.enabled = NO;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            sleep(1);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.generateButton.enabled = YES;
+            });
+        });
+
     }
 }
 
@@ -125,7 +150,7 @@
 
 -(IBAction)segmentedDidChange:(id)sender {
     if(self.segmented.selectedSegmentIndex == CREATE_SEGMENT_INDEX) {  // create
-        self.keyTextField.enabled = NO;
+        self.keyTextField.enabled = YES;
         [self.generateButton setTitle:@"Create" forState:UIControlStateNormal];
     } else if(self.segmented.selectedSegmentIndex == JOIN_SEGMENT_INDEX){ // join
         self.keyTextField.enabled = YES;
@@ -133,5 +158,19 @@
         [self.generateButton setTitle:@"Join" forState:UIControlStateNormal];
     }
 }
+
+#pragma mark TextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+
+    UIView *view = [self.view viewWithTag:textField.tag + 1];
+    if(view.canBecomeFirstResponder) {
+        [view becomeFirstResponder];
+    } else {
+        [textField resignFirstResponder];
+    }
+    return YES;
+}
+
 
 @end

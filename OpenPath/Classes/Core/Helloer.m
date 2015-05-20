@@ -24,12 +24,12 @@
     return _instance;
 }
 
-- (void)sendHelloWithDelay:(NSUInteger)seconds repeat:(NSUInteger)times key:(NSString*)key block:(HelloUpdateBlock)block {
+- (void)sendHelloWithDelay:(NSUInteger)seconds repeat:(NSUInteger)times key:(NSData*)key block:(HelloUpdateBlock)block {
     if(times != 0) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             size_t iterator;
-            NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
-            RByteArray *hello = createHelloPacketWithKey(keyData.bytes, keyData.length);
+
+            RByteArray *hello = createHelloPacketWithKey(key.bytes, key.length);
 
             RSocket *socket = c(RSocket)(nil);
 

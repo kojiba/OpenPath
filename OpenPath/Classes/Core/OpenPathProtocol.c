@@ -30,9 +30,6 @@ char *createHelloKey(void) {
     register size_t  size = HELLO_KEY_LENGTH;
     char     *cstring;
 
-    while(size < 10) {
-        size = ((size_t)rand()) % 50;
-    }
     cstring = arrayAllocator(char, size);
     if(cstring != nil) {
         forAll(iterator, size - 2){

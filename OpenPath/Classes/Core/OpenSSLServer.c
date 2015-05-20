@@ -1,4 +1,5 @@
 #include "OpenSSLServer.h"
+#include "RSyntax.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -76,13 +77,18 @@ void LoadCertificates(SSL_CTX *ctx, char const *CertFile, char const *KeyFile, c
 /*---------------------------------------------------------------------*/
 /*--- ShowCerts - print out certificates.                           ---*/
 /*---------------------------------------------------------------------*/
-void ShowCerts(SSL *ssl) {
+void ShowCerts(SSL *ssl, rbool isServer) {
     X509 *cert;
     char *line;
 
+    if(isServer) {
+        printf("Server certificates:\n");
+    } else {
+        printf("Client certificates:\n");
+    }
+
     cert = SSL_get_peer_certificate(ssl);    /* Get certificates (if available) */
     if (cert != NULL) {
-        printf("Server certificates:\n");
         line = X509_NAME_oneline(X509_get_subject_name(cert), 0, 0);
         printf("Subject: %s\n", line);
         free(line);
@@ -107,7 +113,7 @@ void Servlet(SSL *ssl)    /* Serve the connection -- threadable */ {
     if (SSL_accept(ssl) == FAIL)                    /* do SSL-protocol accept */
         ERR_print_errors_fp(stderr);
     else {
-        ShowCerts(ssl);                                /* get any certificates */
+        ShowCerts(ssl, yes);                                /* get any certificates */
 
         bytes = SSL_read(ssl, buffer, sizeof(buffer));    /* get request */
         if (bytes > 0) {

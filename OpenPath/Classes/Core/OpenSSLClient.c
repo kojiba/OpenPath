@@ -64,19 +64,18 @@ void openSSLClientStart(char const *hostname, char const *port, char const *cert
     server = OpenConnection(hostname, atoi(port));
     ssl = SSL_new(ctx);
     /* create new SSL connection state */
-    SSL_set_fd(ssl, server
-    );                /* attach the socket descriptor */
+    SSL_set_fd(ssl, server); /* attach the socket descriptor */
     if (
             SSL_connect(ssl)
                     == FAIL)
-    /* perform the connection */
+        /* perform the connection */
         ERR_print_errors_fp(stderr);
     else {
         char *msg = "Hello???";
 
         printf("Connected with %s encryption\n", SSL_get_cipher(ssl)
         );
-        ShowCerts(ssl);
+        ShowCerts(ssl, no);
     /* get any certs */
         SSL_write(ssl, msg, (int) strlen(msg));
     /* encrypt & send message */

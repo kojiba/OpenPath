@@ -16,7 +16,7 @@
 #ifndef __HELPER_H__
 #define __HELPER_H__
 
-#define ShowShortMessage(text) [[[UIAlertView alloc] initWithTitle:text message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+#define ShowShortMessage(text) [[[UIAlertView alloc] initWithTitle:(text) message:@"" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
 
 #define stringIsBlankOrNil(string) (string == nil || [string isEqualToString:@""])
 

@@ -14,7 +14,7 @@ typedef BOOL (^HelloUpdateBlock)(size_t packetsCounter, int error);
 
 + (Helloer *)sharedHelloer;
 
-- (void)sendHelloWithDelay:(NSUInteger)seconds repeat:(NSUInteger)times key:(NSString *)key block:(HelloUpdateBlock)block;
+- (void)sendHelloWithDelay:(NSUInteger)seconds repeat:(NSUInteger)times key:(NSData *)key block:(HelloUpdateBlock)block;
 
 
 @end

@@ -3,8 +3,9 @@
 
 #include <openssl/ssl.h>
 #include <openssl/err.h>
+#include "RSyntax.h"
 
-void ShowCerts(SSL *ssl);
+void ShowCerts(SSL *ssl, rbool isServer);
 
 void LoadCertificates(SSL_CTX *ctx, char const *CertFile, char const *KeyFile, char const *password);
 
