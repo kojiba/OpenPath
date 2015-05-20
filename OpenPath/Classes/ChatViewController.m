@@ -16,6 +16,14 @@ typedef enum MessageType {
     PeerMessageType
 } MessageType;
 
+@interface ChatCellObject : NSObject
+@property (strong, nonatomic) NSString *message;
+@property (nonatomic) MessageType type;
+@end
+
+@implementation ChatCellObject
+@end
+
 @interface ChatCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UITextView *textView;
@@ -25,8 +33,8 @@ typedef enum MessageType {
 @implementation ChatCell
 
 -(void)fillWithObject:(id)object {
-    self.textView.text = object;
-    self.textView.textColor = [UIColor blueColor];
+    self.textView.text = ((ChatCellObject *)object).message;
+    self.textView.textColor = ((ChatCellObject *)object).type == SelfMessageType ? [UIColor redColor] : [UIColor blueColor];
 }
 
 @end
@@ -54,14 +62,17 @@ typedef enum MessageType {
     [[OpenSSLReceiver sharedReceiver] setUpdateBlock:^(char *data, int length) {
         inMainThread ^{
             NSString *newMessage = [NSString stringWithUTF8String:data];
-            [self updateMessagesWithString:newMessage isSelf:NO];
+            ChatCellObject *object = [[ChatCellObject alloc] init];
+            object.message = newMessage;
+            object.type = PeerMessageType;
+            [self updateMessagesWithObject:object isSelf:NO];
         });
     }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillCandgeFrame:)
+                                             selector:@selector(keyboardWillChangeFrame:)
                                                  name:UIKeyboardWillChangeFrameNotification
                                                object:nil];
 
@@ -86,7 +97,7 @@ typedef enum MessageType {
 }
 
 
--(void)updateMessagesWithString:(NSString*)newMessage isSelf:(BOOL)flag {
+-(void)updateMessagesWithObject:(id)newMessage isSelf:(BOOL)flag {
     // update data source with the object that you need to add
     [self.messages addObject:newMessage];
     NSInteger row = self.messages.count - 1; // specify a row where you need to add new row
@@ -125,7 +136,11 @@ typedef enum MessageType {
             if(result) {
                 ShowShortMessage(result);
             } else {
-                [self updateMessagesWithString:self.inputTextView.text isSelf:YES];
+
+                ChatCellObject *object = [[ChatCellObject alloc] init];
+                object.message = self.inputTextView.text;
+                object.type = SelfMessageType;
+                [self updateMessagesWithObject:object isSelf:YES];
                 self.inputTextView.text = @"";
             }
             self.sendButton.enabled = YES;
@@ -149,7 +164,7 @@ typedef enum MessageType {
 
 #pragma mark Keyboarding
 
-- (void)keyboardWillCandgeFrame:(NSNotification*)notification {
+- (void)keyboardWillChangeFrame:(NSNotification*)notification {
     double duration;
     CGRect keyboardRect;
     duration = [[notification userInfo] [UIKeyboardAnimationDurationUserInfoKey] doubleValue];

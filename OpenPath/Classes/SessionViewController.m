@@ -56,8 +56,6 @@
             NSString * certFilePath = [[NSBundle mainBundle] pathForResource:@"login_cert" ofType:@"pem"];
             NSString * keyFilePath  = [[NSBundle mainBundle] pathForResource:@"login_key" ofType:@"pem"];
 
-            [OpenSSLReceiver sharedReceiver].delegate = self;
-
             NSString *result = [[OpenSSLReceiver sharedReceiver] openSSLServerStartOnPort:@OPEN_SSL_SERVER_PORT
                                                                       certificateFilePath:certFilePath
                                                                               keyFilePath:keyFilePath
@@ -110,17 +108,20 @@
                     NSString *message = [NSString stringWithFormat:@"Received HELLO from %s", address];
 
                     inBackGround ^{
-                        [[OpenSSLSender sharedSender] openSSLClientStart:[NSString stringWithCString:address encoding:NSASCIIStringEncoding] withPort:@OPEN_SSL_SERVER_PORT];
-                        [[OpenSSLSender sharedSender] sendString:@"HELLO OPENSSL MY FRIEND!"];
-                        [[OpenSSLSender sharedSender] closeSSL];
+                        NSString *result = [[OpenSSLSender sharedSender] openSSLClientStart:[NSString stringWithCString:address encoding:NSASCIIStringEncoding]
+                                                                                   withPort:@OPEN_SSL_SERVER_PORT];
+                        if(!result) {
+                            [[OpenSSLSender sharedSender] sendString:@"HELLO OPENSSL MY FRIEND!"];
+                            [[OpenSSLSender sharedSender] closeSSL];
+                        } else {
+                            ShowShortMessage(message);
+                        }
                     });
 
                     customLog(message, address);
                     ShowShortMessage(message);
                 }
             } else {
-                // fixme processing session here
-//                customLog(@"Received data: %s from %s, total received %lu!", data, address, packetsCounter);
             }
             deallocator(data);
         } else {
@@ -133,9 +134,16 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [OpenSSLReceiver sharedReceiver].delegate = self;
     self.segmented.selectedSegmentIndex = 0; // generate
     [self segmentedDidChange:self.segmented];
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [OpenSSLReceiver sharedReceiver].delegate = nil;
+}
+
 
 #pragma mark OpenSSLReceiverDelegate
 
