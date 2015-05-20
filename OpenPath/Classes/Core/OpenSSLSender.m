@@ -30,8 +30,13 @@
 
 -(NSString*)sendString:(NSString*)message {
     NSData *dataToSend = [message dataUsingEncoding:NSUTF8StringEncoding];
-
-    int result = SSL_write(currentSSL, dataToSend.bytes, (int) dataToSend.length);  // encrypt & send message
+    int result;
+    @try {
+         result = SSL_write(currentSSL, dataToSend.bytes, (int) dataToSend.length);  // encrypt & send message
+    }
+    @catch (...) {
+        return [NSString stringWithFormat:@"Error send message \"%@\"", message];
+    }
     if(result < 0) {
         NSString *error = [NSString stringWithFormat:@"Error send message \"%@\"", message];
         customLog(error);

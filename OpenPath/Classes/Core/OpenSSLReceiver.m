@@ -43,29 +43,34 @@ void logSertificates(SSL *ssl) {
     char responce[1024];
     const char *echo = "Welcome on OpenPath SSL server, echo : \"%s\"\n\n";
 #endif
-    int sd, bytes;
+    int sd, bytes = 1024;
 
     if (SSL_accept(ssl) == -1) { // do SSL-protocol accept
         ERR_print_errors_fp(stderr);
         customLog(@"Error SSL accept");
     } else {
 
-        bytes = SSL_read(ssl, buffer, sizeof(buffer));    // get request
-        if (bytes > 0) {
-            buffer[bytes] = 0;
-            customLog(@"Client msg: \"%s\"\n", buffer);
+        while(bytes >= 0) {
+
+            bytes = SSL_read(ssl, buffer, sizeof(buffer));    // get request
+            if (bytes > 0) {
+                buffer[bytes] = 0;
+                customLog(@"Client msg: \"%s\"\n", buffer);
 
             #ifdef SELFTEST
                 sprintf(responce, echo, buffer);                  // construct responce
                 SSL_write(ssl, responce, (int) strlen(responce)); // send responce
             #else
-                if(self.updateBlock != nil) {
+                if (self.updateBlock != nil) {
                     self.updateBlock(buffer, bytes);
                 }
             #endif
+            }
+            else {
+                ERR_print_errors_fp(stderr);
+                break;
+            }
         }
-        else
-            ERR_print_errors_fp(stderr);
     }
     sd = SSL_get_fd(ssl);      // get socket connection
     SSL_free(ssl);             // release SSL state
