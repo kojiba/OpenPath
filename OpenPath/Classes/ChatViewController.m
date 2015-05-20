@@ -31,7 +31,7 @@ typedef enum MessageType {
 
 @end
 
-@interface ChatViewController() <UITableViewDataSource, UITableViewDelegate>
+@interface ChatViewController() <UITextViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *messages;
 
@@ -54,28 +54,48 @@ typedef enum MessageType {
     [[OpenSSLReceiver sharedReceiver] setUpdateBlock:^(char *data, int length) {
         inMainThread ^{
             NSString *newMessage = [NSString stringWithUTF8String:data];
-            [self updateMessagesWithString:newMessage];
+            [self updateMessagesWithString:newMessage isSelf:NO];
         });
     }];
 }
 
--(void)updateMessagesWithString:(NSString*)newMessage {
-    customLog(@"RECEIVED! : %@", newMessage);
-//    // update data source with the object that you need to add
-//    [self.messages addObject:newMessage];
-//    NSInteger row = self.messages.count - 1; // specify a row where you need to add new row
-//    NSInteger section = 0;               // specify the section where the new row to be added
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
-//
-//    [self.tableView beginUpdates];
-//    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
-//    [self.tableView endUpdates];
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillCandgeFrame:)
+                                                 name:UIKeyboardWillChangeFrameNotification
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+
+    [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillChangeFrameNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
     [super viewWillDisappear:animated];
     [OpenSSLReceiver sharedReceiver].updateBlock = nil;
     [[OpenSSLSender sharedSender] closeSSL];
+}
+
+
+-(void)updateMessagesWithString:(NSString*)newMessage isSelf:(BOOL)flag {
+    // update data source with the object that you need to add
+    [self.messages addObject:newMessage];
+    NSInteger row = self.messages.count - 1; // specify a row where you need to add new row
+    NSInteger section = 0;               // specify the section where the new row to be added
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+    [self.tableView endUpdates];
 }
 
 #pragma mark TableViewDelegate
@@ -96,8 +116,7 @@ typedef enum MessageType {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(IBAction)sendPressed {
-
+-(IBAction)sendButtonPressed {
     self.sendButton.enabled = NO;
     inBackGround ^{
         NSString *result = [[OpenSSLSender sharedSender] sendString:self.inputTextView.text];
@@ -106,12 +125,51 @@ typedef enum MessageType {
             if(result) {
                 ShowShortMessage(result);
             } else {
-                [self updateMessagesWithString:self.inputTextView.text];
+                [self updateMessagesWithString:self.inputTextView.text isSelf:YES];
                 self.inputTextView.text = @"";
             }
             self.sendButton.enabled = YES;
         });
     });
+}
+
+#pragma mark TextViewDelegate
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    [textView resignFirstResponder];
+}
+
+#pragma mark Keyboarding
+
+- (void)keyboardWillCandgeFrame:(NSNotification*)notification {
+    double duration;
+    CGRect keyboardRect;
+    duration = [[notification userInfo] [UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    keyboardRect = [[notification userInfo] [UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    keyboardRect = [self.view.superview convertRect:keyboardRect fromView:nil];
+
+    self.bottomConstraint.constant = -keyboardRect.size.height;
+
+    [UIView animateWithDuration:duration animations:^{
+        [self.view updateConstraintsIfNeeded];
+    }];
+}
+
+- (void) keyboardWillHide:(NSNotification*)notification {
+    self.bottomConstraint.constant = -20;
+    double duration = [[notification userInfo] [UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+
+    [UIView animateWithDuration:duration animations:^{
+        [self.view updateConstraintsIfNeeded];
+    }];
 }
 
 

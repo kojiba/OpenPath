@@ -590,7 +590,10 @@ They must be named like
                                     <constraint firstAttribute="height" constant="60" id="6cF-Vj-9WA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vsH-k2-WNP" id="ly3-Jq-r91"/>
+                                </connections>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6B-oE-wc5">
                                 <rect key="frame" x="535" y="530" width="45" height="60"/>
@@ -598,7 +601,7 @@ They must be named like
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="sendPressed" destination="vsH-k2-WNP" eventType="touchDragInside" id="elN-bz-UFV"/>
+                                    <action selector="sendButtonPressed" destination="vsH-k2-WNP" eventType="touchUpInside" id="4qn-7p-NXj"/>
                                 </connections>
                             </button>
                         </subviews>
