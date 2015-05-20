@@ -19,7 +19,7 @@
 #define CREATE_SEGMENT_INDEX 0
 #define JOIN_SEGMENT_INDEX   1
 
-#define REPEAT_TIMES 15
+#define REPEAT_TIMES 10
 
 @interface SessionViewController() <UITextFieldDelegate>
 
@@ -88,7 +88,11 @@
     [[Listener sharedListener] setUpdateBlock:^void(char *data, ssize_t length, size_t packetsCounter, int error, char const *address) {
         if(error == 0
                 && data != nil) {
-            if(self.keyData.bytes != nil && canDecryptHello((byte const *) data, (size_t) length, self.keyData.bytes, self.keyData.length)) {
+            if(self.keyData.bytes != nil
+                    && canDecryptHello((byte const *) data,
+                                       (size_t) length,
+                                       self.keyData.bytes,
+                                       self.keyData.length)) {
                 NSString *message = [NSString stringWithFormat:@"Received HELLO from %s", address];
                 customLog(message, address);
                 ShowShortMessage(message);
@@ -133,14 +137,18 @@
             self.keyTextField.text = key;
         }
 
-        [[Helloer sharedHelloer] sendHelloWithDelay:1 repeat:REPEAT_TIMES key:[self.keyTextField.text dataUsingEncoding:NSUTF8StringEncoding] block:^BOOL(size_t packetsCounter, int error) {
+        [[Helloer sharedHelloer] sendHelloWithDelay:1
+                                             repeat:REPEAT_TIMES
+                                                key:[self.keyTextField.text dataUsingEncoding:NSUTF8StringEncoding]
+                                              block:^BOOL(size_t packetsCounter, int error) {
             if (packetsCounter == REPEAT_TIMES) {
                 self.generateButton.enabled = YES;
             }
 
             if (!error) {
-                customLog(@"Send hello, total sent %lu!", packetsCounter);
+                customLog(@"Send hello [%lu]", packetsCounter);
             } else {
+                self.generateButton.enabled = YES;
                 customLog(@"Error send packet!");
             }
             return YES;

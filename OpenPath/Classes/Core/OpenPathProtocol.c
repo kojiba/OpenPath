@@ -14,7 +14,6 @@
  **/
 
 #include "OpenPathProtocol.h"
-#include "Helper.h"
 
 char randomCharacter(void) {
     register char character = ((char)rand());
@@ -35,7 +34,7 @@ char *createHelloKey(void) {
         forAll(iterator, size) {
             cstring[iterator] = randomCharacter();
         }
-        cstring[++iterator] = 0;
+        cstring[size] = 0;
     }
     return cstring;
 }

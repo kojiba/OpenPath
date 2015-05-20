@@ -26,10 +26,9 @@
 
 - (void)sendHelloWithDelay:(NSUInteger)seconds repeat:(NSUInteger)times key:(NSData*)key block:(HelloUpdateBlock)block {
     if(times != 0) {
+        NSData *keyCopy = [key copy];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             size_t iterator;
-
-            NSData *keyCopy = [key copy];
 
             RByteArray *hello = createHelloPacketWithKey(keyCopy.bytes, keyCopy.length);
 
