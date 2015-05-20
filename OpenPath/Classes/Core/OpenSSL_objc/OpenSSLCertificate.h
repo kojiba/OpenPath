@@ -31,16 +31,10 @@
 }
 
 - (id)initWithPEMdata:(NSData *)pemData;
-
 - (BOOL)checkSignData:(NSData *)data withSign:(NSData *)sign;
-
-//-(NSData*)encryptData:(NSData*)data;
 - (BOOL)isSignedWithCA:(OpenSSLCertificate *)caCert;
-
 - (BOOL)verifySign:(NSString *)basedSign forData:(NSData *)data;
-
 + (BOOL)checkPEM:(NSData *)pem;
-
 + (BOOL)verifySign:(NSString *)basedSign forData:(NSData *)data withCertPEM:(NSData *)certPEM;
 
 @property(nonatomic, readonly, retain) NSData *dataPEM;
@@ -58,7 +52,7 @@
 
 @end
 
-@interface CSOpenSSLSessionCertificate : NSObject {
+@interface OpenSSLSessionCertificate : NSObject {
 @private
     NSString *fileName;
 }

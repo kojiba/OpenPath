@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSData (Utils)
+#include "Settings_Keys.h"
 
-#define KEYSTORE_PATH ( [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Keystore"] )
+@interface NSData (Utils)
 
 - (NSString *)base64EncodedString;
 

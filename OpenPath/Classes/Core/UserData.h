@@ -4,7 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Settings_Keys.h"
 #import "OpenSSLCertificate.h"
 
 #define PASSWORD_MIN_LENGTH 5
@@ -12,11 +12,12 @@
 @interface UserData : NSObject
 + (UserData *)sharedData;
 
+-(NSString *)currentUserName;
 -(NSString*)createUserWithLogin:(NSString*)login password:(NSString*)password;
 -(BOOL)loginWithName:(NSString*)login password:(NSString*)password;
 -(void)logout;
 
-#pragma mark -= User Keys =-
+#ifdef HAVE_ITUNES_KEY_TRANSFER
 
 -(BOOL)isUserKeyExists;
 -(BOOL)checkUserKeyPassword:(NSString*)password;
@@ -31,5 +32,7 @@
 @property (nonatomic, readonly) NSString* getTransportName;
 @property (nonatomic, readonly) NSString* keyStoredFileNameShort;
 @property (nonatomic, readonly) NSString* cerStoredFileNameShort;
+
+#endif
 
 @end

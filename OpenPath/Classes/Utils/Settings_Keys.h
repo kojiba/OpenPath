@@ -18,6 +18,7 @@
 
 
 //#define SELFTEST
+#define HAVE_ITUNES_KEY_TRANSFER
 
 #define OPEN_SSL_SERVER_PORT "7777"
 
@@ -26,5 +27,7 @@
 
 #define USER_NAME_KEY     @"kUserName"
 #define USER_PASSWORD_KEY @"kUserPassword"
+
+#define KEYSTORE_PATH ( [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Keystore"] )
 
 #endif /*__SETTINGS_KEYS_H__*/

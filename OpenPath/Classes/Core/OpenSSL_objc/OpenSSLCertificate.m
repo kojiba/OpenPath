@@ -4,18 +4,18 @@
 
 #import <UIKit/UIKit.h>
 
-@implementation CSOpenSSLSessionCertificate
+@implementation OpenSSLSessionCertificate
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(CSOpenSSLSessionCertificate, instance);
+SYNTHESIZE_SINGLETON_FOR_CLASS(OpenSSLSessionCertificate, instance);
 
 @synthesize userCertificateFileName = fileName;
 
 + (void)setCurrentUserCertificateFileName:(NSString *)pFileName {
-    [CSOpenSSLSessionCertificate instance].userCertificateFileName = pFileName;
+    [OpenSSLSessionCertificate instance].userCertificateFileName = pFileName;
 }
 
 + (OpenSSLCertificate *)userCertificate {
-    NSString *certificateFileName = [CSOpenSSLSessionCertificate instance].userCertificateFileName;
+    NSString *certificateFileName = [OpenSSLSessionCertificate instance].userCertificateFileName;
     if (!certificateFileName) {
         return nil;
     }
@@ -302,7 +302,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(CSOpenSSLSessionCertificate, instance);
                 sha1str[j + 0] = hexnum[sha1bin[i] >> 4];
                 sha1str[j + 1] = hexnum[sha1bin[i] & 0x0F];
                 sha1str[j + 2] = 0x20; // spaces, result will be like 'ab cd ef 12 34 ...'
-                //123NSLog(@"bin[%d]: %x; j: %d txt: %c%c",i, sha1bin[i], j, sha1str[j+0], sha1str[j+1]);
                 j += 3;
             }
             sha1str[SHA1_TEXTBUF_SIZE - 1] = 0;

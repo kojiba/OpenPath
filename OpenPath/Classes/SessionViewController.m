@@ -15,6 +15,7 @@
 #import "Helper.h"
 #import "OpenSSLSender.h"
 #import "OpenSSLReceiver.h"
+#import "NSData+Utils.h"
 
 #define CREATE_SEGMENT_INDEX 0
 #define JOIN_SEGMENT_INDEX   1
@@ -52,13 +53,32 @@
         SSL_load_error_strings();      // load all error messages
 
         inBackGround ^{
-            NSString * certFilePath = [[NSBundle mainBundle] pathForResource:@"login_cert" ofType:@"pem"];
-            NSString * keyFilePath  = [[NSBundle mainBundle] pathForResource:@"login_key" ofType:@"pem"];
+            NSString *password = @"12345";
+            NSString *certFilePath = nil;
+            NSString *keyFilePath = nil;
+            #ifdef SELFTEST
+                certFilePath = [[NSBundle mainBundle] pathForResource:@"login_cert" ofType:@"pem"];
+                keyFilePath  = [[NSBundle mainBundle] pathForResource:@"login_key" ofType:@"pem"];
+            #else
+            if([UserData sharedData].isUserKeyExists
+                    && [UserData sharedData].userCertificate != nil) {
+                certFilePath = [KEYSTORE_PATH stringByAppendingPathComponent:[UserData sharedData].cerStoredFileNameShort];
+                keyFilePath =  [KEYSTORE_PATH stringByAppendingPathComponent:[UserData sharedData].keyStoredFileNameShort];
+
+            } else {
+                NSString *message = [NSString stringWithFormat:@"Certificates for user \"%@\" not found. Using unsecure application default certificates.",
+                                [UserData sharedData].currentUserName];
+                ShowShortMessage(message);
+
+                certFilePath = [[NSBundle mainBundle] pathForResource:@"login_cert" ofType:@"pem"];
+                keyFilePath = [[NSBundle mainBundle] pathForResource:@"login_key" ofType:@"pem"];
+            }
+            #endif
 
             NSString *result = [[OpenSSLReceiver sharedReceiver] openSSLServerStartOnPort:@OPEN_SSL_SERVER_PORT
                                                                       certificateFilePath:certFilePath
                                                                               keyFilePath:keyFilePath
-                                                                                 password:@"12345"];
+                                                                                 password:password];
 
             if(result != nil) {
                 ShowShortMessage(result);

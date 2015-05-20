@@ -1,5 +1,6 @@
 #import "RSAPrivateKey.h"
 #import "NSData+Utils.h"
+#import "Logger.h"
 
 
 @interface RSAPrivateKey (CSRSAPrivateKey_PRIVATE)
@@ -11,7 +12,6 @@
 @implementation RSAPrivateKey (CSRSAPrivateKey_PRIVATE)
 
 - (BOOL)loadKeyFromPEMWithPassword:(NSString *)pPassword {
-    //NSLog(@"-[ loadKeyFromPEMWithPassword:%@]", pPassword);
 
     openSSLSturtup();
     NSUInteger bufKeyLen = [dataPEM length];
@@ -33,7 +33,7 @@
                 unsigned long sslErrorCode = 0;
                 BOOL result = !(openSSLErrorCode(&sslErrorCode) || !privateKey);
                 if (!result) {
-                    NSLog(@"OpenSSLErrorCode: %lu", sslErrorCode);
+                    customLog(@"OpenSSLErrorCode: %lu", sslErrorCode);
                 }
 
                 return result;

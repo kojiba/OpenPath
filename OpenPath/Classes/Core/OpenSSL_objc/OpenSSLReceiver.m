@@ -101,6 +101,10 @@ void logSertificates(SSL *ssl) {
     // release context
     if(currentContext != nil)
         SSL_CTX_free(currentContext);
+
+    currentSSL     = nil;
+    serverSocket   = nil;
+    currentContext = nil;
 }
 
 - (NSString *)openSSLServerStartOnPort:(NSString *)port

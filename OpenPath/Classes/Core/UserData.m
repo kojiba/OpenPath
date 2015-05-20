@@ -4,7 +4,6 @@
 //
 
 #import "UserData.h"
-#import "Settings_Keys.h"
 #import "Logger.h"
 #import "RNCryptor.h"
 #import "RNEncryptor.h"
@@ -24,19 +23,18 @@
 @implementation RSAPrivateKey (KeyStore)
 
 + (NSString *)getUserKeyNameForLogin:(NSString *)login {
-    NSString *userKeyFileNameTemplate = @"%@.KEY";
+    NSString *userKeyFileNameTemplate = @"%@_key.pem";
     return [NSString stringWithFormat:userKeyFileNameTemplate, login];
 }
 
 + (NSString *)getUserCertNameForLogin:(NSString *)login {
-    NSString *userKeyFileNameTemplate = @"%@.CER";
+    NSString *userKeyFileNameTemplate = @"%@_cert.pem";
     return [NSString stringWithFormat:userKeyFileNameTemplate, login];
 }
 
 
 + (BOOL)getUserKeyExistsForLogin:(NSString *)login {
     NSString *keyPathShort = [self getUserKeyNameForLogin:login];
-
     NSString *path = [KEYSTORE_PATH stringByAppendingPathComponent:keyPathShort];
     return [[NSFileManager defaultManager] fileExistsAtPath:path];
 
@@ -50,7 +48,7 @@
 
 @end
 
-@interface UserData() {
+@interface UserData() <UIAlertViewDelegate> {
     NSString   *sharedFileNameKey;
     NSString   *sharedFileNameCer;
     NSUInteger  keyPasswordCounter;
@@ -77,15 +75,20 @@
     return _instance;
 }
 
+- (NSString *)currentUserName {
+    return [self.username copy];
+}
+
 -(NSString*)userLoginPattern:(NSString*)login {
     return [NSString stringWithFormat:@"%@_%@", USER_NAME_KEY, login];
 }
 
 - (void)logout {
     if(!stringIsBlankOrNil(self.username)) {
-        [Logger addSessionEndStamp];
+        self.username = @"";
         // fixme
         // store logs and encrypt some
+        [Logger addSessionEndStamp];
     }
 }
 
@@ -107,6 +110,7 @@
                 // load some settings
                 // decrypt some
 
+                #ifdef HAVE_ITUNES_KEY_TRANSFER
                 inMainThread ^{
                     if([self checkSharedKeysFound]){
                         [self checkSharedKeysPromptPassword];
@@ -114,6 +118,7 @@
                         [self alertCertExpired];
                     }
                 });
+                #endif
                 return YES;
             }
         }
@@ -143,6 +148,8 @@
 
 #pragma mark -= User Keys =-
 
+#ifdef HAVE_ITUNES_KEY_TRANSFER
+
 - (BOOL)isUserKeyExists {
     return [RSAPrivateKey getUserKeyExistsForLogin:self.username];
 }
@@ -158,12 +165,12 @@
     NSString *documentsDirectory = paths[0];
     NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDirectory error:NULL];
 
-    NSString *patKey = [self.username stringByAppendingString:@"_key.pem"];
-    NSString *patCer = [self.username stringByAppendingString:@"_cert.pem"];
+    NSString *patKey = [RSAPrivateKey getUserKeyNameForLogin:self.username];
+    NSString *patCer = [RSAPrivateKey getUserCertNameForLogin:self.username];
 
     for (NSString *fileName in directoryContent) {
-        sharedFileNameKey = [[fileName uppercaseString] isEqualToString:patKey] ? fileName : sharedFileNameKey;
-        sharedFileNameCer = [[fileName uppercaseString] isEqualToString:patCer] ? fileName : sharedFileNameCer;
+        sharedFileNameKey = [fileName isEqualToString:patKey] ? fileName : sharedFileNameKey;
+        sharedFileNameCer = [fileName isEqualToString:patCer] ? fileName : sharedFileNameCer;
         if (sharedFileNameKey != nil && sharedFileNameCer != nil) break;
     }
 
@@ -204,19 +211,24 @@
 
 - (void)checkSharedKeysPromptPassword:(BOOL)first {
 
-    NSString *localizedMessage;
+    NSString *localizedMessage, *message;
 
+    NSString *messageAccept = @"Accept";
+    NSString *messageDelete = @"Delete";
     if (first) {
-        localizedMessage = [NSString stringWithFormat:@"security.keyfound.message.first"];
+        message = @"To save the private key on the device, enter your password and press \"%@\". To cancel press \"%@\"";
     } else {
-        localizedMessage = [NSString stringWithFormat:@"security.keyfound.message.second"];
+        message = @"You have probably entered an incorrect password for private key. Check and enter the password again and press \"%@\". To cancel press \"%@ \"";
     }
+    localizedMessage = [NSString stringWithFormat:message, messageAccept, messageDelete];
 
-    UIAlertView *inputAlertView = [[UIAlertView alloc] initWithTitle:@"security.title"
+
+    UIAlertView *inputAlertView = [[UIAlertView alloc] initWithTitle:@"Input private key password to store"
                                                                            message:localizedMessage
                                                                           delegate:self
-                                                                 cancelButtonTitle:@"message.accept"
-                                                                 otherButtonTitles:@"message.delete", nil];
+                                                                 cancelButtonTitle:messageAccept
+                                                                 otherButtonTitles:messageDelete, nil];
+    inputAlertView.alertViewStyle = UIAlertViewStyleSecureTextInput;
     [[inputAlertView textFieldAtIndex:0] setSecureTextEntry:YES];
     inputAlertView.tag = SAVE_SHARED_KEY_ALERT;
     [inputAlertView show];
@@ -257,13 +269,11 @@
 
 - (NSString *)keyStoredFileNameShort {
     NSString *keyStoredFileName = [NSString stringWithFormat:@"%@_key.pem", self.username];
-
     return keyStoredFileName;
 }
 
 - (NSString *)cerStoredFileNameShort {
     NSString *cerStoredFileName = [NSString stringWithFormat:@"%@_cert.pem", self.username];
-
     return cerStoredFileName;
 }
 
@@ -279,6 +289,8 @@
 
     return YES;
 }
+
+#pragma mark AlertViewDelegate
 
 #define KEYPASSWORD_MAX_TRY 3
 
@@ -299,12 +311,12 @@
                     keyPasswordCounter++;
                     [self checkSharedKeysPromptPassword:NO];
                 } else {
-                    ShowShortMessage(@"security.savesharedkeys.countlimit");
+                    ShowShortMessage(@"The number of attempts to enter valid password exceeded. Keys will be deleted");
                     [self deleteKeyAndCertFromDocuments];
                 }
             } else {
                 if ([self copyKeyAndCertToKeystore]) {
-                    ShowShortMessage(@"security.savesharedkeys.success");
+                    ShowShortMessage(@"Keys saved successfully");
                 }
             }
         }
@@ -316,7 +328,9 @@
     OpenSSLCertificate *cert = [self userCertificate];
     if (cert != nil) {
         if ([[cert dateNotAfter] timeIntervalSinceNow] < 1 * 3600 * 24 * 10) {
-            NSString *message = [NSString stringWithFormat:@"security.cert.soonexpireing %@ %@", cert.subject[@"commonName"], cert.dateNotAfter.description];
+            NSString *message = [NSString stringWithFormat:@"Certificate \"%@\" will expire at %@",
+                            cert.subject[@"commonName"],
+                            cert.dateNotAfter.description];
             ShowShortMessage(message);
         }
     }
@@ -343,14 +357,16 @@
     NSData *cerPEM = [[NSData alloc] initFromKeystoreWithShortName:[self cerStoredFileNameShort]];
     @try {
         OpenSSLCertificate *cert = [[OpenSSLCertificate alloc] initWithPEMdata:cerPEM];
-        [CSOpenSSLSessionCertificate setCurrentUserCertificateFileName:[self cerStoredFileNameShort]];
+        [OpenSSLSessionCertificate setCurrentUserCertificateFileName:[self cerStoredFileNameShort]];
         return cert;
     }
     @catch (...) {
-        NSLog(@"UNEXPECTED ERROR in %@", NSStringFromSelector(_cmd));
+        customLog(@"UNEXPECTED ERROR in %@", NSStringFromSelector(_cmd));
     }
     @finally {
     }
 }
+
+#endif
 
 @end
