@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -381,8 +382,8 @@ They must be named like
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="rB5-9o-cVM">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" misplaced="YES" text="Tap to create hello key and start broadcast yours ip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9n0-qr-8rx">
-                                <rect key="frame" x="113" y="87" width="375" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Tap to create hello key and start broadcast yours ip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9n0-qr-8rx">
+                                <rect key="frame" x="146" y="94" width="309" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="375" id="tw2-6B-rzx"/>
                                 </constraints>
@@ -393,21 +394,12 @@ They must be named like
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create path" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Px-I3-glr">
-                                <rect key="frame" x="247" y="20" width="107" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="107" id="KWW-7i-mn0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G7X-gu-d0m">
-                                <rect key="frame" x="202" y="49" width="197" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="key" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G7X-gu-d0m">
+                                <rect key="frame" x="202" y="56" width="197" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="197" id="9E6-vq-0AL"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JTn-iA-BZT">
@@ -420,7 +412,7 @@ They must be named like
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Gw6-Kb-2Bv">
-                                <rect key="frame" x="20" y="172" width="560" height="408"/>
+                                <rect key="frame" x="20" y="179" width="560" height="401"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="awC-C4-rov">
@@ -446,17 +438,8 @@ They must be named like
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Responced :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08u-js-igf">
-                                <rect key="frame" x="250" y="147" width="100" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="uLS-lO-vBF"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4P-QA-cfG">
-                                <rect key="frame" x="269" y="116" width="63" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4P-QA-cfG">
+                                <rect key="frame" x="269" y="119" width="63" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="63" id="iOX-Wn-Nht"/>
                                     <constraint firstAttribute="height" constant="30" id="lqR-wS-fya"/>
@@ -477,31 +460,50 @@ They must be named like
                                     <action selector="logPressed" destination="If9-Ye-9Nq" eventType="touchUpInside" id="Z5J-Rx-uER"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="uKg-bv-bfS">
+                                <rect key="frame" x="246" y="20" width="109" height="29"/>
+                                <segments>
+                                    <segment title="Create"/>
+                                    <segment title="Join"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedDidChange:" destination="If9-Ye-9Nq" eventType="valueChanged" id="Ve3-Zb-WlB"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Responced :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08u-js-igf">
+                                <rect key="frame" x="250" y="150" width="100" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="uLS-lO-vBF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Gw6-Kb-2Bv" firstAttribute="top" secondItem="08u-js-igf" secondAttribute="bottom" constant="8" id="0Mu-Oy-TEn"/>
                             <constraint firstItem="Gw6-Kb-2Bv" firstAttribute="leading" secondItem="JTn-iA-BZT" secondAttribute="leading" id="1fc-vj-eHB"/>
-                            <constraint firstItem="9Px-I3-glr" firstAttribute="centerX" secondItem="rB5-9o-cVM" secondAttribute="centerX" id="7ne-hU-JiU"/>
                             <constraint firstAttribute="trailing" secondItem="rB5-9o-cVM" secondAttribute="trailing" id="7qX-br-4qj"/>
+                            <constraint firstItem="rB5-9o-cVM" firstAttribute="centerX" secondItem="08u-js-igf" secondAttribute="centerX" id="7uj-4S-a8C"/>
                             <constraint firstItem="Gw6-Kb-2Bv" firstAttribute="trailing" secondItem="DJL-a3-3dw" secondAttribute="trailing" id="8wT-Tt-2ug"/>
                             <constraint firstItem="08u-js-igf" firstAttribute="top" secondItem="f4P-QA-cfG" secondAttribute="bottom" constant="1" id="9ZT-zb-Xyi"/>
-                            <constraint firstItem="9Px-I3-glr" firstAttribute="centerX" secondItem="9n0-qr-8rx" secondAttribute="centerX" id="9lW-WL-bQN"/>
                             <constraint firstItem="Gw6-Kb-2Bv" firstAttribute="bottom" secondItem="rB5-9o-cVM" secondAttribute="bottom" constant="-20" id="GHo-cg-oVM"/>
-                            <constraint firstItem="rB5-9o-cVM" firstAttribute="centerX" secondItem="f4P-QA-cfG" secondAttribute="centerX" constant="-0.5" id="HFw-h5-tPG"/>
+                            <constraint firstItem="uKg-bv-bfS" firstAttribute="top" secondItem="JTn-iA-BZT" secondAttribute="top" id="HFP-xm-Knl"/>
+                            <constraint firstItem="rB5-9o-cVM" firstAttribute="centerX" secondItem="f4P-QA-cfG" secondAttribute="centerX" id="HFw-h5-tPG"/>
                             <constraint firstItem="Gw6-Kb-2Bv" firstAttribute="leading" secondItem="rB5-9o-cVM" secondAttribute="leading" constant="20" id="IpG-p1-ZeZ"/>
-                            <constraint firstItem="9Px-I3-glr" firstAttribute="top" secondItem="DJL-a3-3dw" secondAttribute="top" id="KF0-fW-GD6"/>
+                            <constraint firstItem="rB5-9o-cVM" firstAttribute="top" secondItem="uKg-bv-bfS" secondAttribute="top" constant="-20" id="Jya-OJ-Hpk"/>
+                            <constraint firstItem="9n0-qr-8rx" firstAttribute="centerX" secondItem="rB5-9o-cVM" secondAttribute="centerX" constant="0.5" id="KnB-9y-0bU"/>
                             <constraint firstItem="9n0-qr-8rx" firstAttribute="top" secondItem="G7X-gu-d0m" secondAttribute="bottom" constant="8" id="LEz-3B-2Kz"/>
-                            <constraint firstItem="JTn-iA-BZT" firstAttribute="top" secondItem="9Px-I3-glr" secondAttribute="top" id="Os4-nO-8e2"/>
                             <constraint firstItem="rB5-9o-cVM" firstAttribute="top" secondItem="5PV-IN-zJ2" secondAttribute="bottom" id="Pkf-l3-hfn"/>
                             <constraint firstItem="Gw6-Kb-2Bv" firstAttribute="trailing" secondItem="rB5-9o-cVM" secondAttribute="trailing" constant="-20" id="QkQ-m8-3MT"/>
                             <constraint firstItem="f4P-QA-cfG" firstAttribute="top" secondItem="9n0-qr-8rx" secondAttribute="bottom" constant="8" id="ZDs-qt-mrM"/>
-                            <constraint firstItem="G7X-gu-d0m" firstAttribute="top" secondItem="9Px-I3-glr" secondAttribute="bottom" constant="8" id="bpe-d8-cSA"/>
-                            <constraint firstItem="08u-js-igf" firstAttribute="centerX" secondItem="9Px-I3-glr" secondAttribute="centerX" constant="-0.5" id="cop-KL-3S4"/>
-                            <constraint firstItem="rB5-9o-cVM" firstAttribute="top" secondItem="9Px-I3-glr" secondAttribute="top" constant="-20" id="g8O-B3-Hdi"/>
+                            <constraint firstItem="uKg-bv-bfS" firstAttribute="centerX" secondItem="rB5-9o-cVM" secondAttribute="centerX" id="aij-hp-6Go"/>
+                            <constraint firstItem="G7X-gu-d0m" firstAttribute="centerX" secondItem="rB5-9o-cVM" secondAttribute="centerX" id="mkS-6b-75t"/>
                             <constraint firstItem="bZs-5e-FmH" firstAttribute="top" secondItem="rB5-9o-cVM" secondAttribute="bottom" id="tLU-xk-zGt"/>
-                            <constraint firstItem="G7X-gu-d0m" firstAttribute="centerX" secondItem="9Px-I3-glr" secondAttribute="centerX" id="wNg-lM-jo1"/>
+                            <constraint firstItem="G7X-gu-d0m" firstAttribute="top" secondItem="uKg-bv-bfS" secondAttribute="bottom" constant="8" id="yUJ-tF-cTi"/>
                             <constraint firstItem="rB5-9o-cVM" firstAttribute="leading" secondItem="2Up-jD-DhC" secondAttribute="leading" id="yg3-KJ-4HQ"/>
+                            <constraint firstItem="DJL-a3-3dw" firstAttribute="top" secondItem="uKg-bv-bfS" secondAttribute="top" id="ylo-ZM-D16"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IRC-Mq-RN0"/>
@@ -513,6 +515,7 @@ They must be named like
                     <connections>
                         <outlet property="generateButton" destination="f4P-QA-cfG" id="fPp-Bb-OsK"/>
                         <outlet property="keyTextField" destination="G7X-gu-d0m" id="6Fm-q3-cJD"/>
+                        <outlet property="segmented" destination="uKg-bv-bfS" id="k38-0I-PYJ"/>
                         <segue destination="h3o-ep-9Dg" kind="show" identifier="session-log.segue" id="Gke-nf-5Cm"/>
                     </connections>
                 </viewController>
@@ -557,9 +560,32 @@ They must be named like
                                     <action selector="backClicked" destination="vsH-k2-WNP" eventType="touchUpInside" id="m3l-DJ-J7M"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9le-HJ-WbS">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9le-HJ-WbS">
                                 <rect key="frame" x="20" y="49" width="560" height="473"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="88" id="QP2-gN-VaT">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QP2-gN-VaT" id="FCa-h9-g4o">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUy-BN-k8K">
+                                                    <rect key="frame" x="8" y="16" width="560" height="60"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="wUy-BN-k8K" firstAttribute="top" secondItem="FCa-h9-g4o" secondAttribute="topMargin" constant="8" id="1si-eN-HtL"/>
+                                                <constraint firstItem="wUy-BN-k8K" firstAttribute="trailing" secondItem="FCa-h9-g4o" secondAttribute="trailing" constant="8" id="2Qy-R6-Nfb"/>
+                                                <constraint firstAttribute="bottom" secondItem="wUy-BN-k8K" secondAttribute="bottom" constant="11" id="45l-XF-wHY"/>
+                                                <constraint firstItem="wUy-BN-k8K" firstAttribute="leading" secondItem="FCa-h9-g4o" secondAttribute="leading" constant="8" id="jqh-xk-oAr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rGb-aA-RCT">
                                 <rect key="frame" x="20" y="530" width="507" height="60"/>
