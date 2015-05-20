@@ -39,12 +39,12 @@
     [super viewDidLoad];
     static dispatch_once_t once;
 
-    SSL_library_init();
-    OpenSSL_add_all_algorithms();        /* load & register all cryptos, etc. */
-    SSL_load_error_strings();            /* load all error messages */
-
 
     dispatch_once(&once, ^{
+        SSL_library_init();            // load lib
+        OpenSSL_add_all_algorithms();  // load & register all cryptos, etc.
+        SSL_load_error_strings();      // load all error messages
+
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
             NSString * certFilePath = [[NSBundle mainBundle] pathForResource:@"login_cert" ofType:@"pem"];
@@ -75,11 +75,11 @@
                         "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"];
 
                 [[OpenSSLSender sharedSender] closeSSL];
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    ShowShortMessage(result);
+                });
             }
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                ShowShortMessage(result);
-            });
 
         });
     });
