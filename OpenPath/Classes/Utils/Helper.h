@@ -26,6 +26,8 @@
 
 #define inMainThread     dispatch_async(dispatch_get_main_queue(),
 
+#define showMessageInMain(text) dispatch_async(dispatch_get_main_queue(),^{ ShowShortMessage(text); })
+
 #define isIpad ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
 
 

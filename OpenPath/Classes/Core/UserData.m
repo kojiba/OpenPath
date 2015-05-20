@@ -92,7 +92,8 @@
 
 - (void)logout {
     if(!stringIsBlankOrNil(self.username)) {
-        self.username = @"";
+        self.username = nil;
+        userPasswordKey = nil;
         // fixme
         // store logs and encrypt some
         [Logger addSessionEndStamp];
@@ -107,26 +108,27 @@
     id data = [[NSUserDefaults standardUserDefaults] objectForKey:[self userLoginPattern:login]];
     if(data == nil
             || ![data isKindOfClass:[NSData class]]) {
-        ShowShortMessage(@"Bad username or password");
+        showMessageInMain(@"Bad username or password");
         return NO;
     }
     NSError *error = nil;
 
     NSData *check = [RNDecryptor decryptData:data withPassword:password error:&error];
     if(error) {
-        ShowShortMessage(@"Bad username or password");
+        showMessageInMain(@"Bad username or password");
         return NO;
     }
     // check if digest right, proof of decrypt
     if (![check isEqualToData:[login dataUsingEncoding:NSUTF8StringEncoding]]) {
-        ShowShortMessage(@"Bad username or password");
+        showMessageInMain(@"Bad username or password");
+        return NO;
     }
 
     NSData *privateKeyPasswordData = [[NSUserDefaults standardUserDefaults] objectForKey:[self userKeyPasswordPattern:self.username]];
     NSData *privateKeyDecrypted = [RNDecryptor decryptData:privateKeyPasswordData withPassword:password error:&error];
 
     if(error) {
-        ShowShortMessage(@"Cannot load user key");
+        showMessageInMain(@"Cannot load user key");
         return NO;
     }
 
@@ -348,7 +350,7 @@
                                                  withSettings:kRNCryptorAES256Settings
                                                      password:self.tempStroredPassword
                                                         error:&error];
-                    self.tempStroredPassword = @"";
+                    self.tempStroredPassword = nil;
 
                     if(!error.code) {
                         [[NSUserDefaults standardUserDefaults] setObject:digest forKey:[self userKeyPasswordPattern:self.username]];
@@ -404,6 +406,7 @@
     }
     @finally {
     }
+    return nil;
 }
 
 #endif

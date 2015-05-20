@@ -59,7 +59,6 @@
     self.signInButton.enabled = NO;
 
     inBackGround ^{
-        sleep(1);
         BOOL result = [[UserData sharedData] loginWithName:self.loginTextField.text password:self.passwordTextField.text];
 
         inMainThread ^{

@@ -17,6 +17,7 @@
 #import "OpenSSLReceiver.h"
 #import "NSData+Utils.h"
 #import "RNDecryptor.h"
+#import "IndicatorView.h"
 
 #define CREATE_SEGMENT_INDEX 0
 #define JOIN_SEGMENT_INDEX   1
@@ -39,6 +40,7 @@
 
 @implementation SessionViewController {
     BOOL receivedHello;
+    uint sleepTime;
 
 }
 - (void)viewDidLoad {
@@ -47,20 +49,27 @@
     self.responcedButton.hidden = YES;
 
     receivedHello = NO;
+    sleepTime = 0;
 
     dispatch_once(&once, ^{
         SSL_library_init();            // load lib
         OpenSSL_add_all_algorithms();  // load & register all cryptos, etc.
         SSL_load_error_strings();      // load all error messages
 
+        if([[UserData sharedData] checkSharedKeysFound]) {
+            sleepTime = 10;
+        }
+
         inBackGround ^{
             NSString *password = @"12345";
             NSString *certFilePath = nil;
             NSString *keyFilePath = nil;
             #ifdef SELFTEST
-                certFilePath = [[NSBundle mainBundle] pathForResource:@"login_cert" ofType:@"pem"];
-                keyFilePath  = [[NSBundle mainBundle] pathForResource:@"login_key" ofType:@"pem"];
+            certFilePath = [[NSBundle mainBundle] pathForResource:@"login_cert" ofType:@"pem"];
+            keyFilePath  = [[NSBundle mainBundle] pathForResource:@"login_key" ofType:@"pem"];
             #else
+            sleep(sleepTime); // wait some
+
             if([UserData sharedData].isUserKeyExists
                     && [UserData sharedData].userCertificate != nil) {
                 certFilePath = [KEYSTORE_PATH stringByAppendingPathComponent:[UserData sharedData].cerStoredFileNameShort];
@@ -70,7 +79,7 @@
             } else {
                 NSString *message = [NSString stringWithFormat:@"Certificates for user \"%@\" not found. Using unsecure application default certificates.",
                                 [UserData sharedData].currentUserName];
-                ShowShortMessage(message);
+                showMessageInMain(message);
 
                 certFilePath = [[NSBundle mainBundle] pathForResource:@"login_cert" ofType:@"pem"];
                 keyFilePath = [[NSBundle mainBundle] pathForResource:@"login_key" ofType:@"pem"];
@@ -88,7 +97,7 @@
             }
 
             if(result != nil) {
-                ShowShortMessage(result);
+                showMessageInMain(result);
             }
         });
 
@@ -108,11 +117,8 @@
 
                 [[OpenSSLSender sharedSender] closeSSL];
             } else {
-                inMainThread ^{
-                    ShowShortMessage(result);
-                });
+                showMessageInMain(result);
             }
-
         });
         #endif
     });
@@ -138,7 +144,7 @@
                             [[OpenSSLSender sharedSender] sendString:@"HELLO OPENSSL MY FRIEND!"];
                             [[OpenSSLSender sharedSender] closeSSL];
                         } else {
-                            ShowShortMessage(message);
+                            showMessageInMain(message);
                         }
                     });
 
@@ -198,10 +204,16 @@
 }
 
 -(IBAction)logoutPressed {
-    [[OpenSSLReceiver sharedReceiver] closeSSL];
-    [[Listener sharedListener] stopListen];
-    [[UserData sharedData] logout];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.view showLoading];
+    inBackGround ^{
+        [[OpenSSLReceiver sharedReceiver] closeSSL];
+        [[Listener sharedListener] stopListen];
+        [[UserData sharedData] logout];
+        inMainThread ^{
+            [self.view hideLoading];
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    });
 }
 
 -(IBAction)logPressed {

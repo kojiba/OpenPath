@@ -22,6 +22,9 @@
 
 -(BOOL)isUserKeyExists;
 -(BOOL)checkUserKeyPassword:(NSString*)password;
+
+- (BOOL)checkSharedKeysFound;
+
 -(NSString*)keyStoredFileNameShort;
 -(NSString*)cerStoredFileNameShort;
 -(void)alertCertExpired;

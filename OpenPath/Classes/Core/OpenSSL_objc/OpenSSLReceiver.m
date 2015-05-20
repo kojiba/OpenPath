@@ -150,8 +150,10 @@ void logSertificates(SSL *ssl) {
             [self Servlet:ssl];                  // service connection
 
         } else {
-            customLog(@"Error accept connection", inet_ntoa(clienAddress.sin_addr), ntohs(clienAddress.sin_port));
-            [self closeSSL];
+            if(serverSocket > 0) {
+                customLog(@"Error accept connection", inet_ntoa(clienAddress.sin_addr), ntohs(clienAddress.sin_port));
+                [self closeSSL];
+            }
             break;
         }
     }
