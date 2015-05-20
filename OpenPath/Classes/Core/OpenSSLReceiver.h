@@ -7,10 +7,19 @@
 #import "OpenSSLServer.h"
 #import "Logger.h"
 
+@class OpenSSLReceiver;
+
 
 void logSertificates(SSL *ssl);
 
+@protocol OpenSSLReceiverDelegate<NSObject>
+@required
+-(void)openSSLReceiver:(OpenSSLReceiver*)receiver didAcceptClient:(NSString*)address;
+@end
+
 @interface OpenSSLReceiver : NSObject
+
+@property (strong, nonatomic) id<OpenSSLReceiverDelegate> delegate;
 
 + (OpenSSLReceiver *)sharedReceiver;
 

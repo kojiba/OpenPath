@@ -43,8 +43,6 @@ void Servlet(SSL *ssl)    /* Serve the connection -- threadable */ {
         ERR_print_errors_fp(stderr);
         customLog(@"Error SSL accept");
     } else {
-//        customLog(@"Client certificates ----");
-//        logSertificates(ssl);
 
         bytes = SSL_read(ssl, buffer, sizeof(buffer));    // get request
         if (bytes > 0) {
@@ -117,7 +115,12 @@ void Servlet(SSL *ssl)    /* Serve the connection -- threadable */ {
 
         int client = accept(serverSocket, (struct sockaddr *) &clienAddress, &len); // accept connection as usual
         if(client > 0) {
-            customLog(@"Connection: %s:%d", inet_ntoa(clienAddress.sin_addr), ntohs(clienAddress.sin_port));
+            char *clientAddr = inet_ntoa(clienAddress.sin_addr);
+            customLog(@"Connection: %s:%d", clientAddr, ntohs(clienAddress.sin_port));
+
+            if(self.delegate != nil) {
+                [self.delegate openSSLReceiver:self didAcceptClient:[NSString stringWithCString:clientAddr encoding:NSASCIIStringEncoding]];
+            }
 
             ssl = SSL_new(currentContext); // get new SSL state with context
             SSL_set_fd(ssl, client);       // set connection socket to SSL state

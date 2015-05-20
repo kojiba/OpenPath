@@ -21,24 +21,29 @@
 
 #define REPEAT_TIMES 10
 
-@interface SessionViewController() <UITextFieldDelegate>
+@interface SessionViewController() <UITextFieldDelegate, OpenSSLReceiverDelegate>
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmented;
 
 @property (strong, nonatomic) IBOutlet UITextField *keyTextField;
 @property (strong, nonatomic) IBOutlet UIButton *generateButton;
 
+@property (strong, nonatomic) IBOutlet UIButton *responcedButton;
+
 @property (strong, nonatomic) NSData *keyData;
 
 @end
 
 @implementation SessionViewController {
+    BOOL receivedHello;
 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     static dispatch_once_t once;
+    self.responcedButton.hidden = YES;
 
+    receivedHello = NO;
 
     dispatch_once(&once, ^{
         SSL_library_init();            // load lib
@@ -50,10 +55,13 @@
             NSString * certFilePath = [[NSBundle mainBundle] pathForResource:@"login_cert" ofType:@"pem"];
             NSString * keyFilePath  = [[NSBundle mainBundle] pathForResource:@"login_key" ofType:@"pem"];
 
+            [OpenSSLReceiver sharedReceiver].delegate = self;
+
             NSString *result = [[OpenSSLReceiver sharedReceiver] openSSLServerStartOnPort:@OPEN_SSL_SERVER_PORT
                                                                       certificateFilePath:certFilePath
                                                                               keyFilePath:keyFilePath
                                                                                  password:@"12345"];
+
             if(result != nil) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     ShowShortMessage(result);
@@ -62,6 +70,8 @@
         });
 
         // client
+//        #define SELFTEST
+        #ifdef SELFTEST
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             sleep(1);
 
@@ -82,6 +92,7 @@
             }
 
         });
+        #endif
     });
 
 
@@ -93,9 +104,20 @@
                                        (size_t) length,
                                        self.keyData.bytes,
                                        self.keyData.length)) {
-                NSString *message = [NSString stringWithFormat:@"Received HELLO from %s", address];
-                customLog(message, address);
-                ShowShortMessage(message);
+                if(!receivedHello) {
+                    receivedHello = YES;
+
+                    NSString *message = [NSString stringWithFormat:@"Received HELLO from %s", address];
+
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        [[OpenSSLSender sharedSender] openSSLClientStart:[NSString stringWithCString:address encoding:NSASCIIStringEncoding] withPort:@OPEN_SSL_SERVER_PORT];
+                        [[OpenSSLSender sharedSender] sendString:@"HELLO OPENSSL MY FRIEND!"];
+                        [[OpenSSLSender sharedSender] closeSSL];
+                    });
+
+                    customLog(message, address);
+                    ShowShortMessage(message);
+                }
             } else {
                 // fixme processing session here
 //                customLog(@"Received data: %s from %s, total received %lu!", data, address, packetsCounter);
@@ -105,6 +127,8 @@
             customLog(@"Error receive packet!");
         }
     }];
+
+    [[Listener sharedListener] startListen];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -113,10 +137,24 @@
     [self segmentedDidChange:self.segmented];
 }
 
+#pragma mark OpenSSLReceiverDelegate
+
+- (void)openSSLReceiver:(OpenSSLReceiver *)receiver didAcceptClient:(NSString *)address {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.responcedButton setTitle:address forState:UIControlStateNormal];
+        self.responcedButton.hidden = NO;
+    });
+}
 
 #pragma mark Buttons
 
+-(IBAction)responcedButtonPressed {
+    [self performSegueWithIdentifier:@"session-chat.segue" sender:self];
+}
+
 -(IBAction)logoutPressed {
+    [[OpenSSLReceiver sharedReceiver] closeSSL];
+    [[Listener sharedListener] stopListen];
     [[UserData sharedData] logout];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -156,17 +194,8 @@
 
 
     }  else if(self.segmented.selectedSegmentIndex == JOIN_SEGMENT_INDEX) {
-
+        receivedHello = NO;
         self.keyData = [self.keyTextField.text dataUsingEncoding:NSUTF8StringEncoding];
-        [[Listener sharedListener] startListen];
-        self.generateButton.enabled = NO;
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            sleep(1);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.generateButton.enabled = YES;
-            });
-        });
-
     }
 }
 
@@ -176,6 +205,7 @@
     if(self.segmented.selectedSegmentIndex == CREATE_SEGMENT_INDEX) {  // create
         self.keyTextField.enabled = YES;
         [self.generateButton setTitle:@"Create" forState:UIControlStateNormal];
+
     } else if(self.segmented.selectedSegmentIndex == JOIN_SEGMENT_INDEX){ // join
         self.keyTextField.enabled = YES;
         self.keyTextField.text = @"";

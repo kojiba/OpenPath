@@ -53,6 +53,7 @@ RSocket * makeRSocket(RSocket *object, int socketType, int protocolType) {
             return nil;
         } else {
             object->packetCounter = 0;
+            object->addressLength = sizeof(SocketAddressIn);
 //            object->classId       = registerClassOnce(toString(RSocket));
         }
     }

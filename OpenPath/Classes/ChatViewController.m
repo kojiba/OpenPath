@@ -9,4 +9,11 @@
 @implementation ChatViewController {
 
 }
+
+#pragma mark Buttons
+
+-(IBAction)backPressed {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

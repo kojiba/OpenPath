@@ -13,5 +13,7 @@ typedef void (^ListenerUpdateBlock)(char *data, ssize_t length, size_t packetsCo
 
 + (Listener *)sharedListener;
 
+- (void)stopListen;
+
 - (void)startListen;
 @end
