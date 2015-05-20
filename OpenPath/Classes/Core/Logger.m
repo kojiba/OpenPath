@@ -84,7 +84,9 @@ void customLog(NSString *format, ...) {
     [[Logger sharedLogger].fullLog appendString:message];
     [[Logger sharedLogger].fullLog appendString:@"\n"];
 
-//    NSLogv(message, argumentList);
+    #ifdef DEBUG
+        NSLogv(message, argumentList);
+    #endif
     va_end(argumentList);
 }
 

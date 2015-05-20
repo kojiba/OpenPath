@@ -7,4 +7,17 @@
 
 
 @interface OpenSSLSender : NSObject
+
++ (OpenSSLSender *)sharedSender;
+
+- (NSString *)sendString:(NSString *)message;
+
+- (void)closeSSL;
+
+- (NSString *)openSSLClientStart:(NSString *)hostnameIp
+                        withPort:(NSString *)port
+//             certificateFilePath:(NSString *)certFilePath
+//                     keyFilePath:(NSString *)keyFilePath
+//                        password:(NSString *)password
+;
 @end

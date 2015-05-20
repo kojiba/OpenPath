@@ -10,7 +10,7 @@
 /*---------------------------------------------------------------------*/
 /*--- OpenConnection - create socket and connect to server.         ---*/
 /*---------------------------------------------------------------------*/
-int OpenConnection(const char *hostname, int port) {
+int OpenClientConnection(const char *hostname, int port) {
     int sd;
     struct hostent *host;
     struct sockaddr_in addr;
@@ -27,23 +27,20 @@ int OpenConnection(const char *hostname, int port) {
     if (connect(sd, &addr, sizeof(addr)) != 0) {
         close(sd);
         perror(hostname);
-//        abort();
+        return -1;
     }
     return sd;
 }
 
-/*---------------------------------------------------------------------*/
-/*--- InitCTX - initialize the SSL engine.                          ---*/
-/*---------------------------------------------------------------------*/
-SSL_CTX *InitCTX(void) {
+SSL_CTX *InitClientContext(void) {
     const SSL_METHOD *method;
     SSL_CTX *ctx;
 
-    method = SSLv23_client_method();     // Create new client-method instance
-    ctx = SSL_CTX_new(method);          // Create new context
+    method = SSLv3_client_method();   // Create new client-method instance
+    ctx = SSL_CTX_new(method);         // Create new context
     if (ctx == NULL) {
         ERR_print_errors_fp(stderr);
-//        abort();
+        return nil;
     }
     return ctx;
 }
@@ -58,34 +55,31 @@ void openSSLClientStart(char const *hostname, char const *port, char const *cert
     char buf[1024];
     int bytes;
 
-    ctx = InitCTX();
+    ctx = InitClientContext();
     LoadCertificates(ctx, certFilePath, keyFilePath, password);
 
-    server = OpenConnection(hostname, atoi(port));
+    server = OpenClientConnection(hostname, atoi(port));
     ssl = SSL_new(ctx);
     /* create new SSL connection state */
     SSL_set_fd(ssl, server); /* attach the socket descriptor */
-    if (
-            SSL_connect(ssl)
-                    == FAIL)
-        /* perform the connection */
+    if (SSL_connect(ssl) == FAIL) {
         ERR_print_errors_fp(stderr);
-    else {
+    } else {
         char *msg = "Hello???";
 
-        printf("Connected with %s encryption\n", SSL_get_cipher(ssl)
-        );
+        printf("Connected with %s encryption\n", SSL_get_cipher(ssl));
+
         ShowCerts(ssl, no);
-    /* get any certs */
+        /* get any certs */
         SSL_write(ssl, msg, (int) strlen(msg));
-    /* encrypt & send message */
+        /* encrypt & send message */
         bytes = SSL_read(ssl, buf, sizeof(buf));
-    /* get reply & decrypt */
+        /* get reply & decrypt */
         buf[bytes] = 0;
         printf("Received: \"%s\"\n", buf);
         SSL_free(ssl);                                /* release connection state */
     }
     close(server);
-/* close socket */
+    /* close socket */
     SSL_CTX_free(ctx);                                /* release context */
 }

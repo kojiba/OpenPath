@@ -13,6 +13,7 @@
 #import "Settings_Keys.h"
 #import "OpenSSLClient.h"
 #import "Helper.h"
+#import "OpenSSLSender.h"
 
 #define CREATE_SEGMENT_INDEX 0
 #define JOIN_SEGMENT_INDEX   1
@@ -57,14 +58,22 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             sleep(1);
 
-            NSString * clientCertFilePath = [[NSBundle mainBundle] pathForResource:@"client_cert" ofType:@"pem"];
-            NSString * clientKeyFilePath = [[NSBundle mainBundle] pathForResource:@"client_key" ofType:@"pem"];
+            NSString *result = [[OpenSSLSender sharedSender] openSSLClientStart:@"127.0.0.1"
+                                                                       withPort:@OPEN_SSL_SERVER_PORT];
+            if(result != nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    ShowShortMessage(result);
+                });
+            } else {
+                [[OpenSSLSender sharedSender] sendString:@"Lorem ipsum dolor sit amet, consectetur adipiscing elit,"
+                        " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, "
+                        "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute "
+                        "irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. "
+                        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"];
 
-            openSSLClientStart("127.0.0.1",
-                    OPEN_SSL_SERVER_PORT,
-                    [clientCertFilePath  cStringUsingEncoding:NSUTF8StringEncoding],
-                    [clientKeyFilePath cStringUsingEncoding:NSUTF8StringEncoding],
-                    "12345");
+                [[OpenSSLSender sharedSender] closeSSL];
+            }
+
         });
     });
 
