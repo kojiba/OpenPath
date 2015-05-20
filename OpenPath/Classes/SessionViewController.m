@@ -16,6 +16,7 @@
 #import "OpenSSLSender.h"
 #import "OpenSSLReceiver.h"
 #import "NSData+Utils.h"
+#import "RNDecryptor.h"
 
 #define CREATE_SEGMENT_INDEX 0
 #define JOIN_SEGMENT_INDEX   1
@@ -64,6 +65,7 @@
                     && [UserData sharedData].userCertificate != nil) {
                 certFilePath = [KEYSTORE_PATH stringByAppendingPathComponent:[UserData sharedData].cerStoredFileNameShort];
                 keyFilePath =  [KEYSTORE_PATH stringByAppendingPathComponent:[UserData sharedData].keyStoredFileNameShort];
+                password = [UserData sharedData].userPasswordKey;
 
             } else {
                 NSString *message = [NSString stringWithFormat:@"Certificates for user \"%@\" not found. Using unsecure application default certificates.",
@@ -75,10 +77,15 @@
             }
             #endif
 
-            NSString *result = [[OpenSSLReceiver sharedReceiver] openSSLServerStartOnPort:@OPEN_SSL_SERVER_PORT
-                                                                      certificateFilePath:certFilePath
-                                                                              keyFilePath:keyFilePath
-                                                                                 password:password];
+            NSString *result = nil;
+            if(!stringIsBlankOrNil(password)) {
+                 result = [[OpenSSLReceiver sharedReceiver] openSSLServerStartOnPort:@OPEN_SSL_SERVER_PORT
+                                                                          certificateFilePath:certFilePath
+                                                                                  keyFilePath:keyFilePath
+                                                                                     password:password];
+            } else {
+                result = @"Can't found key password";
+            }
 
             if(result != nil) {
                 ShowShortMessage(result);

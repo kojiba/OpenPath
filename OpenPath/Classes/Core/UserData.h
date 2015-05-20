@@ -11,6 +11,7 @@
 
 @interface UserData : NSObject
 + (UserData *)sharedData;
+-(NSString*)userPasswordKey;
 
 -(NSString *)currentUserName;
 -(NSString*)createUserWithLogin:(NSString*)login password:(NSString*)password;

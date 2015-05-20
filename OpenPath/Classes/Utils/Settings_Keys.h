@@ -26,7 +26,7 @@
 #define LOCAL_MULTICAST "224.0.0.1"
 
 #define USER_NAME_KEY     @"kUserName"
-#define USER_PASSWORD_KEY @"kUserPassword"
+#define USER_KEY_PASSWORD @"kUserKeyPassword"
 
 #define KEYSTORE_PATH ( [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Keystore"] )
 

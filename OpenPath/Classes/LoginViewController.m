@@ -71,8 +71,6 @@
             if (result) {
                 self.loginTextField.text = @"";
                 [self gotoAccountDetails];
-            } else {
-                ShowShortMessage(@"Bad username or password");
             }
         });
     });

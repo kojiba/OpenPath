@@ -52,9 +52,12 @@
     NSString   *sharedFileNameKey;
     NSString   *sharedFileNameCer;
     NSUInteger  keyPasswordCounter;
+
+    NSString *userPasswordKey;
 }
 
 @property (strong, nonatomic) NSString* username;
+@property (strong, nonatomic) NSString* tempStroredPassword;
 
 @end
 
@@ -83,6 +86,10 @@
     return [NSString stringWithFormat:@"%@_%@", USER_NAME_KEY, login];
 }
 
+-(NSString*)userKeyPasswordPattern:(NSString*)login {
+    return [NSString stringWithFormat:@"%@_%@", USER_KEY_PASSWORD, login];
+}
+
 - (void)logout {
     if(!stringIsBlankOrNil(self.username)) {
         self.username = @"";
@@ -92,38 +99,57 @@
     }
 }
 
+- (NSString *)userPasswordKey {
+    return userPasswordKey;
+}
+
 - (BOOL)loginWithName:(NSString *)login password:(NSString *)password {
     id data = [[NSUserDefaults standardUserDefaults] objectForKey:[self userLoginPattern:login]];
-    if(data != nil
-            && [data isKindOfClass:[NSData class]]) {
-        NSError *error = nil;
-        // check if digest right, proof of decrypt
-        NSData *check = [RNDecryptor decryptData:data withPassword:password error:&error];
-
-        if(!error) {
-            if ([check isEqualToData:[login dataUsingEncoding:NSUTF8StringEncoding]]) {
-                srand((unsigned int) time(nil));
-                self.username = login;
-
-                [Logger addSessionStartStamp];
-                // fixme
-                // load some settings
-                // decrypt some
-
-                #ifdef HAVE_ITUNES_KEY_TRANSFER
-                inMainThread ^{
-                    if([self checkSharedKeysFound]){
-                        [self checkSharedKeysPromptPassword];
-                    } else {
-                        [self alertCertExpired];
-                    }
-                });
-                #endif
-                return YES;
-            }
-        }
+    if(data == nil
+            || ![data isKindOfClass:[NSData class]]) {
+        ShowShortMessage(@"Bad username or password");
+        return NO;
     }
-    return NO;
+    NSError *error = nil;
+
+    NSData *check = [RNDecryptor decryptData:data withPassword:password error:&error];
+    if(error) {
+        ShowShortMessage(@"Bad username or password");
+        return NO;
+    }
+    // check if digest right, proof of decrypt
+    if (![check isEqualToData:[login dataUsingEncoding:NSUTF8StringEncoding]]) {
+        ShowShortMessage(@"Bad username or password");
+    }
+
+    NSData *privateKeyPasswordData = [[NSUserDefaults standardUserDefaults] objectForKey:[self userKeyPasswordPattern:self.username]];
+    NSData *privateKeyDecrypted = [RNDecryptor decryptData:privateKeyPasswordData withPassword:password error:&error];
+
+    if(error) {
+        ShowShortMessage(@"Cannot load user key");
+        return NO;
+    }
+
+    userPasswordKey = [NSString stringWithUTF8String: privateKeyDecrypted.bytes];
+    srand((unsigned int) time(nil));
+    self.username = login;
+
+    [Logger addSessionStartStamp];
+    // fixme
+    // load some settings
+    // decrypt some
+
+#ifdef HAVE_ITUNES_KEY_TRANSFER
+    inMainThread ^{
+        if([self checkSharedKeysFound]){
+            self.tempStroredPassword = password;
+            [self checkSharedKeysPromptPassword];
+        } else {
+            [self alertCertExpired];
+        }
+    });
+#endif
+    return YES;
 }
 
 - (NSString*)createUserWithLogin:(NSString *)login password:(NSString *)password {
@@ -296,10 +322,10 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (SAVE_SHARED_KEY_ALERT == alertView.tag) {
-        if (1 == buttonIndex /*delete*/) {
+        if (1 == buttonIndex /* delete*/) {
             [self deleteKeyAndCertFromDocuments];
         }
-        if (0 == buttonIndex /*save*/) {
+        if (0 == buttonIndex /* save*/) {
             NSString *password = [[alertView textFieldAtIndex:0] text];
 
             BOOL doSecond = stringIsBlankOrNil(password);
@@ -316,7 +342,20 @@
                 }
             } else {
                 if ([self copyKeyAndCertToKeystore]) {
-                    ShowShortMessage(@"Keys saved successfully");
+                    // store password
+                    NSError *error = [[NSError alloc] init];
+                    NSData  *digest = [RNEncryptor encryptData:[password dataUsingEncoding:NSUTF8StringEncoding]
+                                                 withSettings:kRNCryptorAES256Settings
+                                                     password:self.tempStroredPassword
+                                                        error:&error];
+                    self.tempStroredPassword = @"";
+
+                    if(!error.code) {
+                        [[NSUserDefaults standardUserDefaults] setObject:digest forKey:[self userKeyPasswordPattern:self.username]];
+                        ShowShortMessage(@"Keys saved successfully");
+                    } else {
+                        ShowShortMessage(@"Error saving private key password");
+                    }
                 }
             }
         }
