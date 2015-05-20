@@ -26,4 +26,7 @@
 
 #define inMainThread     dispatch_async(dispatch_get_main_queue(),
 
+#define isIpad ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+
+
 #endif /*__HELPER_H__*/

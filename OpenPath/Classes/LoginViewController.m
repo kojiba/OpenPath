@@ -57,12 +57,12 @@
 
     [self.view showLoading];
     self.signInButton.enabled = NO;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
+    inBackGround ^{
         sleep(1);
         BOOL result = [[UserData sharedData] loginWithName:self.loginTextField.text password:self.passwordTextField.text];
 
-        dispatch_async(dispatch_get_main_queue(), ^{
+        inMainThread ^{
 
             self.passwordTextField.text = @"";
             self.signInButton.enabled = YES;

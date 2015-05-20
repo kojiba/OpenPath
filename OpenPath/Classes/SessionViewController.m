@@ -51,8 +51,7 @@
         OpenSSL_add_all_algorithms();  // load & register all cryptos, etc.
         SSL_load_error_strings();      // load all error messages
 
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-
+        inBackGround ^{
             NSString * certFilePath = [[NSBundle mainBundle] pathForResource:@"login_cert" ofType:@"pem"];
             NSString * keyFilePath  = [[NSBundle mainBundle] pathForResource:@"login_key" ofType:@"pem"];
 
@@ -62,15 +61,13 @@
                                                                                  password:@"12345"];
 
             if(result != nil) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    ShowShortMessage(result);
-                });
+                ShowShortMessage(result);
             }
         });
 
         // client
         #ifdef SELFTEST
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        inBackGround ^{
             sleep(1);
 
             NSString *result = [[OpenSSLSender sharedSender] openSSLClientStart:@"127.0.0.1"
@@ -84,7 +81,7 @@
 
                 [[OpenSSLSender sharedSender] closeSSL];
             } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
+                inMainThread ^{
                     ShowShortMessage(result);
                 });
             }
@@ -187,11 +184,11 @@
 -(IBAction)generatePressed {
     if(self.segmented.selectedSegmentIndex == CREATE_SEGMENT_INDEX) {
         self.generateButton.enabled = NO;
-        [[Listener sharedListener] startListen];
 
         char *temp = createHelloKey();
         NSString *key = [NSString stringWithCString:temp encoding:NSASCIIStringEncoding];
         deallocator(temp);
+
         if(stringIsBlankOrNil(self.keyTextField.text)) {
             self.keyTextField.text = key;
         }

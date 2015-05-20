@@ -19,10 +19,6 @@
 
 }
 
--(void)logString:(NSString*)string {
-    self.logView.text = [self.logView.text stringByAppendingString:string];
-}
-
 -(IBAction)backClicked {
     [self.navigationController popViewControllerAnimated:YES];
 }

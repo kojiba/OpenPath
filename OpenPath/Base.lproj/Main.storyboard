@@ -569,7 +569,7 @@ They must be named like
                                     <action selector="sendButtonPressed" destination="vsH-k2-WNP" eventType="touchUpInside" id="4qn-7p-NXj"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9le-HJ-WbS">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9le-HJ-WbS">
                                 <rect key="frame" x="20" y="49" width="560" height="473"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -579,8 +579,8 @@ They must be named like
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QP2-gN-VaT" id="FCa-h9-g4o">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKt-Mt-YQI">
-                                                    <rect key="frame" x="8" y="8" width="544" height="23"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKt-Mt-YQI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="560" height="39"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
@@ -588,10 +588,10 @@ They must be named like
                                                 </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="SKt-Mt-YQI" secondAttribute="trailing" constant="8" id="Fn0-Es-ArJ"/>
-                                                <constraint firstItem="SKt-Mt-YQI" firstAttribute="leading" secondItem="FCa-h9-g4o" secondAttribute="leading" constant="8" id="Ubg-a9-qcH"/>
-                                                <constraint firstAttribute="bottom" secondItem="SKt-Mt-YQI" secondAttribute="bottom" constant="8" id="VYb-ya-dqR"/>
-                                                <constraint firstItem="SKt-Mt-YQI" firstAttribute="top" secondItem="FCa-h9-g4o" secondAttribute="top" constant="8" id="aQC-Vm-d65"/>
+                                                <constraint firstAttribute="trailing" secondItem="SKt-Mt-YQI" secondAttribute="trailing" id="Fn0-Es-ArJ"/>
+                                                <constraint firstItem="SKt-Mt-YQI" firstAttribute="leading" secondItem="FCa-h9-g4o" secondAttribute="leading" id="Ubg-a9-qcH"/>
+                                                <constraint firstAttribute="bottom" secondItem="SKt-Mt-YQI" secondAttribute="bottom" id="VYb-ya-dqR"/>
+                                                <constraint firstItem="SKt-Mt-YQI" firstAttribute="top" secondItem="FCa-h9-g4o" secondAttribute="top" id="aQC-Vm-d65"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

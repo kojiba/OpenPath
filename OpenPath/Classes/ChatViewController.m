@@ -58,6 +58,12 @@ typedef enum MessageType {
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    if(!isIpad) {
+        self.tableView.rowHeight = 25;
+    } else {
+        self.tableView.rowHeight = 35;
+    }
+
     self.messages = [[NSMutableArray alloc] initWithCapacity:30];
 
     [[OpenSSLReceiver sharedReceiver] setUpdateBlock:^(char *data, int length) {
@@ -130,24 +136,25 @@ typedef enum MessageType {
 }
 
 -(IBAction)sendButtonPressed {
-    self.sendButton.enabled = NO;
-    inBackGround ^{
-        NSString *result = [[OpenSSLSender sharedSender] sendString:self.inputTextView.text];
+    if(!stringIsBlankOrNil(self.inputTextView.text)) {
+        self.sendButton.enabled = NO;
+        inBackGround ^{
+            NSString *result = [[OpenSSLSender sharedSender] sendString:self.inputTextView.text];
 
-        inMainThread ^{
-            if(result) {
-                ShowShortMessage(result);
-            } else {
-
-                ChatCellObject *object = [[ChatCellObject alloc] init];
-                object.message = self.inputTextView.text;
-                object.type = SelfMessageType;
-                [self updateMessagesWithObject:object isSelf:YES];
-                self.inputTextView.text = @"";
-            }
-            self.sendButton.enabled = YES;
+            inMainThread ^{
+                if(result) {
+                    ShowShortMessage(result);
+                } else {
+                    ChatCellObject *object = [[ChatCellObject alloc] init];
+                    object.message = self.inputTextView.text;
+                    object.type = SelfMessageType;
+                    [self updateMessagesWithObject:object isSelf:YES];
+                    self.inputTextView.text = @"";
+                }
+                self.sendButton.enabled = YES;
+            });
         });
-    });
+    }
 }
 
 #pragma mark TextViewDelegate
