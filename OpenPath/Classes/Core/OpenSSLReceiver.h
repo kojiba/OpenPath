@@ -9,8 +9,9 @@
 
 @class OpenSSLReceiver;
 
-
 void logSertificates(SSL *ssl);
+
+typedef void (^ReceiverUpdateBlock)(char *data, int length);
 
 @protocol OpenSSLReceiverDelegate<NSObject>
 @required
@@ -20,6 +21,8 @@ void logSertificates(SSL *ssl);
 @interface OpenSSLReceiver : NSObject
 
 @property (strong, nonatomic) id<OpenSSLReceiverDelegate> delegate;
+
+@property (copy, nonatomic) ReceiverUpdateBlock updateBlock;
 
 + (OpenSSLReceiver *)sharedReceiver;
 

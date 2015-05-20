@@ -15,9 +15,6 @@
 - (void)closeSSL;
 
 - (NSString *)openSSLClientStart:(NSString *)hostnameIp
-                        withPort:(NSString *)port
-//             certificateFilePath:(NSString *)certFilePath
-//                     keyFilePath:(NSString *)keyFilePath
-//                        password:(NSString *)password
-;
+                        withPort:(NSString *)port;
+
 @end

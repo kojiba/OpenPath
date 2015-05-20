@@ -52,6 +52,10 @@
     // release context
     if(currentContext != nil)
         SSL_CTX_free(currentContext);
+
+    currentSSL     = nil;
+    clientSocket   = nil;
+    currentContext = nil;
 }
 
 -(NSString*)openSSLClientStart:(NSString*)hostnameIp

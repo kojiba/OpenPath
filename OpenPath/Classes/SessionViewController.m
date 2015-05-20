@@ -30,7 +30,8 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *responcedButton;
 
-@property (strong, nonatomic) NSData *keyData;
+@property (strong, nonatomic) NSData   *keyData;
+@property (strong, nonatomic) NSString *storedAddress;
 
 @end
 
@@ -70,7 +71,6 @@
         });
 
         // client
-//        #define SELFTEST
         #ifdef SELFTEST
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             sleep(1);
@@ -109,7 +109,7 @@
 
                     NSString *message = [NSString stringWithFormat:@"Received HELLO from %s", address];
 
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    inBackGround ^{
                         [[OpenSSLSender sharedSender] openSSLClientStart:[NSString stringWithCString:address encoding:NSASCIIStringEncoding] withPort:@OPEN_SSL_SERVER_PORT];
                         [[OpenSSLSender sharedSender] sendString:@"HELLO OPENSSL MY FRIEND!"];
                         [[OpenSSLSender sharedSender] closeSSL];
@@ -141,6 +141,7 @@
 
 - (void)openSSLReceiver:(OpenSSLReceiver *)receiver didAcceptClient:(NSString *)address {
     dispatch_async(dispatch_get_main_queue(), ^{
+        self.storedAddress = address;
         [self.responcedButton setTitle:address forState:UIControlStateNormal];
         self.responcedButton.hidden = NO;
     });
@@ -149,7 +150,19 @@
 #pragma mark Buttons
 
 -(IBAction)responcedButtonPressed {
-    [self performSegueWithIdentifier:@"session-chat.segue" sender:self];
+    inBackGround ^{
+        NSString *result = [[OpenSSLSender sharedSender] openSSLClientStart:self.storedAddress
+                                                                   withPort:@OPEN_SSL_SERVER_PORT];
+
+        inMainThread ^{
+            if(result) {
+                customLog(result);
+                ShowShortMessage(result);
+            } else {
+                [self performSegueWithIdentifier:@"session-chat.segue" sender:self];
+            }
+        });
+    });
 }
 
 -(IBAction)logoutPressed {

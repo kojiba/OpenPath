@@ -16,6 +16,9 @@
 #ifndef __SETTINGS_KEYS_H__
 #define __SETTINGS_KEYS_H__
 
+
+//#define SELFTEST
+
 #define OPEN_SSL_SERVER_PORT "7777"
 
 #define PROTOCOL_PORT   7777

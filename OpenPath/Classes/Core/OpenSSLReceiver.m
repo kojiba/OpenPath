@@ -4,6 +4,10 @@
 //
 
 #import "OpenSSLReceiver.h"
+#import "Helper.h"
+#import "Settings_Keys.h"
+
+#define bufferSize 65535
 
 @implementation OpenSSLReceiver {
     SSL_CTX *currentContext;
@@ -33,11 +37,13 @@ void logSertificates(SSL *ssl) {
 }
 
 
-void Servlet(SSL *ssl)    /* Serve the connection -- threadable */ {
-    char buffer[1024];
+-(void)Servlet:(SSL*)ssl {  // Serve the connection -- threadable
+    char buffer[bufferSize];
+#ifdef SELFTEST
     char responce[1024];
-    int sd, bytes;
     const char *echo = "Welcome on OpenPath SSL server, echo : \"%s\"\n\n";
+#endif
+    int sd, bytes;
 
     if (SSL_accept(ssl) == -1) { // do SSL-protocol accept
         ERR_print_errors_fp(stderr);
@@ -48,8 +54,15 @@ void Servlet(SSL *ssl)    /* Serve the connection -- threadable */ {
         if (bytes > 0) {
             buffer[bytes] = 0;
             customLog(@"Client msg: \"%s\"\n", buffer);
-            sprintf(responce, echo, buffer);                  // construct responce
-            SSL_write(ssl, responce, (int) strlen(responce)); // send responce
+
+            #ifdef SELFTEST
+                sprintf(responce, echo, buffer);                  // construct responce
+                SSL_write(ssl, responce, (int) strlen(responce)); // send responce
+            #else
+                if(self.updateBlock != nil) {
+                    self.updateBlock(buffer, bytes);
+                }
+            #endif
         }
         else
             ERR_print_errors_fp(stderr);
@@ -124,7 +137,8 @@ void Servlet(SSL *ssl)    /* Serve the connection -- threadable */ {
 
             ssl = SSL_new(currentContext); // get new SSL state with context
             SSL_set_fd(ssl, client);       // set connection socket to SSL state
-            Servlet(ssl);                  // service connection
+
+            [self Servlet:ssl];                  // service connection
 
         } else {
             customLog(@"Error accept connection", inet_ntoa(clienAddress.sin_addr), ntohs(clienAddress.sin_port));
