@@ -11,7 +11,6 @@
 
 @implementation Logger {
 
-
 }
 
 + (Logger *)sharedLogger {
@@ -32,35 +31,15 @@
 }
 
 +(void)addSessionStartStamp {
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        NSDateFormatter *formatter;
-        NSString        *dateString;
-
-        formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
-
-        dateString = [formatter stringFromDate:[NSDate date]];
-        [[Logger sharedLogger].fullLog appendString:@"---- Session start at "];
-        [[Logger sharedLogger].fullLog appendString:dateString];
-        [[Logger sharedLogger].fullLog appendString:@" ----\n"];
-    });
+    NSDateFormatter *formatter= [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
+    customLog(@"---- Session start at %@ ----\n", [formatter stringFromDate:[NSDate date]]);
 }
 
 +(void)addSessionEndStamp {
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        NSDateFormatter *formatter;
-        NSString        *dateString;
-
-        formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
-
-        dateString = [formatter stringFromDate:[NSDate date]];
-        [[Logger sharedLogger].fullLog appendString:@"---- Session end at "];
-        [[Logger sharedLogger].fullLog appendString:dateString];
-        [[Logger sharedLogger].fullLog appendString:@" ----\n"];
-    });
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
+    customLog(@"---- Session end at %@ ----\n", [formatter stringFromDate:[NSDate date]]);
 }
 
 void customLog(NSString *format, ...) {
@@ -84,9 +63,9 @@ void customLog(NSString *format, ...) {
     [[Logger sharedLogger].fullLog appendString:message];
     [[Logger sharedLogger].fullLog appendString:@"\n"];
 
-    #ifdef DEBUG
-        NSLogv(message, argumentList);
-    #endif
+#ifdef DEBUG
+    NSLogv(message, argumentList);
+#endif
     va_end(argumentList);
 }
 

@@ -7,6 +7,7 @@
 
 #import "OpenSSLClient.h"
 #import "Logger.h"
+#import "OpenSSLReceiver.h"
 
 @implementation OpenSSLSender {
     SSL_CTX *currentContext;
@@ -54,24 +55,13 @@
 }
 
 -(NSString*)openSSLClientStart:(NSString*)hostnameIp
-                      withPort:(NSString*)port
-//           certificateFilePath:(NSString*)certFilePath
-//                   keyFilePath:(NSString*)keyFilePath
-//                      password:(NSString*)password
-{
-
-    char buf[1024];
-    int bytes;
+                      withPort:(NSString*)port {
 
     currentContext = InitClientContext();
     if(currentContext == nil) {
         return @"Error initialize SSL client context";
     }
 
-//    LoadCertificates(currentContext,
-//            [certFilePath cStringUsingEncoding:NSUTF8StringEncoding],
-//            [keyFilePath  cStringUsingEncoding:NSUTF8StringEncoding],
-//            [password     cStringUsingEncoding:NSUTF8StringEncoding]);
 
     clientSocket = OpenClientConnection([hostnameIp cStringUsingEncoding:NSUTF8StringEncoding],
                                    atoi([port cStringUsingEncoding:NSUTF8StringEncoding]));
@@ -93,11 +83,11 @@
         return @"Can't connect to SSL listener";
 
     } else {
-        customLog(@"Connected with %s encryption", SSL_get_cipher(currentSSL));
-        ShowCerts(currentSSL, no);                     // get any certs
+        customLog(@"Connected to server with %s encryption", SSL_get_cipher(currentSSL));
+        customLog(@"Server certificates ----");
+        logSertificates(currentSSL);
     }
 
-//    [self closeSSL];
     return nil;
 }
 

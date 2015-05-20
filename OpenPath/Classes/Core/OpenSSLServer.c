@@ -1,12 +1,5 @@
 #include "OpenSSLServer.h"
-#include "RSyntax.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-#include <sys/socket.h>
-#include <resolv.h>
-#include <arpa/inet.h>
 
 #define FAIL   -1
 
@@ -15,20 +8,21 @@
 /*---------------------------------------------------------------------*/
 int OpenListener(int port) {
     int sd;
-    struct sockaddr_in addr;
+    struct sockaddr_in addr = {};
 
     sd = socket(PF_INET, SOCK_STREAM, 0);
-    bzero(&addr, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(port);
     addr.sin_addr.s_addr = INADDR_ANY;
-    if (bind(sd, &addr, sizeof(addr)) != 0) {
-        perror("can't bind port");
-        //abort();
+
+    if (bind(sd, (struct sockaddr const *) &addr, sizeof(addr)) != 0) {
+        perror("Can't bind port");
+        return -1;
     }
+
     if (listen(sd, 10) != 0) {
         perror("Can't configure listening port");
-        //abort();
+        return -2;
     }
     return sd;
 }
@@ -45,7 +39,7 @@ SSL_CTX *InitServerCTX(void) {
     ctx = SSL_CTX_new(method);            /* create new context from method */
     if (ctx == NULL) {
         ERR_print_errors_fp(stderr);
-        //abort();
+        return nil;
     }
     return ctx;
 }
@@ -53,11 +47,11 @@ SSL_CTX *InitServerCTX(void) {
 /*---------------------------------------------------------------------*/
 /*--- LoadCertificates - load from files.                           ---*/
 /*---------------------------------------------------------------------*/
-void LoadCertificates(SSL_CTX *ctx, char const *CertFile, char const *KeyFile, char const *password) {
+char * LoadCertificates(SSL_CTX *ctx, char const *CertFile, char const *KeyFile, char const *password) {
     // set the local certificate from CertFile
     if (SSL_CTX_use_certificate_file(ctx, CertFile, SSL_FILETYPE_PEM) <= 0) {
         ERR_print_errors_fp(stderr);
-        //abort();
+        return "Can't load local certificate";
     }
 
     SSL_CTX_set_default_passwd_cb_userdata(ctx, (void *) password);
@@ -65,13 +59,16 @@ void LoadCertificates(SSL_CTX *ctx, char const *CertFile, char const *KeyFile, c
     // set the private key from KeyFile (may be the same as CertFile)
     if (SSL_CTX_use_PrivateKey_file(ctx, KeyFile, SSL_FILETYPE_PEM) <= 0) {
         ERR_print_errors_fp(stderr);
-        //abort();
+        return "Can't load private key";
     }
+
     // verify private key
     if (!SSL_CTX_check_private_key(ctx)) {
         fprintf(stderr, "Private key does not match the public certificate\n");
-        //abort();
+        return "Private key does not match the public certificate";
     }
+
+    return nil;
 }
 
 /*---------------------------------------------------------------------*/
@@ -104,7 +101,7 @@ void ShowCerts(SSL *ssl, rbool isServer) {
 /*---------------------------------------------------------------------*/
 /*--- Servlet - SSL servlet (contexts can be shared)                ---*/
 /*---------------------------------------------------------------------*/
-void Servlet(SSL *ssl)    /* Serve the connection -- threadable */ {
+void serverServlet(SSL *ssl)    /* Serve the connection -- threadable */ {
     char buffer[1024];
     char responce[1024];
     int sd, bytes;
@@ -156,7 +153,7 @@ void openSSLServerStart(char const *port, char const *certFilePath, char const *
 
         ssl = SSL_new(ctx);          /* get new SSL state with context */
         SSL_set_fd(ssl, client);      /* set connection socket to SSL state */
-        Servlet(ssl);                  /* service connection */
+        serverServlet(ssl);                  /* service connection */
     }
     close(server);                                        /* close server socket */
     SSL_CTX_free(ctx);                                    /* release context */
