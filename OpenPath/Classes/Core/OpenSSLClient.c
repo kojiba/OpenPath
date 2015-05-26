@@ -1,4 +1,5 @@
 #include "OpenSSLClient.h"
+#include "Settings_Keys.h"
 
 #include <unistd.h>
 #include <sys/socket.h>
@@ -36,7 +37,12 @@ SSL_CTX *InitClientContext(void) {
     const SSL_METHOD *method;
     SSL_CTX *ctx;
 
-    method = SSLv3_client_method();   // Create new client-method instance
+    // Create new client-method instance
+    #ifdef PATH_USE_TLS
+        method = TLSv1_2_client_method();
+    #elif defined(PATH_USE_SSL)
+        method = SSLv3_client_method();
+    #endif
     ctx = SSL_CTX_new(method);         // Create new context
     if (ctx == NULL) {
         ERR_print_errors_fp(stderr);

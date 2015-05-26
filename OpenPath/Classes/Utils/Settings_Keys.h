@@ -16,6 +16,8 @@
 #ifndef __SETTINGS_KEYS_H__
 #define __SETTINGS_KEYS_H__
 
+#define PATH_USE_TLS
+//#define PATH_USE_SSL
 
 //#define SELFTEST
 #define HAVE_ITUNES_KEY_TRANSFER

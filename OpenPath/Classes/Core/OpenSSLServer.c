@@ -1,5 +1,5 @@
 #include "OpenSSLServer.h"
-
+#include "Settings_Keys.h"
 
 #define FAIL   -1
 
@@ -34,7 +34,12 @@ SSL_CTX *InitServerCTX(void) {
     const SSL_METHOD *method;
     SSL_CTX *ctx;
 
-    method = SSLv3_server_method();      /* create new server-method instance */
+    // create new server-method instance
+    #ifdef PATH_USE_TLS
+        method = TLSv1_2_server_method();
+    #elif defined(PATH_USE_SSL)
+        method = SSLv3_server_method();
+    #endif
 
     ctx = SSL_CTX_new(method);            /* create new context from method */
     if (ctx == NULL) {
