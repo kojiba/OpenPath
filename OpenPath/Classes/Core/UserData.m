@@ -57,7 +57,7 @@
 }
 
 @property (strong, nonatomic) NSString* username;
-@property (strong, nonatomic) NSString* tempStroredPassword;
+@property (strong, nonatomic) NSString* tempStoredPassword;
 
 @end
 
@@ -144,7 +144,7 @@
 #ifdef HAVE_ITUNES_KEY_TRANSFER
     inMainThread ^{
         if([self checkSharedKeysFound]){
-            self.tempStroredPassword = password;
+            self.tempStoredPassword = password;
             [self checkSharedKeysPromptPassword];
         } else {
             [self alertCertExpired];
@@ -348,9 +348,9 @@
                     NSError *error = [[NSError alloc] init];
                     NSData  *digest = [RNEncryptor encryptData:[password dataUsingEncoding:NSUTF8StringEncoding]
                                                  withSettings:kRNCryptorAES256Settings
-                                                     password:self.tempStroredPassword
+                                                     password:self.tempStoredPassword
                                                         error:&error];
-                    self.tempStroredPassword = nil;
+                    self.tempStoredPassword = nil;
 
                     if(!error.code) {
                         [[NSUserDefaults standardUserDefaults] setObject:digest forKey:[self userKeyPasswordPattern:self.username]];

@@ -248,7 +248,6 @@ char *NewBase64Encode(
 }
 
 - (BOOL)writeToKeystoreWithShortName:(NSString *)fileShortName {
-#ifndef USE_KEYCHAIN
     NSFileManager *filemgr = [NSFileManager defaultManager];
     NSString *store = KEYSTORE_PATH;
     if (NO == [filemgr fileExistsAtPath:store]) {
@@ -259,10 +258,6 @@ char *NewBase64Encode(
     }
     return [self writeToFile:[KEYSTORE_PATH stringByAppendingPathComponent:fileShortName]
                   atomically:YES];
-#else
-    [KeychainWrapper updateKeychainItem:self forKey:fileShortName];
-    return YES;
-#endif
 }
 
 - (id)initFromKeystoreWithShortName:(NSString *)fileShortName {
