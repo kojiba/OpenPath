@@ -33,6 +33,7 @@
 		BCE48DDB925B0252DC615592 /* Helloer.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE480DEB5DDE0EE2794DDD2 /* Helloer.m */; };
 		BCE48E8B521CE980947A0C1D /* NSData+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE4898D77800AEEDFDE3703 /* NSData+Utils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BCE48F14351CB7F33D053F63 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE4806D2FE6D032E7117CF8 /* libssl.a */; };
+		BCE48F38F83D575217EB3615 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE4864DBECAF61416C8727C /* NSString+Utils.m */; };
 		BCE48F8B70F3C2D71F96447E /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48C1BC49DEF596B2247FF /* RegisterViewController.m */; };
 		BCE48FA9A6088B68505838AC /* OpenSSLCertificate.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE486E6BAA93D698907564F /* OpenSSLCertificate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BCE48FB334A38F7DC6C1224E /* login_cert.pem in Resources */ = {isa = PBXBuildFile; fileRef = BCE48F8F96672AAC491ED7FE /* login_cert.pem */; };
@@ -43,6 +44,7 @@
 		FB469E081B09DCF90080C997 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB469E061B09DCF90080C997 /* LaunchScreen.xib */; };
 		FB469E241B09DF540080C997 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB469E1F1B09DF540080C997 /* AppDelegate.m */; };
 		FB469E281B09DFEA0080C997 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FB469E271B09DFEA0080C997 /* bg.jpg */; };
+		FBBE3CC41B184D3A00759F76 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB469DF81B09DCF90080C997 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +103,7 @@
 		BCE485DD955B0B6749872B12 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
 		BCE485ECEE493DE2765B2B3F /* pkcs7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pkcs7.h; sourceTree = "<group>"; };
 		BCE4863F3C2E1B67A27AA1DE /* pem2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pem2.h; sourceTree = "<group>"; };
+		BCE4864DBECAF61416C8727C /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
 		BCE4868CBCA4E17FF06CF2F6 /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
 		BCE486AE96DB1052D2413028 /* sha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha.h; sourceTree = "<group>"; };
 		BCE486B9E74443753E62F6A9 /* des.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = des.h; sourceTree = "<group>"; };
@@ -135,6 +138,7 @@
 		BCE489D6537E3CED99587D13 /* conf_api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conf_api.h; sourceTree = "<group>"; };
 		BCE489D6590B60CFCDB5B056 /* NSData+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Utils.h"; sourceTree = "<group>"; };
 		BCE48A02103B92F9D534BF86 /* OpenSSLSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenSSLSender.h; sourceTree = "<group>"; };
+		BCE48A1C6113DFC50E01CA68 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
 		BCE48A4150E085A524E9F2EF /* camellia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = camellia.h; sourceTree = "<group>"; };
 		BCE48A45CBDD4367B657842F /* conf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conf.h; sourceTree = "<group>"; };
 		BCE48A6381AC5F0FFB8C11F8 /* asn1_mac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asn1_mac.h; sourceTree = "<group>"; };
@@ -472,6 +476,8 @@
 				BCE4898D77800AEEDFDE3703 /* NSData+Utils.m */,
 				BCE489D6590B60CFCDB5B056 /* NSData+Utils.h */,
 				BCE481600D3063C91A175620 /* SynthesizeSingleton.h */,
+				BCE4864DBECAF61416C8727C /* NSString+Utils.m */,
+				BCE48A1C6113DFC50E01CA68 /* NSString+Utils.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -603,6 +609,7 @@
 				FB469E051B09DCF90080C997 /* Images.xcassets in Resources */,
 				BCE48FB334A38F7DC6C1224E /* login_cert.pem in Resources */,
 				BCE482C98DF964D1EB190AFA /* login_key.pem in Resources */,
+				FBBE3CC41B184D3A00759F76 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,6 +648,7 @@
 				BCE4892E8B002CEA37E9BF97 /* Listener.m in Sources */,
 				BCE48794D08C5FC59B9EA8FE /* OpenSSLSender.m in Sources */,
 				BCE488919C2E4E3CCA2D9DCC /* OpenSSLReceiver.m in Sources */,
+				BCE48F38F83D575217EB3615 /* NSString+Utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

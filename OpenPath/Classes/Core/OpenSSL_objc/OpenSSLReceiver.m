@@ -128,7 +128,11 @@ void logSertificates(SSL *ssl) {
         return @"Can't open listener socket";
     }
 
+    #ifdef PATH_USE_TLS
+    customLog(@"OpenPath TLS server started at port %@", port);
+    #elif defined(PATH_USE_SSL)
     customLog(@"OpenPath SSL server started at port %@", port);
+    #endif
 
     while (1) {
         struct sockaddr_in clienAddress;
