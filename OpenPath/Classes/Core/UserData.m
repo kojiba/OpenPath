@@ -124,7 +124,7 @@
         return NO;
     }
 
-    NSData *privateKeyPasswordData = [[NSUserDefaults standardUserDefaults] objectForKey:[self userKeyPasswordPattern:self.username]];
+    NSData *privateKeyPasswordData = [[NSUserDefaults standardUserDefaults] objectForKey:[self userKeyPasswordPattern:login]];
     NSData *privateKeyDecrypted = [RNDecryptor decryptData:privateKeyPasswordData withPassword:password error:&error];
 
     if(error) {
@@ -132,7 +132,13 @@
         return NO;
     }
 
-    userPasswordKey = [NSString stringWithUTF8String: privateKeyDecrypted.bytes];
+    NSUInteger size = privateKeyDecrypted.length;
+    char *nullTerminatedString = malloc(size + 1);
+    if(nullTerminatedString != nil) {
+        memcpy(nullTerminatedString, privateKeyDecrypted.bytes, size);
+        nullTerminatedString[size] = 0;
+        userPasswordKey = [NSString stringWithUTF8String:nullTerminatedString];
+    }
     srand((unsigned int) time(nil));
     self.username = login;
 
@@ -347,13 +353,14 @@
                     // store password
                     NSError *error = [[NSError alloc] init];
                     NSData  *digest = [RNEncryptor encryptData:[password dataUsingEncoding:NSUTF8StringEncoding]
-                                                 withSettings:kRNCryptorAES256Settings
-                                                     password:self.tempStoredPassword
-                                                        error:&error];
+                                                  withSettings:kRNCryptorAES256Settings
+                                                      password:self.tempStoredPassword
+                                                         error:&error];
                     self.tempStoredPassword = nil;
 
                     if(!error.code) {
                         [[NSUserDefaults standardUserDefaults] setObject:digest forKey:[self userKeyPasswordPattern:self.username]];
+                        [[NSUserDefaults standardUserDefaults] synchronize];
                         ShowShortMessage(@"Keys saved successfully");
                     } else {
                         ShowShortMessage(@"Error saving private key password");
