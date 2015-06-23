@@ -33,6 +33,7 @@ typedef enum MessageType {
 @implementation ChatCell
 
 -(void)fillWithObject:(id)object {
+    [self setBackgroundColor:[UIColor clearColor]];
     self.textView.text = ((ChatCellObject *)object).message;
     self.textView.textColor = ((ChatCellObject *)object).type == SelfMessageType ? [UIColor redColor] : [UIColor blueColor];
     [self.textView setTextAlignment: ((ChatCellObject *)object).type == SelfMessageType ? NSTextAlignmentLeft : NSTextAlignmentRight];
