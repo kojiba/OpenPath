@@ -36,7 +36,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="SCD-6o-Bzl">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="SCD-6o-Bzl">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2mD-DF-vdB">
@@ -133,6 +133,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
+                        <outlet property="backGroundView" destination="SCD-6o-Bzl" id="HjD-kQ-xK6"/>
                         <outlet property="loginTextField" destination="2mD-DF-vdB" id="Lsm-Hu-qra"/>
                         <outlet property="passwordTextField" destination="UmO-fo-MI7" id="0oK-gw-Bw4"/>
                         <segue destination="apF-kU-8V9" kind="show" identifier="login-creation.segue" id="uRY-SS-mOf"/>
@@ -228,7 +229,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="RXV-vh-dCt">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="RXV-vh-dCt">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4U-H7-SVi">
@@ -358,6 +359,7 @@ They must be named like
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
+                        <outlet property="backGroundView" destination="RXV-vh-dCt" id="hQq-4T-1y3"/>
                         <outlet property="loginTextField" destination="5lT-iY-tSA" id="uPq-8R-ZeZ"/>
                         <outlet property="passwordTextField" destination="dP6-jQ-IOm" id="1fg-f0-9Iz"/>
                     </connections>
@@ -378,7 +380,7 @@ They must be named like
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="rB5-9o-cVM">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="rB5-9o-cVM">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Tap to create hello key and start broadcast yours ip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9n0-qr-8rx">
@@ -499,6 +501,7 @@ They must be named like
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
+                        <outlet property="backGroundView" destination="rB5-9o-cVM" id="o3y-Jc-Ag0"/>
                         <outlet property="generateButton" destination="f4P-QA-cfG" id="fPp-Bb-OsK"/>
                         <outlet property="keyTextField" destination="G7X-gu-d0m" id="6Fm-q3-cJD"/>
                         <outlet property="responcedButton" destination="15b-Yh-cx2" id="Ad5-fh-W7l"/>
@@ -634,6 +637,7 @@ They must be named like
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
+                        <outlet property="backGroundView" destination="GeE-hK-9b6" id="0cR-Jv-qGg"/>
                         <outlet property="bottomConstraint" destination="aAR-VO-0MR" id="ql3-Qb-faK"/>
                         <outlet property="inputTextView" destination="rGb-aA-RCT" id="Hi2-ld-gpu"/>
                         <outlet property="sendButton" destination="W6B-oE-wc5" id="Yau-VB-WR3"/>

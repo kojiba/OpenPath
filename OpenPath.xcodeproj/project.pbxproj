@@ -10,6 +10,7 @@
 		BCE4805B173993CCCEAEF0B2 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48BAC82F2D9C03E626B70 /* ChatViewController.m */; };
 		BCE48062F561583E61C85C52 /* IndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE483EADFF626333164125F /* IndicatorView.m */; };
 		BCE48210F34353BB85CC81AA /* OpenSSLServer.c in Sources */ = {isa = PBXBuildFile; fileRef = BCE48526185CFA11152CD523 /* OpenSSLServer.c */; };
+		BCE4826BEBB0F724FBDD4445 /* KeyboardedController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE48292A48FBC8708B03FB0 /* KeyboardedController.m */; };
 		BCE482A518A3C52C0B3A8D54 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCE4871541DB492A3F37C99E /* libcrypto.a */; };
 		BCE482C98DF964D1EB190AFA /* login_key.pem in Resources */ = {isa = PBXBuildFile; fileRef = BCE48B61484BF6CA8F434431 /* login_key.pem */; };
 		BCE4835E61ADE703EC4C200C /* OpenSSLClient.c in Sources */ = {isa = PBXBuildFile; fileRef = BCE48F0A0AD80D04BABA95F4 /* OpenSSLClient.c */; };
@@ -72,6 +73,7 @@
 		BCE4823E954228999F3A3161 /* rand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rand.h; sourceTree = "<group>"; };
 		BCE4827FBC1C63BC3E2B73C5 /* IndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndicatorView.h; sourceTree = "<group>"; };
 		BCE482812EDA49BB0D4DB0A4 /* mdc2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mdc2.h; sourceTree = "<group>"; };
+		BCE48292A48FBC8708B03FB0 /* KeyboardedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyboardedController.m; sourceTree = "<group>"; };
 		BCE482B62739D1391B50E15A /* stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
 		BCE482D2D4955FF8AE7751C0 /* bn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bn.h; sourceTree = "<group>"; };
 		BCE482D90D24172D1F7C014F /* rc2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rc2.h; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		BCE48A7FCA341C121CDFD20D /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
 		BCE48AAF2347106EBB9A7744 /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
 		BCE48AE4A525F746E2BAA0F7 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
+		BCE48AEB96B59436DA519AE0 /* KeyboardedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardedController.h; sourceTree = "<group>"; };
 		BCE48AECABA61417276C3B61 /* seed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = seed.h; sourceTree = "<group>"; };
 		BCE48B4E516E8416E99858EB /* RByteOperations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = RByteOperations.c; sourceTree = "<group>"; };
 		BCE48B61484BF6CA8F434431 /* login_key.pem */ = {isa = PBXFileReference; lastKnownFileType = file.pem; path = login_key.pem; sourceTree = "<group>"; };
@@ -390,6 +393,8 @@
 				BCE483EADFF626333164125F /* IndicatorView.m */,
 				BCE4827FBC1C63BC3E2B73C5 /* IndicatorView.h */,
 				BCE48525738E1B9CC3866E2E /* Settings */,
+				BCE48292A48FBC8708B03FB0 /* KeyboardedController.m */,
+				BCE48AEB96B59436DA519AE0 /* KeyboardedController.h */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -649,6 +654,7 @@
 				BCE48794D08C5FC59B9EA8FE /* OpenSSLSender.m in Sources */,
 				BCE488919C2E4E3CCA2D9DCC /* OpenSSLReceiver.m in Sources */,
 				BCE48F38F83D575217EB3615 /* NSString+Utils.m in Sources */,
+				BCE4826BEBB0F724FBDD4445 /* KeyboardedController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

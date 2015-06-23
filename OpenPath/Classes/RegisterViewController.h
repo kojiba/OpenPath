@@ -3,8 +3,7 @@
 // Copyright (c) 2015 Ilya Kucheruavyu. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "KeyboardedController.h"
 
-@interface RegisterViewController : UIViewController
+@interface RegisterViewController : KeyboardedController
 @end

@@ -13,8 +13,6 @@
 
 @interface UIView(Indicator)
 
-@property (strong, nonatomic) IndicatorView *currentIndicator;
-
 -(void)showLoading;
 -(void)hideLoading;
 

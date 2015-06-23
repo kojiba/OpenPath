@@ -5,7 +5,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "KeyboardedController.h"
 
-@interface ChatViewController : UIViewController
+@interface ChatViewController : KeyboardedController
 
 @end

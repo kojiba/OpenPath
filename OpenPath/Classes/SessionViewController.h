@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "KeyboardedController.h"
 
-@interface SessionViewController : UIViewController
+@interface SessionViewController : KeyboardedController
 @end

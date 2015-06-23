@@ -4,8 +4,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "KeyboardedController.h"
 
 
-@interface LoginViewController : UIViewController <UITextFieldDelegate>
+@interface LoginViewController : KeyboardedController <UITextFieldDelegate>
 @end
