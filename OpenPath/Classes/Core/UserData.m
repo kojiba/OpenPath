@@ -138,6 +138,7 @@
         memcpy(nullTerminatedString, privateKeyDecrypted.bytes, size);
         nullTerminatedString[size] = 0;
         userPasswordKey = [NSString stringWithUTF8String:nullTerminatedString];
+        free(nullTerminatedString);
     }
     srand((unsigned int) time(nil));
     self.username = login;
